@@ -9,6 +9,30 @@ export type Route = {
 };
 
 class RouteService {
+
+  add(route_id: number, duration: number, time_published: Date){
+    pool.query(
+      "INSERT INTO Routes(DestinationName, Title, Area) VALUES('${route_id}, ${duration}, ${time_published},') ",
+      [route_id],
+      [duration],
+      [time_published],
+    )
+  }
+  
+  remove(route_id: number,){
+    pool.query(
+      "DELETE FROM Routes WHERE route_id = ?}') ",
+      [route_id]
+    )
+  }
+
+  update(route_id: number, duration: number, time_published: Date){
+    pool.query(
+      "UPDATE route SET duration = '' WHERE route_id = ?})"
+      [route_id],
+    )
+  }
+
   /**
    * Get task with given id.
    */
@@ -41,6 +65,7 @@ class RouteService {
       );
     });
   }
+  
 }
 const routeService = new RouteService();
 export default routeService;

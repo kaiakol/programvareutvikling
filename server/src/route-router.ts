@@ -13,4 +13,11 @@ router.get("/routes", (_request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+router.put("/routes/route_id", (_request, response) => {
+  routeService
+    .update()
+    .then((rows) => response.send(rows))
+    .catch((error) => response.status(500).send(error));
+});
+
 export default router;
