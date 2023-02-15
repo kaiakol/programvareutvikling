@@ -3,7 +3,7 @@ import { Component } from "react-simplified";
 import { NavLink } from "react-router-dom";
 import routeService, { Route } from "./route-service";
 import { createHashHistory } from "history";
-import { Alert, Card } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
@@ -14,7 +14,17 @@ export class RouteList extends Component {
   routes: Route[] = [];
 
   render() {
-    return <Card>"Hei"</Card>;
+    return (
+      <>
+        <Card title="Routes">
+          {this.routes.map((route) => (
+            <Row key={route.route_id}>
+              <Col>{route.destination}</Col>
+            </Row>
+          ))}
+        </Card>
+      </>
+    );
   }
 
   mounted() {

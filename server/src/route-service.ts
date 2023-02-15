@@ -3,6 +3,9 @@ import type { RowDataPacket, ResultSetHeader } from "mysql2";
 
 export type Route = {
   route_id: number;
+  duration: string;
+  destination: string;
+  time_published: Date;
 };
 
 class RouteService {
@@ -12,7 +15,7 @@ class RouteService {
   get(id: number) {
     return new Promise<Route | undefined>((resolve, reject) => {
       pool.query(
-        "SELECT * FROM XXX WHERE id = ?",
+        "SELECT * FROM route_travel_point WHERE id = ?",
         [id],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
@@ -24,15 +27,18 @@ class RouteService {
   }
 
   /**
-   * Get all tasks.
+   * Get all Routes.
    */
   getAll() {
     return new Promise<Route[]>((resolve, reject) => {
-      pool.query("SELECT * FROM Tasks", (error, results: RowDataPacket[]) => {
-        if (error) return reject(error);
+      pool.query(
+        "SELECT * FROM route, travel_point, route_travel_point WHERE route.route_id = route_travel_point.route_id AND route_travel_point.travel_point_id = travel_point.travel_point_id",
+        (error, results: RowDataPacket[]) => {
+          if (error) return reject(error);
 
-        resolve(results as Route[]);
-      });
+          resolve(results as Route[]);
+        }
+      );
     });
   }
 }

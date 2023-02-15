@@ -4,6 +4,8 @@ axios.defaults.baseURL = "http://localhost:3000/api/v2";
 
 export type Route = {
   route_id: number;
+  destination: string;
+  duration: string;
 };
 
 class RouteService {
