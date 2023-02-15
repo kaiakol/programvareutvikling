@@ -1,34 +1,28 @@
-import ReactDOM from 'react-dom';
-import * as React from 'react';
-import { Component } from 'react-simplified';
-import { HashRouter, Route } from 'react-router-dom';
-import {  } from './route-components';
+import ReactDOM from "react-dom";
+import * as React from "react";
+import { Component } from "react-simplified";
+import { HashRouter, Route } from "react-router-dom";
+import { RouteList } from "./route-components";
+import { Card } from "react-bootstrap";
 
 class Menu extends Component {
   render() {
-    return (
-      // Navbar her
-    );
+    return <Card>Velkommen</Card>;
   }
 }
 
 class Home extends Component {
   render() {
-    return // velkommen-kort her
+    return <Card>Hei</Card>;
   }
 }
 
 ReactDOM.render(
   <HashRouter>
     <div>
-      <Alert />
       <Menu />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/XXX" component={XXXList} />
-      <Route exact path="/XXX/:id(\d+)" component={XXXDetails} /> {/* id must be number */}
-      <Route exact path="/XXX/:id(\d+)/edit" component={XXXEdit} /> {/* id must be number */}
-      <Route exact path="/XXX/new" component={XXXNew} />
+      <Route exact path="/routes" component={RouteList} />
     </div>
   </HashRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

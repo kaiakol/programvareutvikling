@@ -14,4 +14,3 @@ router.get("/routes", (_request, response) => {
 });
 
 export default router;
-
