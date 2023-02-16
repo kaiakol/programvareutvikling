@@ -4,33 +4,52 @@ import type { RowDataPacket, ResultSetHeader } from "mysql2";
 export type Route = {
   route_id: number;
   duration: string;
-  destination: string;
+  //destination: string;
   time_published: Date;
 };
 
 class RouteService {
+  add(route: Route) {
+    return new Promise<Number>((resolve, reject) => {
+      pool.query(
+        "INSERT INTO Routes SET duration = ?, time_published = ?",
+        [route.duration, route.time_published],
+        (error, results: ResultSetHeader) => {
+          if (error) return reject(error);
 
-  add(route_id: number, duration: number, time_published: Date){
-    pool.query(
-      "INSERT INTO Routes(DestinationName, Title, Area) VALUES('${route_id}, ${duration}, ${time_published},') ",
-      [route_id],
-      [duration],
-      [time_published],
-    )
-  }
-  
-  remove(route_id: number,){
-    pool.query(
-      "DELETE FROM Routes WHERE route_id = ?}') ",
-      [route_id]
-    )
+          resolve(results.insertId);
+        }
+      );
+    });
   }
 
-  update(route_id: number, duration: number, time_published: Date){
-    pool.query(
-      "UPDATE route SET duration = '' WHERE route_id = ?})"
-      [route_id],
-    )
+  remove(route: Route) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "DELETE FROM Routes WHERE route_id = ?}') ",
+        [route.route_id],
+        (error, results: ResultSetHeader) => {
+          if (error) return reject(error);
+          if (results.affectedRows == 0) reject(new Error("No row deleted"));
+
+          resolve();
+        }
+      );
+    });
+  }
+
+  update(route: Route) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "UPDATE route SET duration = ? WHERE route_id = ?})",
+        [route.duration, route.route_id],
+        (error, _results) => {
+          if (error) return reject(error);
+
+          resolve();
+        }
+      );
+    });
   }
 
   /**
@@ -65,7 +84,6 @@ class RouteService {
       );
     });
   }
-  
 }
 const routeService = new RouteService();
 export default routeService;
