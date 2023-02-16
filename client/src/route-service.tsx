@@ -8,6 +8,21 @@ export type Route = {
   duration: string;
 };
 
+export type TravelPoint = {
+  travel_point_id: number;
+  destination: string;
+  continent: string;
+};
+
+export type RouteTravelPoint = {
+  route_id: number;
+  travel_point_id: number;
+  order_number: number;
+  duration: number;
+  estimated_price: number;
+  user_profile_id: number;
+};
+
 class RouteService {
   /**
    * Get task with given id.

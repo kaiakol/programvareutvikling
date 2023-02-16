@@ -1,7 +1,11 @@
 import * as React from "react";
 import { Component } from "react-simplified";
 import { NavLink } from "react-router-dom";
-import routeService, { Route } from "./route-service";
+import routeService, {
+  Route,
+  RouteTravelPoint,
+  TravelPoint,
+} from "./route-service";
 import { createHashHistory } from "history";
 import { Card, Row, Col, Container } from "react-bootstrap";
 
@@ -31,10 +35,10 @@ export class RouteList extends Component {
           {Object.values(groups).map((group) => (
             <Row key={group[0].route_id}>
               {group.map((route) => (
-                <>
+                <NavLink to={"/routes/" + route.route_id}>
                   <Col key={route.route_id}>{route.destination}</Col>
                   <Col key={route.route_id}>{route.route_id}</Col>
-                </>
+                </NavLink>
               ))}
             </Row>
           ))}
@@ -51,5 +55,42 @@ export class RouteList extends Component {
       .catch((error: { message: string }) =>
         alert("Error getting tasks: " + error.message)
       );
+  }
+}
+
+export class RouteDetails extends Component {
+  route: Route = {
+    route_id: 0,
+    destination: "",
+    duration: "",
+  };
+
+  routeTravelPoint: RouteTravelPoint = {
+    route_id: 0,
+    travel_point_id: 0,
+    order_number: 0,
+    duration: 0,
+    estimated_price: 0,
+    user_profile_id: 0,
+  };
+  TravelPoint: TravelPoint = {
+    travel_point_id: 0,
+    destination: "",
+    continent: "",
+  };
+  render() {
+    return (
+      <>
+        <Container>
+          <Card>Hei</Card>
+        </Container>
+      </>
+    );
+  }
+  mounted() {
+    routeService
+      .get(this.props.match.params.routeTravelPoint.route_id)
+      .then((route) => (this.route = route))
+      .catch((error) => alert(error.response.data));
   }
 }
