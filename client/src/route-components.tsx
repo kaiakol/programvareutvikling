@@ -56,15 +56,20 @@ export class NewRoute extends Component {
   render() {
     return (
       <>
-        <Card>
-          <Card.Title>Add steps</Card.Title>
-          <Row>
+        <Card style={{ display: "flex" }}>
+          <Card.Title style={{ marginLeft: "auto", marginRight: "auto" }}>
+            Add steps
+          </Card.Title>
+          <Row style={{ marginLeft: "auto", marginRight: "auto" }}>
+            Input ONE travel point chronologically
+          </Row>
+          <Row style={{ margin: "5%", marginTop: "3%", marginBottom: "0%" }}>
             <Form.Control
-              value={this.step.description}
+              value={this.newDestination.name}
               type="text"
-              placeholder="Step"
+              placeholder="Destination"
               onChange={(event) =>
-                (this.step.description = event.currentTarget.value)
+                (this.newDestination.name = event.currentTarget.value)
               }
               style={{
                 textAlign: "center",
@@ -79,24 +84,24 @@ export class NewRoute extends Component {
             <Button
               style={{ width: "30%", marginLeft: "20%", marginBottom: "10px" }}
               variant="light"
-              onClick={() => this.addStep()}
+              onClick={() => this.addDestination()}
             >
               +
             </Button>
             <Button
               style={{ width: "30%", marginBottom: "10px" }}
               variant="light"
-              onClick={() => this.undoStep()}
+              onClick={() => this.undoDestination()}
             >
               &#x1F519;
             </Button>
           </Row>
-          <Row>
-            {this.steps.map((step) => (
-              <Row key={step.order_number}>
-                <Card.Text>
-                  {step.order_number + ": " + step.description}
-                </Card.Text>
+          <Row style={{ margin: "5%" }}>
+            {this.newDestinations.map((newDestination) => (
+              <Row key={newDestination.orderNumber}>
+                <Col>
+                  {newDestination.orderNumber + ": " + newDestination.name}
+                </Col>
               </Row>
             ))}
           </Row>
@@ -123,5 +128,11 @@ export class NewRoute extends Component {
       this.destinationNumber += 1;
       this.newDestination = { name: "", orderNumber: this.destinationNumber };
     }
+  }
+
+  undoDestination() {
+    this.newDestinations.pop();
+    this.destinationNumber -= 1;
+    this.newDestination.orderNumber = this.destinationNumber;
   }
 }

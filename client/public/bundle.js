@@ -3974,11 +3974,31 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   };
   duration = "";
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, null, "Add steps"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
-      value: this.step.description,
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      style: {
+        display: "flex"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, {
+      style: {
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
+    }, "Add steps"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
+    }, "Input ONE travel point chronologically"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        margin: "5%",
+        marginTop: "3%",
+        marginBottom: "0%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      value: this.newDestination.name,
       type: "text",
-      placeholder: "Step",
-      onChange: event => this.step.description = event.currentTarget.value,
+      placeholder: "Destination",
+      onChange: event => this.newDestination.name = event.currentTarget.value,
       style: {
         textAlign: "center",
         width: "60%",
@@ -3993,17 +4013,21 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "10px"
       },
       variant: "light",
-      onClick: () => this.addStep()
+      onClick: () => this.addDestination()
     }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       style: {
         width: "30%",
         marginBottom: "10px"
       },
       variant: "light",
-      onClick: () => this.undoStep()
-    }, "\uD83D\uDD19")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.steps.map(step => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      key: step.order_number
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, step.order_number + ": " + step.description))))));
+      onClick: () => this.undoDestination()
+    }, "\uD83D\uDD19")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        margin: "5%"
+      }
+    }, this.newDestinations.map(newDestination => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      key: newDestination.orderNumber
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, newDestination.orderNumber + ": " + newDestination.name))))));
   }
 
   //   mounted() {
@@ -4029,6 +4053,11 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         orderNumber: this.destinationNumber
       };
     }
+  }
+  undoDestination() {
+    this.newDestinations.pop();
+    this.destinationNumber -= 1;
+    this.newDestination.orderNumber = this.destinationNumber;
   }
 }
 
