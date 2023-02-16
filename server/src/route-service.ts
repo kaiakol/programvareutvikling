@@ -9,11 +9,11 @@ export type Route = {
 };
 
 class RouteService {
-  add(route: Route) {
+  add(duration: string, time_published: Date) {
     return new Promise<Number>((resolve, reject) => {
       pool.query(
-        "INSERT INTO Routes SET duration = ?, time_published = ?",
-        [route.duration, route.time_published],
+        "INSERT INTO route SET duration=?, time_published=?",
+        [duration, time_published],
         (error, results: ResultSetHeader) => {
           if (error) return reject(error);
 
@@ -45,7 +45,6 @@ class RouteService {
         [route.duration, route.route_id],
         (error, _results) => {
           if (error) return reject(error);
-
           resolve();
         }
       );
