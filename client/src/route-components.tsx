@@ -70,6 +70,13 @@ export class NewRoute extends Component {
               <Form.Control
                 value={this.destination}
                 type="text"
+                placeholder="Temp Stopping"
+              ></Form.Control>
+            </Row>
+            <Row>
+              <Form.Control
+                value={this.destination}
+                type="text"
                 placeholder="Stop"
               ></Form.Control>
             </Row>
