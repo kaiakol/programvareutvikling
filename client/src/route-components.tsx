@@ -3,10 +3,14 @@ import { Component } from "react-simplified";
 import { NavLink } from "react-router-dom";
 import routeService, { Route } from "./route-service";
 import { createHashHistory } from "history";
-import { Card, Row, Col, Form } from "react-bootstrap";
+import { Card, Row, Col, Form, Alert, Button } from "react-bootstrap";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
+export type addDestination = {
+  name: string;
+  orderNumber: number;
+};
 /**
  * Renders route list.
  */
@@ -42,45 +46,60 @@ export class RouteList extends Component {
  * Renders a create new route form list.
  */
 export class NewRoute extends Component {
-  destination: string = ""; // Temp Value
+  newDestinations: addDestination[] = []; // Temp value
+  destinationNumber: number = 1;
+  newDestination: addDestination = {
+    name: "",
+    orderNumber: this.destinationNumber,
+  };
   duration: string = "";
   render() {
     return (
       <>
-        <Card
-          title="New route"
-          style={{
-            textAlign: "center",
-            marginTop: "3%",
-            marginLeft: "30%",
-            marginRight: "30%",
-          }}
-        >
-          <Card.Title>Add a new route here</Card.Title>
-
-          <Form>
-            <Row>
-              <Form.Control
-                value={this.destination}
-                type="text"
-                placeholder="Start"
-              ></Form.Control>
-            </Row>
-            <Row>
-              <Form.Control
-                value={this.destination}
-                type="text"
-                placeholder="Temp Stopping"
-              ></Form.Control>
-            </Row>
-            <Row>
-              <Form.Control
-                value={this.destination}
-                type="text"
-                placeholder="Stop"
-              ></Form.Control>
-            </Row>
-          </Form>
+        <Card>
+          <Card.Title>Add steps</Card.Title>
+          <Row>
+            <Form.Control
+              value={this.step.description}
+              type="text"
+              placeholder="Step"
+              onChange={(event) =>
+                (this.step.description = event.currentTarget.value)
+              }
+              style={{
+                textAlign: "center",
+                width: "60%",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: "10px",
+              }}
+            ></Form.Control>
+          </Row>
+          <Row>
+            <Button
+              style={{ width: "30%", marginLeft: "20%", marginBottom: "10px" }}
+              variant="light"
+              onClick={() => this.addStep()}
+            >
+              +
+            </Button>
+            <Button
+              style={{ width: "30%", marginBottom: "10px" }}
+              variant="light"
+              onClick={() => this.undoStep()}
+            >
+              &#x1F519;
+            </Button>
+          </Row>
+          <Row>
+            {this.steps.map((step) => (
+              <Row key={step.order_number}>
+                <Card.Text>
+                  {step.order_number + ": " + step.description}
+                </Card.Text>
+              </Row>
+            ))}
+          </Row>
         </Card>
       </>
     );
@@ -95,4 +114,14 @@ export class NewRoute extends Component {
   //         alert("Error getting tasks: " + error.message)
   //       );
   //   }
+
+  addDestination() {
+    if (this.newDestination.name == "") {
+      <Alert variant="danger">All fields must be filled.</Alert>;
+    } else {
+      this.newDestinations.push(this.newDestination);
+      this.destinationNumber += 1;
+      this.newDestination = { name: "", orderNumber: this.destinationNumber };
+    }
+  }
 }
