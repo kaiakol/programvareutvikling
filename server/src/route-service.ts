@@ -4,7 +4,7 @@ import type { RowDataPacket, ResultSetHeader } from "mysql2";
 export type Route = {
   route_id: number;
   duration: string;
-  //destination: string;
+  estimated_price: string;
   time_published: Date;
 };
 
@@ -43,11 +43,11 @@ class RouteService {
     });
   }
 
-  add(duration: string, time_published: Date) {
+  add(duration: string, estimated_price: string, time_published: Date) {
     return new Promise<Number>((resolve, reject) => {
       pool.query(
-        "INSERT INTO route SET duration=?, time_published=?",
-        [duration, time_published],
+        "INSERT INTO route SET duration=?, estimated_price=?, time_published=?",
+        [duration, estimated_price, time_published],
         (error, results: ResultSetHeader) => {
           if (error) return reject(error);
 
@@ -75,8 +75,8 @@ class RouteService {
   update(route: Route) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        "UPDATE route SET duration = ? WHERE route_id = ?",
-        [route.duration, route.route_id],
+        "UPDATE route SET duration = ?, estimated_price = ? WHERE route_id = ?",
+        [route.duration, route.estimated_price, route.route_id],
         (error, _results) => {
           if (error) return reject(error);
           resolve();

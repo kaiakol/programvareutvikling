@@ -18,7 +18,7 @@ router.post("/routes", (request, response) => {
     route.duration.length != 0
   )
     routeService
-      .add(route.duration, route.time_published)
+      .add(route.duration, route.estimated_price, route.time_published)
       .then((route_id) => response.send({ route_id: route_id }))
       .catch((error) => response.status(500).send(error));
   else
@@ -68,6 +68,7 @@ router.put("/routes/:route_id", (request, response) => {
       .update({
         route_id: data.route_id,
         duration: data.duration,
+        estimated_price: data.estimated_price,
         time_published: data.time_published,
       })
       .then((rows) => response.send(rows))
