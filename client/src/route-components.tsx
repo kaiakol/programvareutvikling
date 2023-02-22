@@ -314,7 +314,13 @@ export class NewRoute extends Component {
     ) {
       alert("All fields must be filled");
     } else {
-      // service.createRoute
+      routeService.createRoute(
+        this.newDestination.name,
+        this.newDestination.continent,
+        this.duration,
+        this.estimatedCost
+        // this.newDestination.orderNumber
+      );
     }
   }
 }
