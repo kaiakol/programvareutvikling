@@ -36,6 +36,30 @@ router.get("/routes", (_request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+router.get("/routes/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  routeService
+    .get(route_id)
+    .then((route) =>
+      route
+        ? response.send(route)
+        : response.status(404).send("Route not found")
+    )
+    .catch((error) => response.status(500).send(error));
+});
+
+router.delete("/routes/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  if (route_id) {
+    routeService
+      .remove(route_id)
+      .then((_result) => response.send())
+      .catch((error) => response.status(500).send(error));
+  } else {
+    response.status(400).send("Route does not exist.");
+  }
+});
+
 router.put("/routes/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   const data = request.body;
