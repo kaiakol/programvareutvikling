@@ -2,7 +2,12 @@ import ReactDOM from "react-dom";
 import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
-import { RouteDetails, RouteList } from "./route-components";
+import {
+  RouteDetails,
+  RouteList,
+  RegisterUser,
+  UserLogIn,
+} from "./route-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
 
 class Menu extends Component {
@@ -16,6 +21,7 @@ class Menu extends Component {
             <Nav className="me-auto">
               <Nav.Link href="#/routes">Explore</Nav.Link>
               <Nav.Link href="#link">My Travels</Nav.Link>
+              <Nav.Link href="#/profile">My Profile</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -36,6 +42,8 @@ ReactDOM.render(
       <Menu />
       <Route exact path="/routes" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
+      <Route exact path="/profile" component={UserLogIn} />
+      <Route exact path="/profile/register" component={RegisterUser} />
     </div>
   </HashRouter>,
   document.getElementById("root")
