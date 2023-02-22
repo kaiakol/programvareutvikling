@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import routeService from "./route-service";
 
 /**
@@ -13,10 +13,18 @@ router.get("/routes", (_request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
-router.get("/routes/:route_id", (request, response) => {
+/*router.get("/routes/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   routeService
     .get(route_id)
+    .then((rows) => response.send(rows))
+    .catch((error) => response.status(500).send(error));
+});*/
+
+router.get("/routes/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  routeService
+    .getRoute(route_id)
     .then((rows) => response.send(rows))
     .catch((error) => response.status(500).send(error));
 });
