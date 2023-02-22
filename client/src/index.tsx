@@ -3,7 +3,7 @@ import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
 import { NewRoute, RouteList } from "./route-components";
-import { Card } from "react-bootstrap";
+import { Card, Container, Nav, Navbar } from "react-bootstrap";
 
 class Menu extends Component {
   render() {
@@ -16,6 +16,7 @@ class Menu extends Component {
             <Nav className="me-auto">
               <Nav.Link href="#/routes">Explore</Nav.Link>
               <Nav.Link href="#link">My Travels</Nav.Link>
+              <Nav.Link href="#/routes/add">Create New Route</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
