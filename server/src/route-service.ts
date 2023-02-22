@@ -4,7 +4,7 @@ import type { RowDataPacket, ResultSetHeader } from "mysql2";
 export type Route = {
   route_id: number;
   duration: string;
-  destination: string;
+  estimated_price: string;
   time_published: Date;
 };
 
@@ -15,7 +15,7 @@ class RouteService {
   get(id: number) {
     return new Promise<Route | undefined>((resolve, reject) => {
       pool.query(
-        "SELECT * FROM route_travel_point WHERE id = ?",
+        "SELECT * FROM route WHERE route_id = ?",
         [id],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
@@ -32,11 +32,54 @@ class RouteService {
   getAll() {
     return new Promise<Route[]>((resolve, reject) => {
       pool.query(
-        "SELECT * FROM route, travel_point, route_travel_point WHERE route.route_id = route_travel_point.route_id AND route_travel_point.travel_point_id = travel_point.travel_point_id",
+        "SELECT * FROM route",
+        //"SELECT * FROM route, travel_point, route_travel_point WHERE route.route_id = route_travel_point.route_id AND route_travel_point.travel_point_id = travel_point.travel_point_id",
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
           resolve(results as Route[]);
+        }
+      );
+    });
+  }
+
+  add(duration: string, estimated_price: string, time_published: Date) {
+    return new Promise<Number>((resolve, reject) => {
+      pool.query(
+        "INSERT INTO route SET duration=?, estimated_price=?, time_published=?",
+        [duration, estimated_price, time_published],
+        (error, results: ResultSetHeader) => {
+          if (error) return reject(error);
+
+          resolve(results.insertId);
+        }
+      );
+    });
+  }
+
+  remove(route_id: Number) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "DELETE FROM route WHERE route_id = ?",
+        [route_id],
+        (error, results: ResultSetHeader) => {
+          if (error) return reject(error);
+          if (results.affectedRows == 0) reject(new Error("No row deleted"));
+
+          resolve();
+        }
+      );
+    });
+  }
+
+  update(route: Route) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "UPDATE route SET duration = ?, estimated_price = ? WHERE route_id = ?",
+        [route.duration, route.estimated_price, route.route_id],
+        (error, _results) => {
+          if (error) return reject(error);
+          resolve();
         }
       );
     });
