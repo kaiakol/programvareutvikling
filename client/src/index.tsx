@@ -3,6 +3,7 @@ import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
 import { RouteDetails, RouteList } from "./route-components";
+import { RouteDetails, RouteList } from "./route-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
 
 class Menu extends Component {
@@ -12,7 +13,7 @@ class Menu extends Component {
         <Container>
           <Navbar.Brand href="#home">
             {" "}
-            <img src="./IMG_0112.JPG" alt="BackTrack" />{" "}
+            <title "BackTrack" />{" "}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -26,7 +27,6 @@ class Menu extends Component {
     );
   }
 }
-
 /*class Home extends Component {
   render() {
     return <Card>Hei</Card>;
