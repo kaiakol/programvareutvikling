@@ -3,15 +3,7 @@ import { Component } from "react-simplified";
 import { NavLink } from "react-router-dom";
 import routeService, { Route } from "./route-service";
 import { createHashHistory } from "history";
-import {
-  Card,
-  Row,
-  Col,
-  Form,
-  Alert,
-  Button,
-  Container,
-} from "react-bootstrap";
+import { Card, Row, Col, Form, Alert, Button, Stack } from "react-bootstrap";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
@@ -27,32 +19,85 @@ export class RouteList extends Component {
   routes: Route[] = [];
 
   render() {
-    // Group routes by route_id
-    const groups = this.routes.reduce((groups, route) => {
-      const key = route.route_id;
-      if (!groups[key]) {
-        groups[key] = [];
-      }
-      groups[key].push(route);
-      return groups;
-    }, {});
-
+    const sortedRoutes = this.routes.sort((a, b) => a.route_id - b.route_id);
     // Render each group on a separate row
+    const groupedRoutes = this.routes.reduce(
+      (acc: { [key: number]: Route[] }, curr: Route) => {
+        if (acc[curr.route_id]) {
+          acc[curr.route_id].push(curr);
+        } else {
+          acc[curr.route_id] = [curr];
+        }
+        return acc;
+      },
+      {}
+    );
     return (
       <>
-        <Container>
-          {Object.values(groups).map((group) => (
-            <Row key={group[0].route_id}>
-              {group.map((route) => (
-                <>
-                  <Col key={route.route_id}>{route.destination}</Col>
-                  <Col key={route.route_id}>{route.route_id}</Col>
-                </>
-              ))}
-            </Row>
-          ))}
+        <Container
+          style={{
+            position: "absolute",
+            marginLeft: "10%",
+            marginRight: "10%",
+            height: "100%",
+            width: "80%",
+            backgroundColor: "#53aca8",
+          }}
+        >
+          <Container>
+            <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
+              Explore
+            </h1>
+            {Object.keys(groupedRoutes).map((routeId) => {
+              const routes = groupedRoutes[routeId];
+              return (
+                <Card key={routeId} style={{ marginBottom: "20px" }}>
+                  <NavLink
+                    to={"/routes/" + routeId}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Card.Title
+                      style={{ textAlign: "center", color: "#53ACA8" }}
+                    >
+                      Route
+                    </Card.Title>
+                  </NavLink>
+                  <Row style={{ backgroundColor: "" }}>
+                    {/* <Col style={{ textAlign: "center" }}>Destinations:</Col> */}
+                    <Col style={{ textAlign: "center" }}>
+                      {routes.map((route, index) => (
+                        <span key={index}>
+                          {route.destination}
+                          {index === routes.length - 1 ? "" : ", "}
+                        </span>
+                      ))}
+                    </Col>
+                  </Row>
+                </Card>
+              );
+            })}
+          </Container>
         </Container>
       </>
+
+      // <Container>
+      //   <Card.Title>Routes</Card.Title>
+      //   <Stack direction="horizontal" gap={3}>
+      //     {sortedRoutes.map((route) => (
+      //       <Row key={route.route_id}>
+      //         <Col>
+      //           <Card>
+      //             <Col>
+      //               <NavLink to={"/routes/" + route.route_id}>
+      //                 {route.destination}, {route.route_id}
+      //               </NavLink>
+      //             </Col>
+      //           </Card>
+      //         </Col>
+      //       </Row>
+      //     ))}
+      //   </Stack>
+      // </Container>
     );
   }
 
@@ -62,7 +107,7 @@ export class RouteList extends Component {
       //@ts-ignore
       .then((routes) => (this.routes = routes))
       .catch((error: { message: string }) =>
-        alert("Error getting tasks: " + error.message)
+        alert("Error getting route: " + error.message)
       );
   }
 }

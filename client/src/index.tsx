@@ -3,6 +3,7 @@ import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
 import { RouteDetails, RouteList } from "./route-components";
+import { RouteDetails, RouteList } from "./route-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
 
 class Menu extends Component {

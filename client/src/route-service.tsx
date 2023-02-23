@@ -13,6 +13,18 @@ export type travel_point = {
   travel_point_id: number;
   destination: string;
   continent: string;
+  time_published: Date;
+  continent: string;
+  order_number: number;
+  estimated_price: number;
+  user_profile_id: number;
+  travel_point_id: number;
+};
+
+/*export type TravelPoint = {
+  travel_point_id: number;
+  destination: string;
+  continent: string;
 };
 
 export type route_travel_point = {
@@ -22,12 +34,23 @@ export type route_travel_point = {
   // user_profile_id: number;
 };
 
+export type RouteTravelPoint = {
+  route_id: number;
+  travel_point_id: number;
+  order_number: number;
+  duration: number;
+  estimated_price: number;
+  user_profile_id: number;
+};*/
+
 class RouteService {
   /**
    * Get task with given id.
    */
-  get(id: number) {
-    return axios.get<Route>("/routes/" + id).then((response) => response.data);
+  get(route_id: number) {
+    return axios
+      .get<Route>("/routes/" + route_id)
+      .then((response) => response.data);
   }
 
   getAll() {
