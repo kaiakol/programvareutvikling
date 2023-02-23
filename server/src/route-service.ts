@@ -1,7 +1,7 @@
 import pool from "./mysql-pool";
 import type { RowDataPacket, ResultSetHeader } from "mysql2";
 
-export type Route = {
+export type RouteWithAllInformation = {
   route_id: number;
   duration: string;
   destination: string;
@@ -17,38 +17,38 @@ export type RouteTravelPoint = {
   route_id: number;
   travel_point_id: number;
   order_number: number;
-  duration: number;
-  estimated_price: number;
-  user_profile_id: number;
+  // duration: number;
+  // estimated_price: number;
+  // user_profile_id: number;
 };
 
 class RouteService {
   /**
    * Get task with given id.
    */
-  get(id: number) {
-    return new Promise<Route | undefined>((resolve, reject) => {
-      pool.query(
-        "SELECT * FROM route_travel_point WHERE route_id = ?",
-        [id],
-        (error, results: RowDataPacket[]) => {
-          if (error) return reject(error);
+  // get(id: number) {
+  //   return new Promise<Route | undefined>((resolve, reject) => {
+  //     pool.query(
+  //       "SELECT * FROM route_travel_point, route, travel WHERE route_id = ?",
+  //       [id],
+  //       (error, results: RowDataPacket[]) => {
+  //         if (error) return reject(error);
 
-          resolve(results[0] as Route);
-        }
-      );
-    });
-  }
+  //         resolve(results[0] as Route);
+  //       }
+  //     );
+  //   });
+  // }
 
   getRoute(route_id: number) {
-    return new Promise<Route[]>((resolve, reject) => {
+    return new Promise<RouteWithAllInformation[]>((resolve, reject) => {
       pool.query(
         "SELECT * FROM route, travel_point, route_travel_point WHERE route.route_id = route_travel_point.route_id AND route_travel_point.travel_point_id = travel_point.travel_point_id AND route.route_id = ?",
         [route_id],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results as Route[]);
+          resolve(results as RouteWithAllInformation[]);
         }
       );
     });
@@ -58,32 +58,32 @@ class RouteService {
    * Get all Routes.
    */
   getAll() {
-    return new Promise<Route[]>((resolve, reject) => {
+    return new Promise<RouteWithAllInformation[]>((resolve, reject) => {
       pool.query(
-        "SELECT * FROM route",
-        //"SELECT * FROM route, travel_point, route_travel_point WHERE route.route_id = route_travel_point.route_id AND route_travel_point.travel_point_id = travel_point.travel_point_id",
+        // "SELECT * FROM route",
+        "SELECT * FROM route, travel_point, route_travel_point WHERE route.route_id = route_travel_point.route_id AND route_travel_point.travel_point_id = travel_point.travel_point_id",
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results as Route[]);
+          resolve(results as RouteWithAllInformation[]);
         }
       );
     });
   }
 
-  add(duration: string, estimated_price: string, time_published: Date) {
-    return new Promise<Number>((resolve, reject) => {
-      pool.query(
-        "INSERT INTO route SET duration=?, estimated_price=?, time_published=?",
-        [duration, estimated_price, time_published],
-        (error, results: ResultSetHeader) => {
-          if (error) return reject(error);
+  // add(duration: string, estimated_price: string, time_published: Date) {
+  //   return new Promise<Number>((resolve, reject) => {
+  //     pool.query(
+  //       "INSERT INTO route SET duration=?, estimated_price=?, time_published=?",
+  //       [duration, estimated_price, time_published],
+  //       (error, results: ResultSetHeader) => {
+  //         if (error) return reject(error);
 
-          resolve(results.insertId);
-        }
-      );
-    });
-  }
+  //         resolve(results.insertId);
+  //       }
+  //     );
+  //   });
+  // }
 
   remove(route_id: Number) {
     return new Promise<void>((resolve, reject) => {
@@ -100,7 +100,7 @@ class RouteService {
     });
   }
 
-  update(route: Route) {
+  update(route: RouteWithAllInformation) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
         "UPDATE route SET duration = ?, estimated_price = ? WHERE route_id = ?",
@@ -152,14 +152,14 @@ class RouteService {
     travel_point_id: number,
     order_number: number
   ) {
-    return new Promise<route_travel_point>((resolve, reject) => {
+    return new Promise<RouteTravelPoint>((resolve, reject) => {
       pool.query(
         "INSERT INTO route_travel_point SET route_id=?, travel_point_id=?, order_number=?",
         [route_id, travel_point_id, order_number],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results[0] as route_travel_point);
+          resolve(results[0] as RouteTravelPoint);
         }
       );
     });

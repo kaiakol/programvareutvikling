@@ -1,13 +1,12 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.tsx":
-/*!***********************!*\
-  !*** ./src/index.tsx ***!
-  \***********************/
-/***/ (() => {
+/***/ "./node_modules/@nx-js/observer-util/dist/es.es5.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@nx-js/observer-util/dist/es.es5.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-<<<<<<< HEAD
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -5244,11 +5243,8 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-<<<<<<< HEAD
-/* harmony export */   "RouteDetails": () => (/* binding */ RouteDetails),
-=======
 /* harmony export */   "NewRoute": () => (/* binding */ NewRoute),
->>>>>>> 8d255f118bb94c360b334ff4dc535e5d6ddb466c
+/* harmony export */   "RouteDetails": () => (/* binding */ RouteDetails),
 /* harmony export */   "RouteList": () => (/* binding */ RouteList)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -5256,19 +5252,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _route_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./route-service */ "./src/route-service.tsx");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
-<<<<<<< HEAD
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 
-=======
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
->>>>>>> 8d255f118bb94c360b334ff4dc535e5d6ddb466c
 
 
 
@@ -5284,7 +5274,6 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
   render() {
     const sortedRoutes = this.routes.sort((a, b) => a.route_id - b.route_id);
     // Render each group on a separate row
-<<<<<<< HEAD
     const groupedRoutes = this.routes.reduce((acc, curr) => {
       if (acc[curr.route_id]) {
         acc[curr.route_id].push(curr);
@@ -5356,15 +5345,6 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
     //   </Stack>
     // </Container>
     ;
-=======
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, Object.values(groups).map(group => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      key: group[0].route_id
-    }, group.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      key: route.route_id
-    }, route.destination), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      key: route.route_id
-    }, route.route_id)))))));
->>>>>>> 8d255f118bb94c360b334ff4dc535e5d6ddb466c
   }
 
   mounted() {
@@ -5376,42 +5356,12 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
 class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   routes = [];
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      style: {
-        position: "absolute",
-        marginLeft: "10%",
-        marginRight: "10%",
-        height: "100%",
-        width: "80%",
-        backgroundColor: "#53aca8"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
-      style: {
-        textAlign: "center",
-        marginBottom: "30px"
-      }
-    }, "Route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      style: {
-        fontWeight: "bold"
-      }
-    }, "Stops"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      style: {
-        fontWeight: "bold"
-      }
-    }, "Continent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      style: {
-        fontWeight: "bold"
-      }
-    }, "Estimated Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      style: {
-        fontWeight: "bold"
-      }
-    }, "Duration")), this.routes.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.routes.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       key: route.travel_point_id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.destination), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.continent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.duration)))))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.destination), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.continent), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, route.order_number))))));
   }
   mounted() {
-    _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].get(this.props.match.params.route_id)
+    _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRoute(this.props.match.params.route_id)
     //@ts-ignore
     .then(routes => this.routes = routes).catch(error => alert(error.response.data));
   }
@@ -5432,30 +5382,30 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   estimatedCost = "";
   timepublished = new Date();
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       style: {
         marginLeft: "auto",
         marginRight: "auto"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
       style: {
         marginLeft: "auto",
         marginRight: "auto",
         textAlign: "center"
       }
-    }, "Add steps"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    }, "Add steps"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
       style: {
         marginLeft: "auto",
         marginRight: "auto",
         textAlign: "center"
       }
-    }, "Input ONE destination and continent chronologically")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, "Input ONE destination and continent chronologically")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         margin: "5%",
         marginTop: "3%",
         marginBottom: "0%"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Control, {
       value: this.newDestination.name,
       type: "text",
       placeholder: "Destination",
@@ -5467,7 +5417,7 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginRight: "auto",
         marginBottom: "10px"
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Select, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Select, {
       style: {
         width: "30%",
         height: "47px"
@@ -5488,7 +5438,7 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
       value: "North America"
     }, "North America"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
       value: "South America"
-    }, "South America"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, "South America"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       style: {
         width: "30%",
         marginLeft: "20%",
@@ -5496,32 +5446,32 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
       },
       variant: "light",
       onClick: () => this.addDestination()
-    }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       style: {
         width: "30%",
         marginBottom: "10px"
       },
       variant: "light",
       onClick: () => this.undoDestination()
-    }, "\uD83D\uDD19")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, "\uD83D\uDD19")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         margin: "5%"
       }
-    }, this.newDestinations.map(newDestination => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, this.newDestinations.map(newDestination => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       key: newDestination.orderNumber
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, newDestination.orderNumber + ": " + newDestination.name + " - " + newDestination.continent))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, newDestination.orderNumber + ": " + newDestination.name + " - " + newDestination.continent))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
       style: {
         marginLeft: "auto",
         marginRight: "auto",
         textAlign: "center"
       }
-    }, "Add info about route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, "Add info about route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         margin: "5%",
         marginTop: "3%",
         marginBottom: "0%"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Control, {
       value: this.duration,
       type: "text",
       onChange: event => this.duration = event.currentTarget.value,
@@ -5532,13 +5482,13 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "10px"
       },
       placeholder: "Duration (in hours?)"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         margin: "5%",
         marginTop: "3%",
         marginBottom: "0%"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Control, {
       value: this.estimatedCost,
       onChange: event => this.estimatedCost = event.currentTarget.value,
       type: "text",
@@ -5549,13 +5499,13 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "10px"
       },
       placeholder: "Estimated cost"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         margin: "5%",
         marginTop: "3%",
         marginBottom: "0%"
       }
-    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       onClick: () => this.createRoute(),
       style: {
         width: "30%",
@@ -5654,22 +5604,6 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
       }).catch(err => {
         console.error(err);
       });
-
-      // Promise.all([createRoutePromise, ...createTravelPointsPromises])
-      //   .then(([route_id, ...travelPointIds]) => {
-      //     this.newDestinations.map((newDestination, index) => {
-      //       const order_number = newDestination.orderNumber;
-      //       const travel_point_id = travelPointIds[index];
-      //       routeService.createRouteTravelPoint(
-      //         route_id,
-      //         travel_point_id,
-      //         order_number
-      //       );
-      //     });
-      //   })
-      //   .catch((err) => {
-      //     console.error(err);
-      //   });
     }
   }
 }
@@ -5691,26 +5625,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "http://localhost:3000/api/v2";
-/*export type TravelPoint = {
-  travel_point_id: number;
-  destination: string;
-  continent: string;
-};
-
-export type RouteTravelPoint = {
-  route_id: number;
-  travel_point_id: number;
-  order_number: number;
-  duration: number;
-  estimated_price: number;
-  user_profile_id: number;
-};*/
+// export type RouteTravelPoint = {
+//   route_id: number;
+//   travel_point_id: number;
+//   order_number: number;
+//   duration: number;
+//   estimated_price: number;
+//   user_profile_id: number;
+// };
 
 class RouteService {
   /**
    * Get task with given id.
    */
-  get(route_id) {
+  getRoute(route_id) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes/" + route_id).then(response => response.data);
   }
   getAll() {
@@ -5736,19 +5664,19 @@ class RouteService {
   // }
 
   createRoute(duration, estimated_price) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes", {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/test", {
       duration: duration,
       estimated_price: estimated_price
     }).then(response => response.data);
   }
   createTravelPoint(destination, continent) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/travel_points", {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/travel_points/add", {
       destination: destination,
       continent: continent
     }).then(response => response.data);
   }
   createRouteTravelPoint(route_id, travel_point_id, order_number) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/route_travel_points", {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/route_travel_points/add", {
       route_id: route_id,
       travel_point_id: travel_point_id,
       order_number: order_number
@@ -9566,8 +9494,6 @@ function getSharedManager(options) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/react-bootstrap/esm/Button.js":
 /*!****************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/Button.js ***!
@@ -9625,7 +9551,6 @@ Button.defaultProps = defaultProps;
 
 /***/ }),
 
->>>>>>> 8d255f118bb94c360b334ff4dc535e5d6ddb466c
 /***/ "./node_modules/react-bootstrap/esm/Card.js":
 /*!**************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/Card.js ***!
@@ -46792,25 +46717,73 @@ function invariant(condition, message) {
 }
 
 
->>>>>>> #16-CombineNewRouteUIToBackEnd
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/marcuslares/Documents/tdt4140-gruppe-71/client/src/index.tsx: Unexpected token (15:19)\n\n  13 |           <Navbar.Brand href=\"#home\">\n  14 |             {\" \"}\n> 15 |             <title \"BackTrack\" />{\" \"}\n     |                    ^\n  16 |           </Navbar.Brand>\n  17 |           <Navbar.Toggle aria-controls=\"basic-navbar-nav\" />\n  18 |           <Navbar.Collapse id=\"basic-navbar-nav\">\n    at instantiate (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:64:32)\n    at constructor (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:364:12)\n    at TypeScriptParserMixin.raise (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:3253:19)\n    at TypeScriptParserMixin.unexpected (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:3283:16)\n    at TypeScriptParserMixin.jsxParseIdentifier (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6785:12)\n    at TypeScriptParserMixin.jsxParseNamespacedName (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6792:23)\n    at TypeScriptParserMixin.jsxParseAttribute (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6872:22)\n    at TypeScriptParserMixin.jsxParseOpeningElementAfterName (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6887:28)\n    at TypeScriptParserMixin.jsxParseOpeningElementAfterName (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9914:18)\n    at TypeScriptParserMixin.jsxParseOpeningElementAt (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6882:17)\n    at TypeScriptParserMixin.jsxParseElementAt (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6906:33)\n    at TypeScriptParserMixin.jsxParseElementAt (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6918:32)\n    at TypeScriptParserMixin.jsxParseElementAt (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6918:32)\n    at TypeScriptParserMixin.jsxParseElementAt (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6918:32)\n    at TypeScriptParserMixin.jsxParseElement (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6975:17)\n    at TypeScriptParserMixin.parseExprAtom (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6987:19)\n    at TypeScriptParserMixin.parseExprSubscripts (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10859:23)\n    at TypeScriptParserMixin.parseUpdate (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10842:21)\n    at TypeScriptParserMixin.parseMaybeUnary (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10818:23)\n    at TypeScriptParserMixin.parseMaybeUnary (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9705:20)\n    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10656:61)\n    at TypeScriptParserMixin.parseExprOps (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10661:23)\n    at TypeScriptParserMixin.parseMaybeConditional (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10638:23)\n    at TypeScriptParserMixin.parseMaybeAssign (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10599:21)\n    at /Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9638:39\n    at TypeScriptParserMixin.tryParse (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:3636:20)\n    at TypeScriptParserMixin.parseMaybeAssign (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9638:18)\n    at /Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10569:39\n    at TypeScriptParserMixin.allowInAnd (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:12244:12)\n    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10569:17)\n    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:11477:28)\n    at TypeScriptParserMixin.parseExprAtom (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:11128:23)\n    at TypeScriptParserMixin.parseExprAtom (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:6992:20)\n    at TypeScriptParserMixin.parseExprSubscripts (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10859:23)\n    at TypeScriptParserMixin.parseUpdate (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10842:21)\n    at TypeScriptParserMixin.parseMaybeUnary (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10818:23)\n    at TypeScriptParserMixin.parseMaybeUnary (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9705:20)\n    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10656:61)\n    at TypeScriptParserMixin.parseExprOps (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10661:23)\n    at TypeScriptParserMixin.parseMaybeConditional (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10638:23)\n    at TypeScriptParserMixin.parseMaybeAssign (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10599:21)\n    at TypeScriptParserMixin.parseMaybeAssign (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9649:20)\n    at TypeScriptParserMixin.parseExpressionBase (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10553:23)\n    at /Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10549:39\n    at TypeScriptParserMixin.allowInAnd (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:12239:16)\n    at TypeScriptParserMixin.parseExpression (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:10549:17)\n    at TypeScriptParserMixin.parseReturnStatement (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:12934:28)\n    at TypeScriptParserMixin.parseStatementContent (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:12581:21)\n    at TypeScriptParserMixin.parseStatementContent (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:9346:18)\n    at TypeScriptParserMixin.parseStatementLike (/Users/marcuslares/Documents/tdt4140-gruppe-71/client/node_modules/@babel/parser/lib/index.js:12548:17)");
-=======
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\src\\index.tsx: Unexpected token (15:19)\n\n  13 |           <Navbar.Brand href=\"#home\">\n  14 |             {\" \"}\n> 15 |             <title \"BackTrack\" />{\" \"}\n     |                    ^\n  16 |           </Navbar.Brand>\n  17 |           <Navbar.Toggle aria-controls=\"basic-navbar-nav\" />\n  18 |           <Navbar.Collapse id=\"basic-navbar-nav\">\n    at instantiate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:64:32)\n    at constructor (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:362:12)\n    at TypeScriptParserMixin.raise (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:3254:19)\n    at TypeScriptParserMixin.unexpected (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:3284:16)\n    at TypeScriptParserMixin.jsxParseIdentifier (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6789:12)\n    at TypeScriptParserMixin.jsxParseNamespacedName (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6796:23)\n    at TypeScriptParserMixin.jsxParseAttribute (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6876:22)\n    at TypeScriptParserMixin.jsxParseOpeningElementAfterName (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6891:28)\n    at TypeScriptParserMixin.jsxParseOpeningElementAfterName (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9507:18)\n    at TypeScriptParserMixin.jsxParseOpeningElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6886:17)\n    at TypeScriptParserMixin.jsxParseElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6910:33)\n    at TypeScriptParserMixin.jsxParseElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6922:32)\n    at TypeScriptParserMixin.jsxParseElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6922:32)\n    at TypeScriptParserMixin.jsxParseElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6922:32)\n    at TypeScriptParserMixin.jsxParseElement (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6979:17)\n    at TypeScriptParserMixin.parseExprAtom (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6991:19)\n    at TypeScriptParserMixin.parseExprSubscripts (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10847:23)\n    at TypeScriptParserMixin.parseUpdate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10830:21)\n    at TypeScriptParserMixin.parseMaybeUnary (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10806:23)\n    at TypeScriptParserMixin.parseMaybeUnary (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9294:20)\n    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10644:61)\n    at TypeScriptParserMixin.parseExprOps (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10649:23)\n    at TypeScriptParserMixin.parseMaybeConditional (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10626:23)\n    at TypeScriptParserMixin.parseMaybeAssign (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10587:21)\n    at C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9227:39\n    at TypeScriptParserMixin.tryParse (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:3637:20)\n    at TypeScriptParserMixin.parseMaybeAssign (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9227:18)\n    at C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10557:39\n    at TypeScriptParserMixin.allowInAnd (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12237:12)\n    at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10557:17)\n    at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:11460:28)\n    at TypeScriptParserMixin.parseExprAtom (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:11111:23)\n    at TypeScriptParserMixin.parseExprAtom (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6996:20)\n    at TypeScriptParserMixin.parseExprSubscripts (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10847:23)\n    at TypeScriptParserMixin.parseUpdate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10830:21)\n    at TypeScriptParserMixin.parseMaybeUnary (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10806:23)\n    at TypeScriptParserMixin.parseMaybeUnary (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9294:20)\n    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10644:61)\n    at TypeScriptParserMixin.parseExprOps (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10649:23)\n    at TypeScriptParserMixin.parseMaybeConditional (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10626:23)\n    at TypeScriptParserMixin.parseMaybeAssign (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10587:21)\n    at TypeScriptParserMixin.parseMaybeAssign (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9238:20)\n    at TypeScriptParserMixin.parseExpressionBase (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10541:23)\n    at C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10537:39\n    at TypeScriptParserMixin.allowInAnd (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12232:16)\n    at TypeScriptParserMixin.parseExpression (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10537:17)\n    at TypeScriptParserMixin.parseReturnStatement (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12917:28)\n    at TypeScriptParserMixin.parseStatementContent (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12573:21)\n    at TypeScriptParserMixin.parseStatementContent (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:8934:18)\n    at TypeScriptParserMixin.parseStatementLike (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12534:17)");
->>>>>>> 738bacbaf3734dd29d3e2717114c100258366c28
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.tsx"]();
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
 /******/ 	
-<<<<<<< HEAD
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -46857,11 +46830,8 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       bg: "light",
       expand: "lg"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Brand, {
-      href: "#home"
-    }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
-      src: "./IMG_0112.JPG",
-      alt: "BackTrack"
-    }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Toggle, {
+      href: "#/routes"
+    }, "BackTrack"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Toggle, {
       "aria-controls": "basic-navbar-nav"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Collapse, {
       id: "basic-navbar-nav"
@@ -46871,10 +46841,11 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       href: "#/routes"
     }, "Explore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Link, {
       href: "#link"
-    }, "My Travels")))));
+    }, "My Travels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Link, {
+      href: "#/routes/add"
+    }, "New route")))));
   }
 }
-
 /*class Home extends Component {
   render() {
     return <Card>Hei</Card>;
@@ -46889,11 +46860,13 @@ react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPOR
   exact: true,
   path: "/routes/:route_id",
   component: _route_components__WEBPACK_IMPORTED_MODULE_3__.RouteDetails
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  exact: true,
+  path: "/routes/add",
+  component: _route_components__WEBPACK_IMPORTED_MODULE_3__.NewRoute
 }))), document.getElementById("root"));
 })();
 
-=======
->>>>>>> 8d255f118bb94c360b334ff4dc535e5d6ddb466c
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
