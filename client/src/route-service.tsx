@@ -82,7 +82,7 @@ class RouteService {
     estimated_price: string //order_number: numbe)
   ) {
     return axios
-      .post("/routes/test", {
+      .post("/routes/add", {
         duration: duration,
         estimated_price: estimated_price,
       })

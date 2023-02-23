@@ -16,7 +16,7 @@ class Menu extends Component {
             <Nav className="me-auto">
               <Nav.Link href="#/routes">Explore</Nav.Link>
               <Nav.Link href="#link">My Travels</Nav.Link>
-              <Nav.Link href="#/routes/add">New route</Nav.Link>
+              <Nav.Link href="#newRoute">New route</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -36,7 +36,7 @@ ReactDOM.render(
       <Menu />
       <Route exact path="/routes" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
-      <Route exact path="/routes/add" component={NewRoute} />
+      <Route exact path="/newRoute" component={NewRoute} />
     </div>
   </HashRouter>,
   document.getElementById("root")

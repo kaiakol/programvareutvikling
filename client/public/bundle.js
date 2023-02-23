@@ -5664,7 +5664,7 @@ class RouteService {
   // }
 
   createRoute(duration, estimated_price) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/test", {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/add", {
       duration: duration,
       estimated_price: estimated_price
     }).then(response => response.data);
@@ -46842,7 +46842,7 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
     }, "Explore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Link, {
       href: "#link"
     }, "My Travels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Link, {
-      href: "#/routes/add"
+      href: "#newRoute"
     }, "New route")))));
   }
 }
@@ -46862,7 +46862,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPOR
   component: _route_components__WEBPACK_IMPORTED_MODULE_3__.RouteDetails
 }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
   exact: true,
-  path: "/routes/add",
+  path: "/newRoute",
   component: _route_components__WEBPACK_IMPORTED_MODULE_3__.NewRoute
 }))), document.getElementById("root"));
 })();
