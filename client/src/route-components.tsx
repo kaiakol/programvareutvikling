@@ -3,7 +3,15 @@ import { Component } from "react-simplified";
 import { NavLink } from "react-router-dom";
 import routeService, { Route } from "./route-service";
 import { createHashHistory } from "history";
-import { Card, Row, Col, Form, Alert, Button } from "react-bootstrap";
+import {
+  Card,
+  Row,
+  Col,
+  Form,
+  Alert,
+  Button,
+  Container,
+} from "react-bootstrap";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
