@@ -3,6 +3,7 @@ import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
 import {
+  NewRoute,
   RouteDetails,
   RouteList,
   RegisterUser,
@@ -15,13 +16,14 @@ class Menu extends Component {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">BackTrack</Navbar.Brand>
+          <Navbar.Brand href="#/routes">BackTrack</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#/routes">Explore</Nav.Link>
               <Nav.Link href="#link">My Travels</Nav.Link>
               <Nav.Link href="#/profile">My Profile</Nav.Link>
+              <Nav.Link href="#newRoute">New route</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -29,7 +31,6 @@ class Menu extends Component {
     );
   }
 }
-
 /*class Home extends Component {
   render() {
     return <Card>Hei</Card>;
@@ -44,6 +45,7 @@ ReactDOM.render(
       <Route exact path="/routes/:route_id" component={RouteDetails} />
       <Route exact path="/profile" component={UserLogIn} />
       <Route exact path="/profile/register" component={RegisterUser} />
+      <Route exact path="/newRoute" component={NewRoute} />
     </div>
   </HashRouter>,
   document.getElementById("root")
