@@ -72,6 +72,7 @@ export class NewRoute extends Component {
   };
   duration: string = "";
   estimatedCost: string = "";
+  timepublished: Date = new Date();
   render() {
     return (
       <>
@@ -221,7 +222,7 @@ export class NewRoute extends Component {
                     marginRight: "auto",
                     marginBottom: "10px",
                   }}
-                  placeholder="Duration"
+                  placeholder="Duration (in hours?)"
                 ></Form.Control>
               </Row>
               <Row
@@ -306,6 +307,40 @@ export class NewRoute extends Component {
     this.newDestination.orderNumber = this.destinationNumber;
   }
 
+  // createRoute() {
+  //   if (
+  //     this.duration == "" ||
+  //     this.estimatedCost == "" ||
+  //     this.newDestinations.length == 0
+  //   ) {
+  //     alert("All fields must be filled");
+  //   } else {
+  //     routeService
+  //       .createRoute(
+  //         this.duration,
+  //         this.estimatedCost
+  //         // (this.timepublished.getFullYear,
+  //         // this.timepublished.getMonth(),
+  //         // this.timepublished.getDay())
+  //         // this.newDestination.orderNumber
+  //       )
+  //       .then((route_id) => {
+  //         this.newDestination.map((order_number: number) => {
+  //           routeService.createRouteTravelPoint(route_id, order_number);
+  //         });
+  //       });
+
+  //     this.newDestinations
+  //       .map((newDestination) => {
+  //         routeService.createTravelPoint(
+  //           newDestination.name,
+  //           newDestination.continent
+  //         );
+  //       })
+  //       .then((results) => {});
+  //   }
+  // }
+
   createRoute() {
     if (
       this.duration == "" ||
@@ -314,7 +349,59 @@ export class NewRoute extends Component {
     ) {
       alert("All fields must be filled");
     } else {
-      // service.createRoute
+      const createRoutePromise = routeService.createRoute(
+        this.duration,
+        this.estimatedCost
+      );
+
+      const createTravelPointsPromises = this.newDestinations.map(
+        (newDestination) => {
+          return routeService.createTravelPoint(
+            newDestination.name,
+            newDestination.continent
+          );
+        }
+      );
+
+      Promise.all([createRoutePromise, ...createTravelPointsPromises])
+        .then(([route_id, ...travelPointIds]) => {
+          console.log(route_id["route_id"]);
+          console.log(route_id.value);
+          const createRouteTravelPointPromises = this.newDestinations.map(
+            (newDestination, index) => {
+              const order_number = newDestination.orderNumber;
+              const travel_point_id = travelPointIds[index]["travel_point_id"];
+              return routeService.createRouteTravelPoint(
+                route_id["route_id"],
+                travel_point_id,
+                order_number
+              );
+            }
+          );
+          return Promise.all(createRouteTravelPointPromises);
+        })
+        .then(() => {
+          // All promises have resolved successfully
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      // Promise.all([createRoutePromise, ...createTravelPointsPromises])
+      //   .then(([route_id, ...travelPointIds]) => {
+      //     this.newDestinations.map((newDestination, index) => {
+      //       const order_number = newDestination.orderNumber;
+      //       const travel_point_id = travelPointIds[index];
+      //       routeService.createRouteTravelPoint(
+      //         route_id,
+      //         travel_point_id,
+      //         order_number
+      //       );
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
     }
   }
 }
