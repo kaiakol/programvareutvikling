@@ -4,7 +4,6 @@ import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
 import {
   NewRoute,
-  NewRoute,
   RouteDetails,
   RouteList,
   RegisterUser,
@@ -22,10 +21,10 @@ class Menu extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#/routes">Explore</Nav.Link>
-              <Nav.Link href="#link">My Travels</Nav.Link>
+              {/* <Nav.Link href="#link">My Travels</Nav.Link> */}
+
+              <Nav.Link href="#newRoute">New route</Nav.Link>
               <Nav.Link href="#/profile">My Profile</Nav.Link>
-              <Nav.Link href="#newRoute">New route</Nav.Link>
-              <Nav.Link href="#newRoute">New route</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
