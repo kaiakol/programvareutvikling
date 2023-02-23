@@ -10,7 +10,10 @@ class Menu extends Component {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">BackTrack</Navbar.Brand>
+          <Navbar.Brand href="#home">
+            {" "}
+            <img src="./IMG_0112.JPG" alt="BackTrack" />{" "}
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

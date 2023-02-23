@@ -29,31 +29,49 @@ export class RouteList extends Component {
     );
     return (
       <>
-        <Container>
-          {Object.keys(groupedRoutes).map((routeId) => {
-            const routes = groupedRoutes[routeId];
-            return (
-              <Card key={routeId}>
-                <NavLink
-                  to={"/routes/" + routeId}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Card.Title>Route</Card.Title>
-                </NavLink>
-                <Row>
-                  <Col>Destinations:</Col>
-                  <Col>
-                    {routes.map((route, index) => (
-                      <span key={index}>
-                        {route.destination}
-                        {index === routes.length - 1 ? "" : ", "}
-                      </span>
-                    ))}
-                  </Col>
-                </Row>
-              </Card>
-            );
-          })}
+        <Container
+          style={{
+            position: "absolute",
+            marginLeft: "10%",
+            marginRight: "10%",
+            height: "100%",
+            width: "80%",
+            backgroundColor: "#53aca8",
+          }}
+        >
+          <Container>
+            <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
+              Explore
+            </h1>
+            {Object.keys(groupedRoutes).map((routeId) => {
+              const routes = groupedRoutes[routeId];
+              return (
+                <Card key={routeId} style={{ marginBottom: "20px" }}>
+                  <NavLink
+                    to={"/routes/" + routeId}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Card.Title
+                      style={{ textAlign: "center", color: "#53ACA8" }}
+                    >
+                      Route
+                    </Card.Title>
+                  </NavLink>
+                  <Row style={{ backgroundColor: "" }}>
+                    {/* <Col style={{ textAlign: "center" }}>Destinations:</Col> */}
+                    <Col style={{ textAlign: "center" }}>
+                      {routes.map((route, index) => (
+                        <span key={index}>
+                          {route.destination}
+                          {index === routes.length - 1 ? "" : ", "}
+                        </span>
+                      ))}
+                    </Col>
+                  </Row>
+                </Card>
+              );
+            })}
+          </Container>
         </Container>
       </>
 
@@ -97,17 +115,35 @@ export class RouteDetails extends Component<{
   render() {
     return (
       <>
-        <Container>
-          <Card>
-            {this.routes.map((route) => (
-              <Row key={route.travel_point_id}>
-                <Col>{route.destination}</Col>
-                <Col>{route.continent}</Col>
-                <Col>{route.estimated_price}</Col>
-                <Col>{route.duration}</Col>
+        <Container
+          style={{
+            position: "absolute",
+            marginLeft: "10%",
+            marginRight: "10%",
+            height: "100%",
+            width: "80%",
+            backgroundColor: "#53aca8",
+          }}
+        >
+          <Container>
+            <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Route</h1>
+            <Card>
+              <Row>
+                <Col style={{ fontWeight: "bold" }}>Stops</Col>
+                <Col style={{ fontWeight: "bold" }}>Continent</Col>
+                <Col style={{ fontWeight: "bold" }}>Estimated Price</Col>
+                <Col style={{ fontWeight: "bold" }}>Duration</Col>
               </Row>
-            ))}
-          </Card>
+              {this.routes.map((route) => (
+                <Row key={route.travel_point_id}>
+                  <Col>{route.destination}</Col>
+                  <Col>{route.continent}</Col>
+                  <Col>{route.estimated_price}</Col>
+                  <Col>{route.duration}</Col>
+                </Row>
+              ))}
+            </Card>
+          </Container>
         </Container>
       </>
     );
