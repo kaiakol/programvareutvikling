@@ -478,8 +478,10 @@ export class NewRoute extends Component {
           );
           return Promise.all(createRouteTravelPointPromises);
         })
-        .then(() => {
-          // All promises have resolved successfully
+        .then((route_id) => {
+          // history.push("/routes/" + Number(route_id));
+          alert("The route was created");
+          history.push("/routes");
         })
         .catch((err) => {
           console.error(err);

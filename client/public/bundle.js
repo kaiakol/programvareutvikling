@@ -5599,8 +5599,10 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
           return _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRouteTravelPoint(route_id["route_id"], travel_point_id, order_number);
         });
         return Promise.all(createRouteTravelPointPromises);
-      }).then(() => {
-        // All promises have resolved successfully
+      }).then(route_id => {
+        // history.push("/routes/" + Number(route_id));
+        alert("The route was created");
+        history.push("/routes");
       }).catch(err => {
         console.error(err);
       });
