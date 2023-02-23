@@ -5307,6 +5307,7 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   };
   duration = "";
   estimatedCost = "";
+  timepublished = new Date();
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       style: {
@@ -5476,9 +5477,16 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
     if (this.duration == "" || this.estimatedCost == "" || this.newDestinations.length == 0) {
       alert("All fields must be filled");
     } else {
-      _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.newDestination.name, this.newDestination.continent, this.duration, this.estimatedCost
+      _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.duration, this.estimatedCost
+      // (this.timepublished.getFullYear,
+      // this.timepublished.getMonth(),
+      // this.timepublished.getDay())
       // this.newDestination.orderNumber
       );
+
+      this.newDestinations.map(newDestination => {
+        _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createTravelPoint(newDestination.name, newDestination.continent);
+      });
     }
   }
 }
@@ -5510,13 +5518,42 @@ class RouteService {
   getAll() {
     return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes").then(response => response.data);
   }
-  createRoute(destination, continent, duration, estimated_price) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/add", {
-      destination: destination,
-      continent: continent,
+
+  // createRoute(
+  //   destination: string,
+  //   continent: string,
+  //   duration: string,
+  //   estimated_price: string
+  //   // order_number: number
+  // ) {
+  //   return axios
+  //     .post("/routes/add", {
+  //       destination: destination,
+  //       continent: continent,
+  //       duration: duration,
+  //       estimated_price: estimated_price,
+  //       // order_number: order_number,
+  //     })
+  //     .then((response) => response.data);
+  // }
+
+  createRoute(duration, estimated_price) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes", {
       duration: duration,
       estimated_price: estimated_price
-      // order_number: order_number,
+    }).then(response => response.data);
+  }
+  createTravelPoint(destination, continent) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/travel_points", {
+      destination: destination,
+      continent: continent
+    }).then(response => response.data);
+  }
+  createRouteTravelPoint(route_id, travel_point_id, order_number) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/route_travel_points", {
+      route_id: route_id,
+      travel_point_id: travel_point_id,
+      order_number: order_number
     }).then(response => response.data);
   }
 }

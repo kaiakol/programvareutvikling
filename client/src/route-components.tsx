@@ -72,6 +72,7 @@ export class NewRoute extends Component {
   };
   duration: string = "";
   estimatedCost: string = "";
+  timepublished: Date = new Date();
   render() {
     return (
       <>
@@ -315,12 +316,20 @@ export class NewRoute extends Component {
       alert("All fields must be filled");
     } else {
       routeService.createRoute(
-        this.newDestination.name,
-        this.newDestination.continent,
         this.duration,
         this.estimatedCost
+        // (this.timepublished.getFullYear,
+        // this.timepublished.getMonth(),
+        // this.timepublished.getDay())
         // this.newDestination.orderNumber
       );
+
+      this.newDestinations.map((newDestination) => {
+        routeService.createTravelPoint(
+          newDestination.name,
+          newDestination.continent
+        );
+      });
     }
   }
 }

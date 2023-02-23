@@ -33,7 +33,7 @@ router.get("/routes", (_request, response) => {
 router.post("/routes", (request, response) => {
   const data = request.body; //Validering av parameter om nødvendig
   routeService
-    .createRoute(data.duration, data.estimated_price, data.time_published)
+    .createRoute(data.duration, data.estimated_price)
     .then((route_id) => response.send({ route_id: route_id }))
     .catch((error) => response.status(500).send(error));
 });

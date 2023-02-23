@@ -5,7 +5,7 @@ export type Route = {
   route_id: number;
   duration: string;
   destination: string;
-  time_published: Date;
+  //time_published: Date;
 };
 
 export type travel_point = {
@@ -55,11 +55,11 @@ class RouteService {
     });
   }
 
-  createRoute(duration: string, estimated_price: string, time_published: Date) {
+  createRoute(duration: string, estimated_price: string) {
     return new Promise<Route>((resolve, reject) => {
       pool.query(
-        "INSERT INTO route SET duration=?, estimated_price=?, time_published=?",
-        [duration, estimated_price, time_published],
+        "INSERT INTO route SET duration=?, estimated_price=?",
+        [duration, estimated_price],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
