@@ -135,10 +135,11 @@ export class UserLogIn extends Component {
         >
           <Row>
             <Button
-              variant="success"
+              // variant="success"
               onClick={() => this.logIn()}
               style={{
                 marginBottom: "10px",
+                backgroundColor: "#53aca8",
               }}
             >
               Log in
@@ -146,10 +147,11 @@ export class UserLogIn extends Component {
           </Row>
           <Row>
             <Button
-              variant="outline-success"
+              // variant="outline-success"
               onClick={() => this.createUser()}
               style={{
                 marginBottom: "10px",
+                backgroundColor: "#53aca8",
               }}
             >
               No user? Create one here
@@ -157,10 +159,10 @@ export class UserLogIn extends Component {
           </Row>
           <Row>
             <Button
-              variant="outline-secondary"
               onClick={() => this.clearInput()}
               style={{
                 marginBottom: "10px",
+                backgroundColor: "#53aca8",
               }}
             >
               Clear input
@@ -315,10 +317,11 @@ export class RegisterUser extends Component {
         >
           <Row>
             <Button
-              variant="success"
+              // variant="success"
               onClick={() => this.createUser()}
               style={{
                 marginBottom: "10px",
+                backgroundColor: "#53aca8",
               }}
             >
               Create user

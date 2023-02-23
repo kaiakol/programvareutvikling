@@ -5349,23 +5349,27 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         marginLeft: "auto",
         marginRight: "auto"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      variant: "success",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"]
+    // variant="success"
+    , {
       onClick: () => this.logIn(),
       style: {
-        marginBottom: "10px"
+        marginBottom: "10px",
+        backgroundColor: "#53aca8"
       }
-    }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      variant: "outline-success",
+    }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"]
+    // variant="outline-success"
+    , {
       onClick: () => this.createUser(),
       style: {
-        marginBottom: "10px"
+        marginBottom: "10px",
+        backgroundColor: "#53aca8"
       }
     }, "No user? Create one here")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      variant: "outline-secondary",
       onClick: () => this.clearInput(),
       style: {
-        marginBottom: "10px"
+        marginBottom: "10px",
+        backgroundColor: "#53aca8"
       }
     }, "Clear input"))));
   }
@@ -5476,11 +5480,13 @@ class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
         marginLeft: "auto",
         marginRight: "auto"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      variant: "success",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"]
+    // variant="success"
+    , {
       onClick: () => this.createUser(),
       style: {
-        marginBottom: "10px"
+        marginBottom: "10px",
+        backgroundColor: "#53aca8"
       }
     }, "Create user")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "outline-secondary",
