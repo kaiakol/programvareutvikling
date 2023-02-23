@@ -56,32 +56,34 @@ class RouteService {
   }
 
   createRoute(duration: string, estimated_price: string) {
-    return new Promise<Route>((resolve, reject) => {
+    return new Promise<number>((resolve, reject) => {
       pool.query(
         "INSERT INTO route SET duration=?, estimated_price=?",
         [duration, estimated_price],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results[0] as Route);
+          resolve(results.insertId);
         }
       );
     });
   }
+
+  //ResultsSetHeader skal brukes et eller annet sted i stedet for RowDataPacket for å linke itl den ny opprettede
 
   createTravelPoint(
     travel_point_id: number,
     destination: string,
     continent: string
   ) {
-    return new Promise<travel_point>((resolve, reject) => {
+    return new Promise<number>((resolve, reject) => {
       pool.query(
         "INSERT INTO travel_point SET travel_point_id=?, destination=?, continent=?",
         [travel_point_id, destination, continent],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results[0] as travel_point);
+          resolve(results.insertId);
         }
       );
     });

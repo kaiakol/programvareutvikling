@@ -5473,20 +5473,80 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
     this.destinationNumber -= 1;
     this.newDestination.orderNumber = this.destinationNumber;
   }
+
+  // createRoute() {
+  //   if (
+  //     this.duration == "" ||
+  //     this.estimatedCost == "" ||
+  //     this.newDestinations.length == 0
+  //   ) {
+  //     alert("All fields must be filled");
+  //   } else {
+  //     routeService
+  //       .createRoute(
+  //         this.duration,
+  //         this.estimatedCost
+  //         // (this.timepublished.getFullYear,
+  //         // this.timepublished.getMonth(),
+  //         // this.timepublished.getDay())
+  //         // this.newDestination.orderNumber
+  //       )
+  //       .then((route_id) => {
+  //         this.newDestination.map((order_number: number) => {
+  //           routeService.createRouteTravelPoint(route_id, order_number);
+  //         });
+  //       });
+
+  //     this.newDestinations
+  //       .map((newDestination) => {
+  //         routeService.createTravelPoint(
+  //           newDestination.name,
+  //           newDestination.continent
+  //         );
+  //       })
+  //       .then((results) => {});
+  //   }
+  // }
+
   createRoute() {
     if (this.duration == "" || this.estimatedCost == "" || this.newDestinations.length == 0) {
       alert("All fields must be filled");
     } else {
-      _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.duration, this.estimatedCost
-      // (this.timepublished.getFullYear,
-      // this.timepublished.getMonth(),
-      // this.timepublished.getDay())
-      // this.newDestination.orderNumber
-      );
-
-      this.newDestinations.map(newDestination => {
-        _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createTravelPoint(newDestination.name, newDestination.continent);
+      const createRoutePromise = _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.duration, this.estimatedCost);
+      const createTravelPointsPromises = this.newDestinations.map(newDestination => {
+        return _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createTravelPoint(newDestination.name, newDestination.continent);
       });
+      Promise.all([createRoutePromise, ...createTravelPointsPromises]).then(_ref => {
+        let [route_id, ...travelPointIds] = _ref;
+        console.log(route_id["route_id"]);
+        console.log(route_id.value);
+        const createRouteTravelPointPromises = this.newDestinations.map((newDestination, index) => {
+          const order_number = newDestination.orderNumber;
+          const travel_point_id = travelPointIds[index]["travel_point_id"];
+          return _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRouteTravelPoint(route_id["route_id"], travel_point_id, order_number);
+        });
+        return Promise.all(createRouteTravelPointPromises);
+      }).then(() => {
+        // All promises have resolved successfully
+      }).catch(err => {
+        console.error(err);
+      });
+
+      // Promise.all([createRoutePromise, ...createTravelPointsPromises])
+      //   .then(([route_id, ...travelPointIds]) => {
+      //     this.newDestinations.map((newDestination, index) => {
+      //       const order_number = newDestination.orderNumber;
+      //       const travel_point_id = travelPointIds[index];
+      //       routeService.createRouteTravelPoint(
+      //         route_id,
+      //         travel_point_id,
+      //         order_number
+      //       );
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //   });
     }
   }
 }
