@@ -221,7 +221,7 @@ export class NewRoute extends Component {
                     marginRight: "auto",
                     marginBottom: "10px",
                   }}
-                  placeholder="Duration"
+                  placeholder="Duration (in hours?)"
                 ></Form.Control>
               </Row>
               <Row

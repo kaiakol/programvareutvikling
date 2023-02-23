@@ -5407,7 +5407,7 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginRight: "auto",
         marginBottom: "10px"
       },
-      placeholder: "Duration"
+      placeholder: "Duration (in hours?)"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       style: {
         margin: "5%",
@@ -5476,7 +5476,9 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
     if (this.duration == "" || this.estimatedCost == "" || this.newDestinations.length == 0) {
       alert("All fields must be filled");
     } else {
-      // service.createRoute
+      _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.newDestination.name, this.newDestination.continent, this.duration, this.estimatedCost
+      // this.newDestination.orderNumber
+      );
     }
   }
 }
@@ -5507,6 +5509,15 @@ class RouteService {
   }
   getAll() {
     return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes").then(response => response.data);
+  }
+  createRoute(destination, continent, duration, estimated_price) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/add", {
+      destination: destination,
+      continent: continent,
+      duration: duration,
+      estimated_price: estimated_price
+      // order_number: order_number,
+    }).then(response => response.data);
   }
 }
 const routeService = new RouteService();
