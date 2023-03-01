@@ -2,6 +2,7 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3000/api/v2";
 
 export type User = {
+  user_profile_id: number;
   profile_name: string;
   profile_password: string;
   first_name: string;
@@ -25,6 +26,20 @@ class UserService {
         last_name: last_name,
         email: email,
       })
+      .then((response) => response.data);
+  }
+
+  /**
+   * Log in with email and password
+   */
+  logIn(email: string, password: string) {
+    return axios
+      .get<User>("/profile/" + email + "/" + password)
+      .then((response) => response.data);
+  }
+  getUser(user_profile_id: number) {
+    return axios
+      .get<User>("/profile/" + user_profile_id)
       .then((response) => response.data);
   }
 }

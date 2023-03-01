@@ -5247,7 +5247,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RegisterUser": () => (/* binding */ RegisterUser),
 /* harmony export */   "RouteDetails": () => (/* binding */ RouteDetails),
 /* harmony export */   "RouteList": () => (/* binding */ RouteList),
-/* harmony export */   "UserLogIn": () => (/* binding */ UserLogIn)
+/* harmony export */   "UserDetails": () => (/* binding */ UserDetails),
+/* harmony export */   "UserLogIn": () => (/* binding */ UserLogIn),
+/* harmony export */   "currentUser": () => (/* binding */ currentUser),
+/* harmony export */   "loggedIn": () => (/* binding */ loggedIn)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
@@ -5613,6 +5616,17 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
     }
   }
 }
+
+//false as default
+let loggedIn = false;
+let currentUser = {
+  user_profile_id: 0,
+  email: "",
+  first_name: "",
+  last_name: "",
+  profile_password: "",
+  profile_name: ""
+};
 class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   email = "";
   password = "";
@@ -5686,23 +5700,18 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
       }
     }, "Clear input"))));
   }
-  /*
   logIn() {
     if (this.email.length != 0 && this.password.length != 0) {
-      userService
-        .logIn(this.email, this.password)
-        .then((user) => {
-          currentUser = user;
-          loggedIn = true;
-          Alert.success("Logged in as " + currentUser.email);
-          history.push("/recipes/user");
-        })
-        .catch((error) => Alert.danger(error.response.data));
+      _user_service__WEBPACK_IMPORTED_MODULE_3__["default"].logIn(this.email, this.password).then(user => {
+        currentUser = user;
+        loggedIn = true;
+        alert("Logged in as " + currentUser.email);
+        history.push("/profile/user");
+      }).catch(error => alert(error.response.data));
     } else {
-      Alert.danger("Please fill in all the fields");
+      alert("Please fill in all the fields");
     }
   }
-  */
   clearInput() {
     this.email = "";
     this.password = "";
@@ -5713,6 +5722,7 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
 }
 class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   user = {
+    user_profile_id: 0,
     email: "",
     first_name: "",
     last_name: "",
@@ -5814,13 +5824,65 @@ class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
         alert(response);
       } else {
         alert("User created, please log in");
-        //loggedIn = true;
+        loggedIn = true;
         history.push("/profile");
       }
     }).catch(error => alert(error.response.data));
   }
   clearInput() {
     this.user = {
+      user_profile_id: 0,
+      email: "",
+      first_name: "",
+      last_name: "",
+      profile_password: "",
+      profile_name: ""
+    };
+  }
+}
+class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
+  // likedRecipes: Recipe[] = [];
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      style: {
+        // border: 'none',
+        padding: "15px",
+        textAlign: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Title, null, "User page for " + currentUser.first_name + " " + currentUser.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      style: {
+        fontSize: "17px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Text, null, "Your email-adress: ", currentUser.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      style: {
+        fontSize: "17px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Text, null, "Your name: ", currentUser.first_name, " ", currentUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      variant: "outline-danger",
+      onClick: () => this.logOut(),
+      style: {
+        width: "15rem",
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginBottom: "10px"
+      }
+    }, "Log out"))));
+  }
+  mounted() {
+    /*     if (!loggedIn) {
+      history.push("/register/login");
+    } else { */
+    _user_service__WEBPACK_IMPORTED_MODULE_3__["default"].getUser(currentUser.user_profile_id).then(user => user.user_profile_id = user.user_profile_id).catch(error => alert(error.message));
+    /*  } */
+  }
+
+  logOut() {
+    loggedIn = false;
+    history.push("/profile");
+    currentUser = {
+      user_profile_id: 0,
       email: "",
       first_name: "",
       last_name: "",
@@ -5934,6 +5996,16 @@ class UserService {
       last_name: last_name,
       email: email
     }).then(response => response.data);
+  }
+
+  /**
+   * Log in with email and password
+   */
+  logIn(email, password) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/profile/" + email + "/" + password).then(response => response.data);
+  }
+  getUser(user_profile_id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/profile/" + user_profile_id).then(response => response.data);
   }
 }
 const userService = new UserService();

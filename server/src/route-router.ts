@@ -136,6 +136,34 @@ router.post("/route_travel_points/add", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+//////////////////////USER
+// Gets a user if the login is completed
+router.get("/profile/:email/:password", (request, response) => {
+  const email = String(request.params.email);
+  const password = String(request.params.password);
+  if (
+    typeof email == "string" &&
+    email.length != 0 &&
+    typeof password == "string" &&
+    password.length != 0
+  ) {
+    userService
+      .getUser(email)
+      .then((user) => {
+        if (request.params.password == user.profile_password) {
+          response.send(user);
+        } else {
+          response.status(400).send("Incorrect Email and/or Password! ");
+        }
+      })
+      .catch((error) => {
+        response.status(500).send(error);
+      });
+  } else {
+    response.status(469).send("Please fill all the fields");
+  }
+});
+
 //Register a new user
 router.post("/profile/register", (request, response) => {
   const data = request.body;

@@ -491,6 +491,17 @@ export class NewRoute extends Component {
   }
 }
 
+//false as default
+export let loggedIn: boolean = false;
+export let currentUser: User = {
+  user_profile_id: 0,
+  email: "",
+  first_name: "",
+  last_name: "",
+  profile_password: "",
+  profile_name: "",
+};
+
 export class UserLogIn extends Component {
   email: string = "";
   password: string = "";
@@ -585,7 +596,7 @@ export class UserLogIn extends Component {
       </Card>
     );
   }
-  /*
+
   logIn() {
     if (this.email.length != 0 && this.password.length != 0) {
       userService
@@ -593,15 +604,15 @@ export class UserLogIn extends Component {
         .then((user) => {
           currentUser = user;
           loggedIn = true;
-          Alert.success("Logged in as " + currentUser.email);
-          history.push("/recipes/user");
+          alert("Logged in as " + currentUser.email);
+          history.push("/profile/user");
         })
-        .catch((error) => Alert.danger(error.response.data));
+        .catch((error) => alert(error.response.data));
     } else {
-      Alert.danger("Please fill in all the fields");
+      alert("Please fill in all the fields");
     }
   }
-*/
+
   clearInput() {
     this.email = "";
     this.password = "";
@@ -614,6 +625,7 @@ export class UserLogIn extends Component {
 
 export class RegisterUser extends Component {
   user: User = {
+    user_profile_id: 0,
     email: "",
     first_name: "",
     last_name: "",
@@ -764,7 +776,7 @@ export class RegisterUser extends Component {
           alert(response);
         } else {
           alert("User created, please log in");
-          //loggedIn = true;
+          loggedIn = true;
           history.push("/profile");
         }
       })
@@ -773,6 +785,138 @@ export class RegisterUser extends Component {
 
   clearInput() {
     this.user = {
+      user_profile_id: 0,
+      email: "",
+      first_name: "",
+      last_name: "",
+      profile_password: "",
+      profile_name: "",
+    };
+  }
+}
+
+export class UserDetails extends Component {
+  // likedRecipes: Recipe[] = [];
+  render() {
+    return (
+      <>
+        <Card
+          style={{
+            // border: 'none',
+            padding: "15px",
+            textAlign: "center",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          {/* Page for all relevant user info for logged in user */}
+          <Card.Title>
+            {"User page for " +
+              currentUser.first_name +
+              " " +
+              currentUser.last_name}
+          </Card.Title>
+          <Row style={{ fontSize: "17px" }}>
+            <Card.Text>Your email-adress: {currentUser.email}</Card.Text>
+          </Row>
+          <Row style={{ fontSize: "17px" }}>
+            <Card.Text>
+              Your name: {currentUser.first_name} {currentUser.last_name}
+            </Card.Text>
+          </Row>
+          <Row>
+            <Button
+              variant="outline-danger"
+              onClick={() => this.logOut()}
+              style={{
+                width: "15rem",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: "10px",
+              }}
+            >
+              Log out
+            </Button>
+          </Row>
+        </Card>
+
+        {/* Card retrieving active users liked recipes */}
+        {/*
+        <Card
+          style={{
+            border: "none",
+            padding: "15px",
+            textAlign: "center",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+         >
+          
+          <Card.Title>Your liked recipes</Card.Title>
+          <Row>
+            <Col lg>
+              <Row xs={1} md={4} className="g-4">
+                {this.likedRecipes.map((recipe) => (
+                  <NavLink
+                    to={"/recipes/" + recipe.recipe_id}
+                    style={{
+                      color: "#9FC1C0",
+                    }}
+                  >
+                    <Column>
+                      <Card
+                        style={{
+                          width: "100%",
+                          margin: "1%",
+
+                          textAlign: "center",
+                          borderLeft: "none",
+                          borderRight: "none",
+                          borderTop: "none",
+                          borderRadius: "none",
+                        }}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src="https://s.tihlde.org/recipechef12312"
+                        />
+                        <Card.Body>
+                          <Card.Title style={{ color: "rgb(82, 130, 101)" }}>
+                            {recipe.name}
+                          </Card.Title>
+                          <Card.Text>
+                            {recipe.country} {recipe.category}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Column>
+                  </NavLink>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </Card> 
+        */}
+      </>
+    );
+  }
+
+  mounted() {
+    /*     if (!loggedIn) {
+      history.push("/register/login");
+    } else { */
+    userService
+      .getUser(currentUser.user_profile_id)
+      .then((user) => (user.user_profile_id = user.user_profile_id))
+      .catch((error) => alert(error.message));
+    /*  } */
+  }
+
+  logOut() {
+    loggedIn = false;
+    history.push("/profile");
+    currentUser = {
+      user_profile_id: 0,
       email: "",
       first_name: "",
       last_name: "",

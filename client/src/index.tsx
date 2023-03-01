@@ -8,6 +8,7 @@ import {
   RouteList,
   RegisterUser,
   UserLogIn,
+  UserDetails,
 } from "./route-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
 
@@ -46,6 +47,7 @@ ReactDOM.render(
       <Route exact path="/profile" component={UserLogIn} />
       <Route exact path="/profile/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />
+      {/** <Route exact path="/profile/:user_profile_id" component={UserDetails} />*/}
     </div>
   </HashRouter>,
   document.getElementById("root")
