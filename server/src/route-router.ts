@@ -1,5 +1,6 @@
 import express, { request, response } from "express";
 import routeService from "./route-service";
+import userService from "./user-service";
 
 /**
  * Express router containing task methods.
@@ -133,6 +134,34 @@ router.post("/route_travel_points/add", (request, response) => {
       response.send({ route_travel_point_id: route_travel_point_id })
     )
     .catch((error) => response.status(500).send(error));
+});
+
+//Register a new user
+router.post("/users/register", (request, response) => {
+  const data = request.body;
+  //Check required fields
+  if (
+    !data.profile_name ||
+    !data.first_name ||
+    !data.last_name ||
+    !data.email ||
+    !data.profile_password
+  ) {
+    response.status(400).send("Please fill in all the fields");
+    return;
+  }
+  userService
+    .createUser(
+      data.profile_name,
+      data.profile_password,
+      data.first_name,
+      data.last_name,
+      data.email,
+      data.special_user_type
+    )
+    .then((user) => response.status(200).send(user))
+    .catch((error) => response.status(500).send(error));
+  return;
 });
 
 export default router;
