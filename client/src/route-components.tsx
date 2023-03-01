@@ -142,6 +142,20 @@ export class RouteDetails extends Component<{
   route_id: number;
 
   render() {
+    const groupedRoutes = this.routes.reduce(
+      (
+        acc: { [key: number]: RouteWithAllInformation[] },
+        curr: RouteWithAllInformation
+      ) => {
+        if (acc[curr.route_id]) {
+          acc[curr.route_id].push(curr);
+        } else {
+          acc[curr.route_id] = [curr];
+        }
+        return acc;
+      },
+      {}
+    );
     return (
       <>
         <Container
@@ -158,10 +172,27 @@ export class RouteDetails extends Component<{
             <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Route</h1>
             <Card>
               <Row style={{ marginBottom: "20px" }}>
-                <Col style={{ fontWeight: "bold" }}>Stops</Col>
-                <Col style={{ fontWeight: "bold" }}>Continent</Col>
                 <Col style={{ fontWeight: "bold" }}>Estimated Price</Col>
                 <Col style={{ fontWeight: "bold" }}>Duration</Col>
+                <Col style={{ fontWeight: "bold" }}>Description</Col>
+              </Row>
+              {this.routes.map((route, index) =>
+                index === 1 ? (
+                  <Row
+                    key={route.travel_point_id}
+                    style={{ marginBottom: "20px" }}
+                  >
+                    <Col>{route.estimated_price}</Col>
+                    <Col>{route.duration}</Col>
+                    <Col>{route.description}</Col>
+                  </Row>
+                ) : null
+              )}
+            </Card>
+            <Card>
+              <Row style={{ marginBottom: "20px" }}>
+                <Col style={{ fontWeight: "bold" }}>Stops</Col>
+                <Col style={{ fontWeight: "bold" }}>Continent</Col>
                 <Col style={{ fontWeight: "bold" }}>Order Number</Col>
               </Row>
               {this.routes.map((route) => (
@@ -171,8 +202,6 @@ export class RouteDetails extends Component<{
                 >
                   <Col>{route.destination}</Col>
                   <Col>{route.continent}</Col>
-                  <Col>{route.estimated_price}</Col>
-                  <Col>{route.duration}</Col>
                   <Col>{route.order_number}</Col>
                 </Row>
               ))}
