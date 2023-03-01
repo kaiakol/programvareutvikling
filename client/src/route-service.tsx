@@ -4,21 +4,25 @@ axios.defaults.baseURL = "http://localhost:3000/api/v2";
 
 export type RouteWithAllInformation = {
   route_id: number;
+  route_name: string;
   duration: string;
   destination: string;
   time_published: Date;
   continent: string;
   order_number: number;
   estimated_price: number;
+  description: string;
   user_profile_id: number;
   travel_point_id: number;
 };
 
 export type Route = {
   route_id: number;
+  route_name: string;
   duration: string;
   destination: string;
   //time_published: Date;
+  description: string;
 };
 
 export type TravelPoint = {
@@ -78,13 +82,17 @@ class RouteService {
   // }
 
   createRoute(
+    route_name: string,
     duration: string,
-    estimated_price: string //order_number: numbe)
+    estimated_price: string, //order_number: numbe)
+    description: string
   ) {
     return axios
       .post("/routes/add", {
+        route_name: route_name,
         duration: duration,
         estimated_price: estimated_price,
+        description: description,
       })
       .then((response) => response.data);
   }

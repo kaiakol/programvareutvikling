@@ -46,6 +46,7 @@ export class RouteList extends Component {
     );
     return (
       <>
+        {console.log(this.routes)}
         <Container
           style={{
             position: "absolute",
@@ -60,8 +61,9 @@ export class RouteList extends Component {
             <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
               Explore
             </h1>
-            {Object.keys(groupedRoutes).map((routeId) => {
+            {Object.keys(groupedRoutes).map((routeId, index) => {
               const routes = groupedRoutes[routeId];
+              console.log(Object.keys(groupedRoutes));
               return (
                 <Card key={routeId} style={{ marginBottom: "20px" }}>
                   <NavLink
@@ -71,7 +73,12 @@ export class RouteList extends Component {
                     <Card.Title
                       style={{ textAlign: "center", color: "#53ACA8" }}
                     >
-                      Route
+                      {routes.map((route, index) => (
+                        <span key={index}>
+                          {route.route_name}
+                          {index === routes.length - 1 ? "" : ", "}
+                        </span>
+                      ))}
                     </Card.Title>
                   </NavLink>
                   <Row style={{ backgroundColor: "" }}>
@@ -118,6 +125,7 @@ export class RouteList extends Component {
       .getAll()
       //@ts-ignore
       .then((routes) => (this.routes = routes))
+
       .catch((error: { message: string }) =>
         alert("Error getting route: " + error.message)
       );

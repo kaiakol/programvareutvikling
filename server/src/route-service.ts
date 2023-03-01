@@ -3,12 +3,14 @@ import type { RowDataPacket, ResultSetHeader } from "mysql2";
 
 export type RouteWithAllInformation = {
   route_id: number;
+  route_name: string;
   duration: string;
   destination: string;
   time_published: Date;
   continent: string;
   order_number: number;
   estimated_price: number;
+  description: string;
   user_profile_id: number;
   travel_point_id: number;
 };
@@ -100,11 +102,17 @@ class RouteService {
     });
   }
 
-  update(route: RouteWithAllInformation) {
+  update(
+    route_name: string,
+    duration: string,
+    estimated_price: number,
+    description: string,
+    route_id: number
+  ) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        "UPDATE route SET duration = ?, estimated_price = ? WHERE route_id = ?",
-        [route.duration, route.estimated_price, route.route_id],
+        "UPDATE route SET route_name=?, duration=?, estimated_price=?, description=? WHERE route_id=?",
+        [route_name, duration, estimated_price, description, route_id],
         (error, _results) => {
           if (error) return reject(error);
           resolve();
@@ -113,11 +121,16 @@ class RouteService {
     });
   }
 
-  createRoute(duration: string, estimated_price: string) {
+  createRoute(
+    route_name: string,
+    duration: string,
+    estimated_price: string,
+    description: string
+  ) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        "INSERT INTO route SET duration=?, estimated_price=?",
-        [duration, estimated_price],
+        "INSERT INTO route SET route_name=?, duration=?, estimated_price=?, description=?",
+        [route_name, duration, estimated_price, description],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
