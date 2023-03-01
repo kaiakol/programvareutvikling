@@ -139,6 +139,7 @@ export class RouteDetails extends Component<{
   match: { params: { route_id: number } };
 }> {
   routes: RouteWithAllInformation[] = [];
+  route_id: number;
 
   render() {
     return (
@@ -176,11 +177,25 @@ export class RouteDetails extends Component<{
                 </Row>
               ))}
             </Card>
+            <Button
+              // variant="success"
+              onClick={() => this.editRoute()}
+              style={{
+                marginBottom: "10px",
+                backgroundColor: "#53aca8",
+              }}
+            >
+              Edit route
+            </Button>
           </Container>
         </Container>
       </>
     );
   }
+  editRoute() {
+    history.push("/routes/editRoute" + route_id);
+  }
+
   mounted() {
     routeService
       .getRoute(this.props.match.params.route_id)
