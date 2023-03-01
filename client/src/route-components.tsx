@@ -75,8 +75,11 @@ export class RouteList extends Component {
                     >
                       {routes.map((route, index) => (
                         <span key={index}>
-                          {route.route_name}
-                          {index === routes.length - 1 ? "" : ", "}
+                          {index === 0
+                            ? route.route_name
+                            : index === routes.length - 1
+                            ? ""
+                            : ", "}
                         </span>
                       ))}
                     </Card.Title>
