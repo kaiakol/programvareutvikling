@@ -26,7 +26,7 @@ class UserService {
   ) {
     return new Promise<User>((resolve, reject) => {
       pool.query(
-        "INSERT INTO user SET profile_name=?, profile_password=?, first_name=?, last_name=?, email=?, special_user_type=NULL",
+        "INSERT INTO user_profile SET profile_name=?, profile_password=?, first_name=?, last_name=?, email=?, special_user_type=NULL",
         [profile_name, profile_password, first_name, last_name, email],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);

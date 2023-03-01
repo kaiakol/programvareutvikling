@@ -137,7 +137,7 @@ router.post("/route_travel_points/add", (request, response) => {
 });
 
 //Register a new user
-router.post("/users/register", (request, response) => {
+router.post("/profile/register", (request, response) => {
   const data = request.body;
   //Check required fields
   if (
