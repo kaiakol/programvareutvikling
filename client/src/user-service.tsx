@@ -37,11 +37,6 @@ class UserService {
       .get<User>("/profile/" + email + "/" + password)
       .then((response) => response.data);
   }
-  getUser(user_profile_id: number) {
-    return axios
-      .get<User>("/profile/" + user_profile_id)
-      .then((response) => response.data);
-  }
 }
 
 const userService = new UserService();

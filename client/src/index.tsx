@@ -2,14 +2,8 @@ import ReactDOM from "react-dom";
 import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
-import {
-  NewRoute,
-  RouteDetails,
-  RouteList,
-  RegisterUser,
-  UserLogIn,
-  UserDetails,
-} from "./route-components";
+import { NewRoute, RouteDetails, RouteList } from "./route-components";
+import { RegisterUser, UserLogIn, UserDetails } from "./user-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
 
 class Menu extends Component {
@@ -45,9 +39,9 @@ ReactDOM.render(
       <Route exact path="/routes" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
       <Route exact path="/profile" component={UserLogIn} />
-      <Route exact path="/profile/register" component={RegisterUser} />
+      <Route exact path="/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />
-      {/** <Route exact path="/profile/:user_profile_id" component={UserDetails} />*/}
+      <Route exact path="/profile/:user_profile_id" component={UserDetails} />
     </div>
   </HashRouter>,
   document.getElementById("root")
