@@ -5783,75 +5783,98 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
   email = "";
   password = "";
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      style: {
-        border: "none",
-        padding: "15px",
-        textAlign: "center",
-        marginLeft: "auto",
-        marginRight: "auto"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, null, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      style: {
-        width: "20rem",
-        marginLeft: "auto",
-        marginRight: "auto"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
-      value: this.email,
-      type: "text",
-      placeholder: "Email",
-      onChange: event => this.email = event.currentTarget.value,
-      style: {
-        textAlign: "center",
-        marginBottom: "10px"
-      }
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
-      value: this.password,
-      type: "password",
-      placeholder: "Password",
-      onChange: event => this.password = event.currentTarget.value
-      // Makes it possible to log in with enter as well as with button
-      ,
-      onKeyUp: event => {
-        if (event.key == "Enter") {
-          this.logIn();
+    if (!loggedIn) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        style: {
+          border: "none",
+          padding: "15px",
+          textAlign: "center",
+          marginLeft: "auto",
+          marginRight: "auto"
         }
-      },
-      style: {
-        textAlign: "center",
-        marginBottom: "10px"
-      }
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      style: {
-        width: "15rem",
-        marginLeft: "auto",
-        marginRight: "auto"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"]
-    // variant="success"
-    , {
-      onClick: () => this.logIn(),
-      style: {
-        marginBottom: "10px",
-        backgroundColor: "#53aca8"
-      }
-    }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"]
-    // variant="outline-success"
-    , {
-      onClick: () => this.createUser(),
-      style: {
-        marginBottom: "10px",
-        backgroundColor: "#53aca8"
-      }
-    }, "No user? Create one here")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      onClick: () => this.clearInput(),
-      style: {
-        marginBottom: "10px",
-        backgroundColor: "#53aca8"
-      }
-    }, "Clear input"))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, null, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        style: {
+          width: "20rem",
+          marginLeft: "auto",
+          marginRight: "auto"
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+        value: this.email,
+        type: "text",
+        placeholder: "Email",
+        onChange: event => this.email = event.currentTarget.value,
+        style: {
+          textAlign: "center",
+          marginBottom: "10px"
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+        value: this.password,
+        type: "password",
+        placeholder: "Password",
+        onChange: event => this.password = event.currentTarget.value
+        // Makes it possible to log in with enter as well as with button
+        ,
+        onKeyUp: event => {
+          if (event.key == "Enter") {
+            this.logIn();
+          }
+        },
+        style: {
+          textAlign: "center",
+          marginBottom: "10px"
+        }
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        style: {
+          width: "15rem",
+          marginLeft: "auto",
+          marginRight: "auto"
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"]
+      // variant="success"
+      , {
+        onClick: () => this.logIn(),
+        style: {
+          marginBottom: "10px",
+          backgroundColor: "#53aca8"
+        }
+      }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"]
+      // variant="outline-success"
+      , {
+        onClick: () => this.createUser(),
+        style: {
+          marginBottom: "10px",
+          backgroundColor: "#53aca8"
+        }
+      }, "No user? Create one here")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        onClick: () => this.clearInput(),
+        style: {
+          marginBottom: "10px",
+          backgroundColor: "#53aca8"
+        }
+      }, "Clear input"))));
+    } else {
+      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(currentUser.email, currentUser.profile_password).then(user => (currentUser = user, history.push("/profile/ " + currentUser.user_profile_id))).catch(error => alert(error.message));
+      return currentUser.user_profile_id;
+    }
   }
+
+  /*mounted() {
+    if (!loggedIn) {
+      history.push("/profile");
+    } else {
+      userService
+        .logIn(currentUser.email, currentUser.profile_password)
+        .then(
+          (user) => (
+            (currentUser = user),
+            history.push("/profile/ " + currentUser.user_profile_id)
+          )
+        )
+        .catch((error) => alert(error.message));
+    }
+  }
+  */
+
   logIn() {
     if (this.email.length != 0 && this.password.length != 0) {
       _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(this.email, this.password).then(user => {

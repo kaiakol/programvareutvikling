@@ -126,6 +126,7 @@ class RouteService {
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
+          //@ts-ignore
           resolve(results.insertId);
         }
       );
@@ -146,6 +147,7 @@ class RouteService {
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
+          //@ts-ignore
           resolve(results.insertId);
         }
       );
