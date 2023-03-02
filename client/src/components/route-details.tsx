@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
-import routeService, { RouteWithAllInformation } from "./route-service";
+import routeService, { RouteWithAllInformation } from "../route-service";
 
 const history = createHashHistory();
 

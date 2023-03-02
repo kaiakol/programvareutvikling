@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Row, Col, Form, Button } from "react-bootstrap";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
-import routeService from "./route-service";
+import routeService from "../route-service";
 
 const history = createHashHistory();
 
