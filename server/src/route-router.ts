@@ -48,6 +48,19 @@ router.get("/routes/:route_id", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+//Get the travelpoints for a specific route:
+router.get("/travelpoints/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  routeService
+    .getRouteTravelPoints(route_id)
+    .then((travelpoints) =>
+      travelpoints
+        ? response.send(travelpoints)
+        : response.status(404).send("Route not found")
+    )
+    .catch((error) => response.status(500).send(error));
+});
+
 router.delete("/routes/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   if (route_id) {

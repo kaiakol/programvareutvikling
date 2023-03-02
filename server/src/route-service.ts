@@ -81,11 +81,12 @@ class RouteService {
     });
   }
 
-  getRouteTravelPoints() {
+  getRouteTravelPoints(route_id: number) {
     return new Promise<RouteTravelPoint[]>((resolve, reject) => {
       pool.query(
         // "SELECT * FROM route",
-        "SELECT * FROM route_travel_point, travel_point WHERE travel_point.travel_point_id = route_travel_point.travel_point_id",
+        "SELECT * FROM route_travel_point, travel_point WHERE travel_point.travel_point_id = route_travel_point.travel_point_id AND route_id=?",
+        [route_id],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
