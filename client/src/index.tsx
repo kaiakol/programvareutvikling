@@ -8,6 +8,7 @@ import {
   RouteList,
   RegisterUser,
   UserLogIn,
+  EditRoute,
 } from "./route-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
 
@@ -44,6 +45,7 @@ ReactDOM.render(
       <Menu />
       <Route exact path="/routes" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
+      <Route exact path="/editRoute" component={EditRoute} />
       <Route exact path="/profile" component={UserLogIn} />
       <Route exact path="/profile/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />

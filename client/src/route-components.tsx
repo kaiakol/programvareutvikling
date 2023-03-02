@@ -222,7 +222,7 @@ export class RouteDetails extends Component<{
     );
   }
   editRoute() {
-    history.push("/routes/editRoute" + route_id);
+    history.push("/editRoute/");
   }
 
   mounted() {
