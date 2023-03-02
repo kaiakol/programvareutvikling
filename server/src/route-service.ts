@@ -67,7 +67,7 @@ class RouteService {
   /**
    * Get all Routes.
    */
-  getAll() {
+  getAllRoutes() {
     return new Promise<Route[]>((resolve, reject) => {
       pool.query(
         // "SELECT * FROM route",

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/routes", (_request, response) => {
   routeService
-    .getAll()
+    .getAllRoutes()
     .then((rows) => response.send(rows))
     .catch((error) => response.status(500).send(error));
 });
@@ -49,7 +49,7 @@ router.get("/routes/:route_id", (request, response) => {
 });
 
 //Get the travelpoints for a specific route:
-router.get("/travelpoints/:route_id", (request, response) => {
+router.get("/route_travel_points/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   routeService
     .getRouteTravelPoints(route_id)
