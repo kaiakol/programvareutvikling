@@ -51,14 +51,14 @@ class RouteService {
   // }
 
   getRoute(route_id: number) {
-    return new Promise<Route[]>((resolve, reject) => {
+    return new Promise<Route>((resolve, reject) => {
       pool.query(
-        "SELECT * FROM route",
+        "SELECT * FROM route WHERE route_id=?",
         [route_id],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results as Route[]);
+          resolve(results[0] as Route);
         }
       );
     });
