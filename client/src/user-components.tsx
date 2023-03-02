@@ -345,12 +345,15 @@ export class UserDetails extends Component<{
               currentUser.last_name}
           </Card.Title>
           <Row style={{ fontSize: "17px" }}>
-            <Card.Text>Your email-adress: {currentUser.email}</Card.Text>
+            <Card.Text>Profile name: {currentUser.profile_name}</Card.Text>
           </Row>
           <Row style={{ fontSize: "17px" }}>
             <Card.Text>
               Your name: {currentUser.first_name} {currentUser.last_name}
             </Card.Text>
+          </Row>
+          <Row style={{ fontSize: "17px" }}>
+            <Card.Text>Your email-adress: {currentUser.email}</Card.Text>
           </Row>
           <Row>
             <Button
