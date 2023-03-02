@@ -47273,7 +47273,7 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Brand, {
       href: "#home"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
-      src: "https://tihldestorage.blob.core.windows.net/imagejpeg/e3cd16fa-69b9-4c55-8c3f-021819db661aIMG_0112.JPG",
+      src: "https://tihldestorage.blob.core.windows.net/imagepng/d1aea6d8-00cb-4045-976d-054c8b82214aimg.png",
       width: "100px",
       height: "60px",
       className: "d-inline-block align-bottom",
