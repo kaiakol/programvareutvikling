@@ -2,14 +2,12 @@ import ReactDOM from "react-dom";
 import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
-import {
-  NewRoute,
-  RouteDetails,
-  RouteList,
-  RegisterUser,
-  UserLogIn,
-} from "./route-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
+import { RouteDetails } from "./components/route-details";
+import { RouteList } from "./components/route-list";
+import { NewRoute } from "./components/route-new";
+import { UserLogIn } from "./components/user-login";
+import { RegisterUser } from "./components/user-register";
 
 class Menu extends Component {
   render() {
