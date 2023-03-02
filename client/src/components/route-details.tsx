@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
 import routeService, { RouteWithAllInformation } from "./route-service";
@@ -25,19 +25,29 @@ export class RouteDetails extends Component<{
           }}
         >
           <Container>
-            <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Route</h1>
+            <h1 style={{ textAlign: "center", marginBottom: "3%" }}>Route</h1>
             <Card>
-              <Row style={{ marginBottom: "20px" }}>
-                <Col style={{ fontWeight: "bold" }}>Stops</Col>
-                <Col style={{ fontWeight: "bold" }}>Continent</Col>
-                <Col style={{ fontWeight: "bold" }}>Estimated Price</Col>
-                <Col style={{ fontWeight: "bold" }}>Duration</Col>
-                <Col style={{ fontWeight: "bold" }}>Order Number</Col>
+              <Row style={{ marginBottom: "1%", marginLeft: "1%" }}>
+                <Col style={{ fontWeight: "bold" }}>
+                  <h4>Stops</h4>
+                </Col>
+                <Col style={{ fontWeight: "bold" }}>
+                  <h4>Continent</h4>
+                </Col>
+                <Col style={{ fontWeight: "bold" }}>
+                  <h4>Estimated Price</h4>
+                </Col>
+                <Col style={{ fontWeight: "bold" }}>
+                  <h4>Duration</h4>
+                </Col>
+                <Col style={{ fontWeight: "bold" }}>
+                  <h4>Order Number</h4>
+                </Col>
               </Row>
               {this.routes.map((route) => (
                 <Row
                   key={route.travel_point_id}
-                  style={{ marginBottom: "20px" }}
+                  style={{ marginBottom: "1%", marginLeft: "1%" }}
                 >
                   <Col>{route.destination}</Col>
                   <Col>{route.continent}</Col>
@@ -47,6 +57,17 @@ export class RouteDetails extends Component<{
                 </Row>
               ))}
             </Card>
+            <Button
+              onClick={() => this.editRoute()}
+              style={{
+                marginTop: "2%",
+                backgroundColor: "#498eb9",
+                width: "15%",
+                marginLeft: "85%",
+              }}
+            >
+              Edit route
+            </Button>
           </Container>
         </Container>
       </>
@@ -58,5 +79,8 @@ export class RouteDetails extends Component<{
       //@ts-ignore
       .then((routes) => (this.routes = routes))
       .catch((error) => alert(error.response.data));
+  }
+  editRoute() {
+    history.push("/editRoute/" + 1);
   }
 }
