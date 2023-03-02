@@ -113,11 +113,16 @@ class RouteService {
     });
   }
 
-  createRoute(duration: string, estimated_price: string) {
+  createRoute(
+    route_name: string,
+    duration: string,
+    estimated_price: string,
+    description: string
+  ) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        "INSERT INTO route SET duration=?, estimated_price=?",
-        [duration, estimated_price],
+        "INSERT INTO route SET route_name = ?, duration=?, estimated_price=?, description = ? ",
+        [route_name, duration, estimated_price, description],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 

@@ -105,7 +105,12 @@ router.delete("/routes/:route_id", (request, response) => {
 router.post("/routes/add", (request, response) => {
   const data = request.body; //Validering av parameter om nødvendig
   routeService
-    .createRoute(data.duration, data.estimated_price)
+    .createRoute(
+      data.route_name,
+      data.duration,
+      data.estimated_price,
+      data.description
+    )
     .then((route_id) => response.send({ route_id: route_id }))
     .catch((error) => response.status(500).send(error));
 });

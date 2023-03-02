@@ -11,7 +11,15 @@ class Menu extends Component {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#/routes">BackTrack</Navbar.Brand>
+          <Navbar.Brand href="#home">
+            <img
+              src="https://tihldestorage.blob.core.windows.net/imagejpeg/e3cd16fa-69b9-4c55-8c3f-021819db661aIMG_0112.JPG"
+              width="100px"
+              height="60px"
+              className="d-inline-block align-bottom"
+              alt="React Bootstrap logo"
+            />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

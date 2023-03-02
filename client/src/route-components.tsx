@@ -170,17 +170,21 @@ export class NewRoute extends Component {
     orderNumber: this.destinationNumber,
     continent: "",
   };
+  route_name: string = "";
   duration: string = "";
   estimatedCost: string = "";
+  description: string = "";
   timepublished: Date = new Date();
+
   render() {
-    return (
-      <>
-        <Card>
-          <Row>
-            <Col style={{ marginLeft: "auto", marginRight: "auto" }}>
-              {/* <Card */}
-              {/* style=
+    if (loggedIn == true) {
+      return (
+        <>
+          <Card>
+            <Row>
+              <Col style={{ marginLeft: "auto", marginRight: "auto" }}>
+                {/* <Card */}
+                {/* style=
           {{
             display: "flex",
             width: "40%",
@@ -188,103 +192,104 @@ export class NewRoute extends Component {
             marginLeft: "7%",
             marginTop: "30px",
           }} */}
-              {/* > */}
-              <Card.Title
-                style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  textAlign: "center",
-                }}
-              >
-                Add steps
-              </Card.Title>
-              <Row>
-                <p
+                {/* > */}
+                <Card.Title
                   style={{
                     marginLeft: "auto",
                     marginRight: "auto",
                     textAlign: "center",
                   }}
                 >
-                  Input ONE destination and continent chronologically
-                </p>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.newDestination.name}
-                  type="text"
-                  placeholder="Destination"
-                  onChange={(event) =>
-                    (this.newDestination.name = event.currentTarget.value)
-                  }
+                  Add steps
+                </Card.Title>
+                <Row>
+                  <p
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      textAlign: "center",
+                    }}
+                  >
+                    Input ONE destination and continent chronologically
+                  </p>
+                </Row>
+                <Row
                   style={{
-                    textAlign: "center",
-                    width: "60%",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    marginBottom: "10px",
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
                   }}
-                ></Form.Control>
-                <Form.Select
-                  style={{ width: "30%", height: "47px" }}
-                  value={this.newDestination.continent}
-                  onChange={(event) =>
-                    (this.newDestination.continent = event.currentTarget.value)
-                  }
                 >
-                  <option>Continent:</option>
-                  <option value="Africa">Africa</option>
-                  <option value="Antarctica">Antarctica</option>
-                  <option value="Asia">Asia</option>
-                  <option value="Australia">Australia</option>
-                  <option value="Europe">Europe</option>
-                  <option value="North America">North America</option>
-                  <option value="South America">South America</option>
-                </Form.Select>
-              </Row>
-              <Row>
-                <Button
-                  style={{
-                    width: "30%",
-                    marginLeft: "20%",
-                    marginBottom: "10px",
-                  }}
-                  variant="light"
-                  onClick={() => this.addDestination()}
-                >
-                  +
-                </Button>
-                <Button
-                  style={{ width: "30%", marginBottom: "10px" }}
-                  variant="light"
-                  onClick={() => this.undoDestination()}
-                >
-                  &#x1F519;
-                </Button>
-              </Row>
-              <Row style={{ margin: "5%" }}>
-                {this.newDestinations.map((newDestination) => (
-                  <Row key={newDestination.orderNumber}>
-                    <Col>
-                      {newDestination.orderNumber +
-                        ": " +
-                        newDestination.name +
-                        " - " +
-                        newDestination.continent}
-                    </Col>
-                  </Row>
-                ))}
-              </Row>
-            </Col>
-            {/* </Card> */}
-            {/* <Card */}
-            {/* style=
+                  <Form.Control
+                    value={this.newDestination.name}
+                    type="text"
+                    placeholder="Destination"
+                    onChange={(event) =>
+                      (this.newDestination.name = event.currentTarget.value)
+                    }
+                    style={{
+                      textAlign: "center",
+                      width: "60%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                  ></Form.Control>
+                  <Form.Select
+                    style={{ width: "30%", height: "47px" }}
+                    value={this.newDestination.continent}
+                    onChange={(event) =>
+                      (this.newDestination.continent =
+                        event.currentTarget.value)
+                    }
+                  >
+                    <option>Continent:</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Antarctica">Antarctica</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                  </Form.Select>
+                </Row>
+                <Row>
+                  <Button
+                    style={{
+                      width: "30%",
+                      marginLeft: "20%",
+                      marginBottom: "10px",
+                    }}
+                    variant="light"
+                    onClick={() => this.addDestination()}
+                  >
+                    +
+                  </Button>
+                  <Button
+                    style={{ width: "30%", marginBottom: "10px" }}
+                    variant="light"
+                    onClick={() => this.undoDestination()}
+                  >
+                    &#x1F519;
+                  </Button>
+                </Row>
+                <Row style={{ margin: "5%" }}>
+                  {this.newDestinations.map((newDestination) => (
+                    <Row key={newDestination.orderNumber}>
+                      <Col>
+                        {newDestination.orderNumber +
+                          ": " +
+                          newDestination.name +
+                          " - " +
+                          newDestination.continent}
+                      </Col>
+                    </Row>
+                  ))}
+                </Row>
+              </Col>
+              {/* </Card> */}
+              {/* <Card */}
+              {/* style=
             {{
               width: "40%",
               display: "flex",
@@ -292,89 +297,136 @@ export class NewRoute extends Component {
               marginRight: "7%",
               marginTop: "30px",
             }} */}
-            {/* > */}
-            <Col>
-              <Card.Title
-                style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  textAlign: "center",
-                }}
-              >
-                Add info about route
-              </Card.Title>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.duration}
-                  type="text"
-                  onChange={(event) =>
-                    (this.duration = event.currentTarget.value)
-                  }
+              {/* > */}
+              <Col>
+                <Card.Title
                   style={{
                     marginLeft: "auto",
-                    width: "60%",
                     marginRight: "auto",
-                    marginBottom: "10px",
+                    textAlign: "center",
                   }}
-                  placeholder="Duration (in hours?)"
-                ></Form.Control>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.estimatedCost}
-                  onChange={(event) =>
-                    (this.estimatedCost = event.currentTarget.value)
-                  }
-                  type="text"
+                >
+                  Add info about route
+                </Card.Title>
+                <Row
                   style={{
-                    marginLeft: "auto",
-                    width: "60%",
-                    marginRight: "auto",
-                    marginBottom: "10px",
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
                   }}
-                  placeholder="Estimated cost"
-                ></Form.Control>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              ></Row>
-              {/* </Card> */}
-            </Col>
+                >
+                  <Form.Control
+                    value={this.duration}
+                    type="text"
+                    onChange={(event) =>
+                      (this.duration = event.currentTarget.value)
+                    }
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Duration (in hours?)"
+                  ></Form.Control>
+                </Row>
+                <Row
+                  style={{
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
+                  }}
+                >
+                  <Form.Control
+                    value={this.estimatedCost}
+                    onChange={(event) =>
+                      (this.estimatedCost = event.currentTarget.value)
+                    }
+                    type="text"
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Estimated cost"
+                  ></Form.Control>
+                  <Row
+                    style={{
+                      margin: "5%",
+                      marginTop: "3%",
+                      marginBottom: "0%",
+                    }}
+                  ></Row>
+                  <Form.Control
+                    value={this.route_name}
+                    type="text"
+                    onChange={(event) =>
+                      (this.route_name = event.currentTarget.value)
+                    }
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Route name"
+                  ></Form.Control>
+                  <Row
+                    style={{
+                      margin: "5%",
+                      marginTop: "3%",
+                      marginBottom: "0%",
+                    }}
+                  ></Row>
+                  <Form.Control
+                    value={this.description}
+                    type="text"
+                    onChange={(event) =>
+                      (this.description = event.currentTarget.value)
+                    }
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Description (optional)"
+                  ></Form.Control>
+                </Row>
+                <Row
+                  style={{
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
+                  }}
+                ></Row>
+                {/* </Card> */}
+              </Col>
+            </Row>
+          </Card>
+          <Row>
+            <Button
+              onClick={() => this.createRoute()}
+              style={{
+                width: "30%",
+                marginBottom: "10px",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "30px",
+              }}
+              variant="light"
+            >
+              Create Route
+            </Button>
           </Row>
-        </Card>
-        <Row>
-          <Button
-            onClick={() => this.createRoute()}
-            style={{
-              width: "30%",
-              marginBottom: "10px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: "30px",
-            }}
-            variant="light"
-          >
-            Create Route
-          </Button>
-        </Row>
-      </>
-    );
+        </>
+      );
+    } else {
+      alert("You need to log in first");
+      history.push("/profile");
+      return null; // or any other JSX you want to render
+    }
   }
 
   //   mounted() {
@@ -443,6 +495,7 @@ export class NewRoute extends Component {
 
   createRoute() {
     if (
+      this.route_name == "" ||
       this.duration == "" ||
       this.estimatedCost == "" ||
       this.newDestinations.length == 0
@@ -450,8 +503,10 @@ export class NewRoute extends Component {
       alert("All fields must be filled");
     } else {
       const createRoutePromise = routeService.createRoute(
+        this.route_name,
         this.duration,
-        this.estimatedCost
+        this.estimatedCost,
+        this.description
       );
 
       const createTravelPointsPromises = this.newDestinations.map(

@@ -16,6 +16,7 @@ export type RouteWithAllInformation = {
 
 export type Route = {
   route_id: number;
+  route_name: string;
   duration: string;
   destination: string;
   //time_published: Date;
@@ -78,13 +79,17 @@ class RouteService {
   // }
 
   createRoute(
+    route_name: string,
     duration: string,
-    estimated_price: string //order_number: numbe)
+    estimated_price: string, //order_number: numbe)
+    description: string
   ) {
     return axios
       .post("/routes/add", {
+        route_name: route_name,
         duration: duration,
         estimated_price: estimated_price,
+        description: description,
       })
       .then((response) => response.data);
   }
