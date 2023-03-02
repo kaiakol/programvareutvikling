@@ -3,7 +3,7 @@ import { Container, Card, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
-import routeService, { RouteWithAllInformation } from "./route-service";
+import routeService, { RouteWithAllInformation } from "../route-service";
 
 const history = createHashHistory();
 
