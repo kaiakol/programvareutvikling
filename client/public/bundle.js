@@ -47287,12 +47287,10 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Link, {
       href: "#/routes"
     }, "Explore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Link, {
-      href: "#link"
-    }, "My Travels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Link, {
-      href: "#/profile"
-    }, "My Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Link, {
       href: "#newRoute"
-    }, "New route")))));
+    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Link, {
+      href: "#/profile"
+    }, "My Profile")))));
   }
 }
 /*class Home extends Component {
