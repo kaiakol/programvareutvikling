@@ -5466,11 +5466,18 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
     orderNumber: this.destinationNumber,
     continent: ""
   };
+  route_name = "";
   duration = "";
-  estimatedCost = "";
+  estimatedPrice = "";
+  description = "";
   timepublished = new Date();
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        marginTop: "5%",
+        marginBottom: "2%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
         marginLeft: "auto",
         marginRight: "auto"
@@ -5560,6 +5567,23 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "0%"
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      value: this.route_name,
+      type: "text",
+      onChange: event => this.route_name = event.currentTarget.value,
+      style: {
+        marginLeft: "auto",
+        width: "60%",
+        marginRight: "auto",
+        marginBottom: "10px"
+      },
+      placeholder: "Route name"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        margin: "5%",
+        marginTop: "3%",
+        marginBottom: "0%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
       value: this.duration,
       type: "text",
       onChange: event => this.duration = event.currentTarget.value,
@@ -5577,8 +5601,8 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "0%"
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
-      value: this.estimatedCost,
-      onChange: event => this.estimatedCost = event.currentTarget.value,
+      value: this.estimatedPrice,
+      onChange: event => this.estimatedPrice = event.currentTarget.value,
       type: "text",
       style: {
         marginLeft: "auto",
@@ -5587,6 +5611,24 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "10px"
       },
       placeholder: "Estimated cost"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        margin: "5%",
+        marginTop: "3%",
+        marginBottom: "0%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      value: this.description,
+      as: "textarea" // Change this line to "textarea"
+      ,
+      onChange: event => this.description = event.currentTarget.value,
+      style: {
+        marginLeft: "auto",
+        width: "60%",
+        marginRight: "auto",
+        marginBottom: "10px"
+      },
+      placeholder: "Description"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       style: {
         margin: "5%",
@@ -5671,27 +5713,28 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   // }
 
   createRoute() {
-    if (this.duration == "" || this.estimatedCost == "" || this.newDestinations.length == 0) {
+    if (this.route_name == " " || this.duration == "" || this.estimatedPrice == "" || this.description == "" || this.newDestinations.length == 0) {
       alert("All fields must be filled");
     } else {
-      const createRoutePromise = _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.duration, this.estimatedCost);
+      const createRoutePromise = _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRoute(this.route_name, this.duration, this.estimatedPrice, this.description);
       const createTravelPointsPromises = this.newDestinations.map(newDestination => {
         return _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createTravelPoint(newDestination.name, newDestination.continent);
       });
+      let returnedRouteId = 0;
       Promise.all([createRoutePromise, ...createTravelPointsPromises]).then(_ref => {
         let [route_id, ...travelPointIds] = _ref;
         console.log(route_id["route_id"]);
         console.log(route_id.value);
+        returnedRouteId = route_id["route_id"];
         const createRouteTravelPointPromises = this.newDestinations.map((newDestination, index) => {
           const order_number = newDestination.orderNumber;
           const travel_point_id = travelPointIds[index]["travel_point_id"];
           return _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRouteTravelPoint(route_id["route_id"], travel_point_id, order_number);
         });
         return Promise.all(createRouteTravelPointPromises);
-      }).then(route_id => {
-        // history.push("/routes/" + Number(route_id));
+      }).then(() => {
+        history.push("/routes/" + returnedRouteId);
         alert("The route was created");
-        history.push("/routes");
       }).catch(err => {
         console.error(err);
       });
@@ -5769,9 +5812,7 @@ class RouteService {
   //     .then((response) => response.data);
   // }
 
-  createRoute(route_name, duration, estimated_price,
-  //order_number: numbe)
-  description) {
+  createRoute(route_name, duration, estimated_price, description) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/add", {
       route_name: route_name,
       duration: duration,
