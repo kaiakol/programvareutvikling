@@ -1,5 +1,6 @@
 import express, { request, response } from "express";
 import routeService from "./route-service";
+import userService from "./user-service";
 
 /**
  * Express router containing task methods.
@@ -8,7 +9,7 @@ const router = express.Router();
 
 router.get("/routes", (_request, response) => {
   routeService
-    .getAll()
+    .getAllRoutes()
     .then((rows) => response.send(rows))
     .catch((error) => response.status(500).send(error));
 });
@@ -43,6 +44,19 @@ router.get("/routes/:route_id", (request, response) => {
     .then((route) =>
       route
         ? response.send(route)
+        : response.status(404).send("Route not found")
+    )
+    .catch((error) => response.status(500).send(error));
+});
+
+//Get the travelpoints for a specific route:
+router.get("/route_travel_points/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  routeService
+    .getRouteTravelPoints(route_id)
+    .then((travelpoints) =>
+      travelpoints
+        ? response.send(travelpoints)
         : response.status(404).send("Route not found")
     )
     .catch((error) => response.status(500).send(error));
@@ -138,6 +152,62 @@ router.post("/route_travel_points/add", (request, response) => {
       response.send({ route_travel_point_id: route_travel_point_id })
     )
     .catch((error) => response.status(500).send(error));
+});
+
+//////////////////////USER
+// Gets a user if the login is completed
+router.get("/profile/:email/:password", (request, response) => {
+  const email = String(request.params.email);
+  const password = String(request.params.password);
+  if (
+    typeof email == "string" &&
+    email.length != 0 &&
+    typeof password == "string" &&
+    password.length != 0
+  ) {
+    userService
+      .getUser(email)
+      .then((user) => {
+        if (request.params.password == user.profile_password) {
+          response.send(user);
+        } else {
+          response.status(400).send("Incorrect Email and/or Password! ");
+        }
+      })
+      .catch((error) => {
+        response.status(500).send(error);
+      });
+  } else {
+    response.status(469).send("Please fill all the fields");
+  }
+});
+
+//Register a new user
+router.post("/profile/register", (request, response) => {
+  const data = request.body;
+  //Check required fields
+  if (
+    !data.profile_name ||
+    !data.first_name ||
+    !data.last_name ||
+    !data.email ||
+    !data.profile_password
+  ) {
+    response.status(400).send("Please fill in all the fields");
+    return;
+  }
+  userService
+    .createUser(
+      data.profile_name,
+      data.profile_password,
+      data.first_name,
+      data.last_name,
+      data.email,
+      data.special_user_type
+    )
+    .then((user) => response.status(200).send(user))
+    .catch((error) => response.status(500).send(error));
+  return;
 });
 
 export default router;
