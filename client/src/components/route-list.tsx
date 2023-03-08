@@ -4,11 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
 import { BsArrowRight } from "react-icons/bs";
-import routeService, {
-  Route,
-  RouteWithAllInformation,
-  Route_travel_point,
-} from "../route-service";
+import routeService, { Route, Route_travel_point } from "../route-service";
 
 const history = createHashHistory();
 

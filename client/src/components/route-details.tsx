@@ -67,24 +67,53 @@ export class RouteDetails extends Component<{
       <>
         <Card style={{ width: "80%", marginLeft: "10%" }}>
           <Row>
-            <Col style={{ marginLeft: "20px" }}>
-              <h2>Destinations</h2>
+            <Col style={{ marginLeft: "2%" }}>
+              <h2 style={{ marginLeft: "-2%" }}>Destinations</h2>
 
               {this.route_travel_points.map((route_travel_point) => (
                 <Row key={route_travel_point.route_id}>
-                  {route_travel_point.order_number}{" "}
-                  {route_travel_point.destination}
+                  {route_travel_point.order_number}.{" "}
+                  {route_travel_point.destination} (
+                  {route_travel_point.continent})
                 </Row>
               ))}
             </Col>
             <Col>
               <h2>Route Information</h2>
-              <Row>{this.route.description}</Row>
-              <Row>{this.route.estimated_price}</Row>
-              <Row>{this.route.duration}</Row>
+              <Row>
+                <Col xs lg="3">
+                  <h6>Description:</h6>{" "}
+                </Col>
+                <Col>{this.route.description}</Col>
+              </Row>
+              <Row>
+                <Col xs lg="3">
+                  <h6>Price:</h6>
+                </Col>
+                <Col>{this.route.estimated_price}</Col>
+              </Row>
+              <Row>
+                <Col xs lg="3">
+                  <h6>Duration:</h6>
+                </Col>
+                <Col>{this.route.duration}</Col>
+              </Row>
             </Col>
           </Row>
         </Card>
+        <Row>
+          <Button
+            onClick={() => this.editRoute()}
+            style={{
+              marginTop: "1%",
+              marginLeft: "10.5%",
+              width: "7%",
+              backgroundColor: "#53aca8",
+            }}
+          >
+            Edit route
+          </Button>
+        </Row>
       </>
     );
   }
@@ -109,6 +138,6 @@ export class RouteDetails extends Component<{
       .catch((error) => alert(error.response.data));
   }
   editRoute() {
-    history.push("/editRoute/" + 1);
+    history.push("/editRoute/" + this.route.route_id);
   }
 }

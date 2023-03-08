@@ -5234,6 +5234,361 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/components/editRoute.tsx":
+/*!**************************************!*\
+  !*** ./src/components/editRoute.tsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EditRoute": () => (/* binding */ EditRoute)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
+/* harmony import */ var _route_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../route-service */ "./src/route-service.tsx");
+
+
+
+
+
+const history = (0,history__WEBPACK_IMPORTED_MODULE_3__.createHashHistory)();
+class EditRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
+  route = {
+    route_id: 0,
+    route_name: "",
+    duration: "",
+    estimated_price: "",
+    description: ""
+  };
+  route_travel_points = [];
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      style: {
+        width: "80%",
+        marginLeft: "10%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      style: {
+        marginLeft: "2%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+      style: {
+        marginLeft: "-2%"
+      }
+    }, "Destinations"), this.route_travel_points.map(route_travel_point => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      key: route_travel_point.route_id
+    }, route_travel_point.order_number, ".", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+      className: "destination",
+      controlId: "destination"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      type: "",
+      placeholder: route_travel_point.destination
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Select, {
+      style: {
+        width: "70%",
+        marginBottom: "2.5%"
+      },
+      value: route_travel_point.continent,
+      onChange: event => route_travel_point.continent = event.currentTarget.value
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "Africa"
+    }, "Africa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "Antarctica"
+    }, "Antarctica"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "Asia"
+    }, "Asia"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "Australia"
+    }, "Australia"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "Europe"
+    }, "Europe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "North America"
+    }, "North America"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: "South America"
+    }, "South America")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      xs: true,
+      lg: "3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", null, "Description:"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      style: {
+        marginTop: "5%",
+        marginBottom: "5%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+      className: "name",
+      controlId: "route name",
+      style: {
+        marginTop: "-5%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      type: "",
+      placeholder: this.route.description
+    }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      xs: true,
+      lg: "3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", null, "Price:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      style: {
+        marginTop: "5%",
+        marginBottom: "5%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+      className: "name",
+      controlId: "route name",
+      style: {
+        marginTop: "-5%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      type: "",
+      placeholder: this.route.estimated_price
+    }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      xs: true,
+      lg: "3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", null, "Duration:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      style: {
+        marginTop: "5%",
+        marginBottom: "5%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Group, {
+      className: "name",
+      controlId: "route name",
+      style: {
+        marginTop: "-5%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      type: "",
+      placeholder: this.route.duration
+    })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      variant: "danger",
+      onClick: () => this.save(),
+      style: {
+        marginTop: "1%",
+        marginLeft: "20%",
+        width: "20%"
+        //backgroundColor: "#53aca8",
+      }
+    }, "Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      onClick: () => this.goBack(),
+      style: {
+        marginTop: "1%",
+        marginLeft: "38%",
+        width: "20%",
+        backgroundColor: "#53aca8"
+      }
+    }, "Go back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      onClick: () => this.save(),
+      style: {
+        marginTop: "1%",
+        marginLeft: "2%",
+        width: "20%",
+        backgroundColor: "#53aca8"
+      }
+    }, "Save"))));
+  }
+  mounted() {
+    _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRoute(this.props.match.params.route_id)
+    //@ts-ignore
+    .then(route => (this.route = route, console.log(route))).catch(error => alert(error.response.data));
+    _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRouteTravelPoints(this.props.match.params.route_id).then(route_travel_points => {
+      this.route_travel_points = route_travel_points;
+      //Her sorteres travelpointsene i kronologisk rekkefølge basert på
+      //order_number slik at dette printes riktig når disse mappes
+      this.route_travel_points.sort((a, b) => a.order_number - b.order_number);
+    }).catch(error => alert(error.response.data));
+  }
+  save() {
+    history.push("/home/");
+  }
+  delete() {
+    history.push("/home/");
+  }
+  goBack() {
+    history.push("/routes/" + this.route.route_id);
+  }
+}
+
+// import React from "react";
+// import { Container, Card, Row, Col, Button, Form } from "react-bootstrap";
+// import { Component } from "react-simplified";
+// import { createHashHistory } from "history";
+// import routeService, { Route } from "./route-service";
+
+// const history = createHashHistory();
+
+// export class EditRoute extends Component<{
+//   match: { params: { route_id: number } };
+// }> {
+//   routes: Route[] = [];
+
+//   render() {
+//     return (
+//       <>
+//         <Container
+//           style={{
+//             position: "absolute",
+//             marginLeft: "10%",
+//             marginRight: "10%",
+//             height: "100%",
+//             width: "80%",
+//             backgroundColor: "#53aca8",
+//           }}
+//         >
+//           <Container>
+//             <h1 style={{ textAlign: "center" }}>Edit route</h1>
+//             <h1
+//               style={{
+//                 width: "30%",
+//                 margin: "0 auto",
+//               }}
+//             >
+// <Form
+//   style={{
+//     marginTop: "5%",
+//     marginBottom: "5%",
+//   }}
+// >
+//   <Form.Group className="name" controlId="route name">
+//     <Form.Control type="" placeholder="Route name" />
+//   </Form.Group>
+// </Form>
+//             </h1>
+
+//             <Card>
+//               <Row style={{ marginBottom: "1%", marginLeft: "1%" }}>
+//                 <Col style={{ fontWeight: "bold" }}>
+//                   <h4>Stops</h4>
+//                 </Col>
+//                 <Col style={{ fontWeight: "bold" }}>
+//                   <h4>Continent</h4>
+//                 </Col>
+//                 <Col style={{ fontWeight: "bold" }}>
+//                   <h4>Estimated Price</h4>
+//                 </Col>
+//                 <Col style={{ fontWeight: "bold" }}>
+//                   <h4>Duration</h4>
+//                 </Col>
+//                 <Col style={{ fontWeight: "bold" }}>
+//                   <h4>Order Number</h4>
+//                 </Col>
+//               </Row>
+//               {this.routes.map((route) => (
+//                 <Row
+//                   key={route.travel_point_id}
+//                   style={{ marginBottom: "1%", marginLeft: "1%" }}
+//                 >
+//                   <Col>
+// <Form>
+//   <Form.Group
+//     className="destination"
+//     controlId="destination"
+//   >
+//     <Form.Control type="" placeholder={route.destination} />
+//   </Form.Group>
+// </Form>
+//                   </Col>
+//                   <Col>
+// <Form.Select
+//   style={{ width: "70%", height: "47px" }}
+//   value={route.continent}
+//   onChange={(event) =>
+//     (route.continent = event.currentTarget.value)
+//   }
+// >
+//   <option value="Africa">Africa</option>
+//   <option value="Antarctica">Antarctica</option>
+//   <option value="Asia">Asia</option>
+//   <option value="Australia">Australia</option>
+//   <option value="Europe">Europe</option>
+//   <option value="North America">North America</option>
+//   <option value="South America">South America</option>
+// </Form.Select>
+//                   </Col>
+//                   <Col>
+//                     <Form style={{ width: "50%" }}>
+//                       <Form.Group className="price" controlId="price">
+//                         <Form.Control
+//                           type=""
+//                           placeholder={route.estimated_price}
+//                         />
+//                       </Form.Group>
+//                     </Form>
+//                   </Col>
+//                   <Col>
+//                     {" "}
+//                     <Form style={{ width: "50%" }}>
+//                       <Form.Group className="duration" controlId="duration">
+//                         <Form.Control type="" placeholder={route.duration} />
+//                       </Form.Group>
+//                     </Form>
+//                   </Col>
+//                   <Col>{route.order_number}</Col>
+//                 </Row>
+//               ))}
+//             </Card>
+//             <Button
+//               variant="danger"
+//               onClick={() => this.save()}
+//               style={{
+//                 marginTop: "2%",
+//                 // backgroundColor: "#53aca8",
+//                 marginRight: "85%",
+//                 width: "15%",
+//               }}
+//             >
+//               Delete
+//             </Button>
+//             <Button
+//               onClick={() => this.goBack()}
+//               style={{
+//                 marginTop: "-5%",
+//                 backgroundColor: "#498eb9",
+//                 marginLeft: "67%",
+//                 width: "15%",
+//               }}
+//             >
+//               Go back
+//             </Button>
+//             <Button
+//               onClick={() => this.delete()}
+//               style={{
+//                 marginTop: "-9%",
+//                 backgroundColor: "#498eb9",
+//                 marginLeft: "85%",
+//                 width: "15%",
+//               }}
+//             >
+//               Save
+//             </Button>
+//           </Container>
+//         </Container>
+//       </>
+//     );
+//   }
+//   mounted() {
+//     routeService
+//       .getRoute(this.props.match.params.route_id)
+//       //@ts-ignore
+//       .then((routes) => (this.routes = routes))
+//       .catch((error) => alert(error.response.data));
+//   }
+//   save() {
+//     history.push("/routes");
+//   }
+//   goBack() {
+//     history.push("/routes");
+//   }
+//   delete() {
+//     history.push("/routes");
+//   }
+// }
+
+/***/ }),
+
 /***/ "./src/components/route-details.tsx":
 /*!******************************************!*\
   !*** ./src/components/route-details.tsx ***!
@@ -5249,6 +5604,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 /* harmony import */ var _route_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../route-service */ "./src/route-service.tsx");
@@ -5319,11 +5675,32 @@ class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
-        marginLeft: "20px"
+        marginLeft: "2%"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Destinations"), this.route_travel_points.map(route_travel_point => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+      style: {
+        marginLeft: "-2%"
+      }
+    }, "Destinations"), this.route_travel_points.map(route_travel_point => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: route_travel_point.route_id
-    }, route_travel_point.order_number, " ", route_travel_point.destination))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.duration)))));
+    }, route_travel_point.order_number, ".", " ", route_travel_point.destination, " (", route_travel_point.continent, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      xs: true,
+      lg: "3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", null, "Description:"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, this.route.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      xs: true,
+      lg: "3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", null, "Price:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, this.route.estimated_price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      xs: true,
+      lg: "3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", null, "Duration:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, this.route.duration))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      onClick: () => this.editRoute(),
+      style: {
+        marginTop: "1%",
+        marginLeft: "10.5%",
+        width: "7%",
+        backgroundColor: "#53aca8"
+      }
+    }, "Edit route")));
   }
   mounted() {
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRoute(this.props.match.params.route_id)
@@ -5335,6 +5712,9 @@ class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
       //order_number slik at dette printes riktig når disse mappes
       this.route_travel_points.sort((a, b) => a.order_number - b.order_number);
     }).catch(error => alert(error.response.data));
+  }
+  editRoute() {
+    history.push("/editRoute/" + this.route.route_id);
   }
 }
 
@@ -58030,15 +58410,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _user_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-components */ "./src/user-components.tsx");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
 /* harmony import */ var _components_route_details__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/route-details */ "./src/components/route-details.tsx");
 /* harmony import */ var _components_route_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/route-list */ "./src/components/route-list.tsx");
 /* harmony import */ var _components_route_new__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/route-new */ "./src/components/route-new.tsx");
+/* harmony import */ var _components_editRoute__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/editRoute */ "./src/components/editRoute.tsx");
+
 
 
 
@@ -58050,10 +58432,10 @@ __webpack_require__.r(__webpack_exports__);
 
 class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       bg: "light",
       expand: "lg"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Brand, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Brand, {
       href: "#home"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
       src: "https://tihldestorage.blob.core.windows.net/imagepng/d1aea6d8-00cb-4045-976d-054c8b82214aimg.png",
@@ -58061,15 +58443,15 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       height: "60px",
       className: "d-inline-block align-bottom",
       alt: "React Bootstrap logo"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Toggle, {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Toggle, {
       "aria-controls": "basic-navbar-nav"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Collapse, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Collapse, {
       id: "basic-navbar-nav"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       className: "me-auto"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Link, {
       href: "#newRoute"
-    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
+    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Link, {
       href: "#/profile"
     }, "My Profile")))));
   }
@@ -58080,27 +58462,31 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   }
 }*/
 
-react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
   exact: true,
   path: "/home",
   component: _components_route_list__WEBPACK_IMPORTED_MODULE_5__.RouteList
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
   exact: true,
   path: "/routes/:route_id",
   component: _components_route_details__WEBPACK_IMPORTED_MODULE_4__.RouteDetails
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  exact: true,
+  path: "/editRoute/:route_id",
+  component: _components_editRoute__WEBPACK_IMPORTED_MODULE_7__.EditRoute
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
   exact: true,
   path: "/profile",
   component: _user_components__WEBPACK_IMPORTED_MODULE_3__.UserLogIn
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
   exact: true,
   path: "/register",
   component: _user_components__WEBPACK_IMPORTED_MODULE_3__.RegisterUser
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
   exact: true,
   path: "/newRoute",
   component: _components_route_new__WEBPACK_IMPORTED_MODULE_6__.NewRoute
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
   exact: true,
   path: "/profile/:user_profile_id",
   component: _user_components__WEBPACK_IMPORTED_MODULE_3__.UserDetails
