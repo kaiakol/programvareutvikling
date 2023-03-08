@@ -65,17 +65,24 @@ export class RouteDetails extends Component<{
   render() {
     return (
       <>
-        {console.log(this.props.match.params.route_id)}
-        <Card>
-          <Card.Title>{this.route.route_name}</Card.Title>
-
+        <Card style={{ width: "80%", marginLeft: "10%" }}>
           <Row>
-            {this.route_travel_points.map((route_travel_point) => (
-              <Col>
-                {route_travel_point.order_number}{" "}
-                {route_travel_point.destination}
-              </Col>
-            ))}
+            <Col style={{ marginLeft: "20px" }}>
+              <h2>Destinations</h2>
+
+              {this.route_travel_points.map((route_travel_point) => (
+                <Row key={route_travel_point.route_id}>
+                  {route_travel_point.order_number}{" "}
+                  {route_travel_point.destination}
+                </Row>
+              ))}
+            </Col>
+            <Col>
+              <h2>Route Information</h2>
+              <Row>{this.route.description}</Row>
+              <Row>{this.route.estimated_price}</Row>
+              <Row>{this.route.duration}</Row>
+            </Col>
           </Row>
         </Card>
       </>
