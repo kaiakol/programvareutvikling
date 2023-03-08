@@ -2,19 +2,24 @@ import ReactDOM from "react-dom";
 import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
+import { NewRoute, RouteDetails, RouteList } from "./route-components";
+import { RegisterUser, UserLogIn, UserDetails } from "./user-components";
 import { Card, Nav, Navbar, Container } from "react-bootstrap";
-import { RouteDetails } from "./components/route-details";
-import { RouteList } from "./components/route-list";
-import { NewRoute } from "./components/route-new";
-import { UserLogIn } from "./components/user-login";
-import { RegisterUser } from "./components/user-register";
 
 class Menu extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#/routes">BackTrack</Navbar.Brand>
+          <Navbar.Brand href="#home">
+            <img
+              src="https://tihldestorage.blob.core.windows.net/imagepng/d1aea6d8-00cb-4045-976d-054c8b82214aimg.png"
+              width="100px"
+              height="60px"
+              className="d-inline-block align-bottom"
+              alt="React Bootstrap logo"
+            />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -43,8 +48,9 @@ ReactDOM.render(
       <Route exact path="/routes" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
       <Route exact path="/profile" component={UserLogIn} />
-      <Route exact path="/profile/register" component={RegisterUser} />
+      <Route exact path="/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />
+      <Route exact path="/profile/:user_profile_id" component={UserDetails} />
     </div>
   </HashRouter>,
   document.getElementById("root")
