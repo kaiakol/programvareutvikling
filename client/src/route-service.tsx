@@ -123,6 +123,23 @@ class RouteService {
       })
       .then((response) => response.data);
   }
+
+  updateRoute(
+    route_name: string,
+    duration: string,
+    estimated_price: string, //order_number: numbe)
+    description: string,
+    route_id: number
+  ) {
+    return axios
+      .put("/routes/:route_id", {
+        route_name: route_name,
+        duration: duration,
+        estimated_price: estimated_price,
+        description: description,
+      })
+      .then((response) => response.data);
+  }
 }
 
 const routeService = new RouteService();

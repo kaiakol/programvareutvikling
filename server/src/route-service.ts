@@ -110,7 +110,7 @@ class RouteService {
   //   });
   // }
 
-  remove(route_id: Number) {
+  removeRoute(route_id: Number) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
         "DELETE FROM route WHERE route_id = ?",
@@ -125,7 +125,7 @@ class RouteService {
     });
   }
 
-  update(
+  updateRoute(
     route_name: string,
     duration: string,
     estimated_price: number,
@@ -134,7 +134,7 @@ class RouteService {
   ) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
-        "UPDATE route SET route_name=?, duration=?, estimated_price=?, description=? WHERE route_id=?",
+        "UPDATE route SET route_name = ?, duration = ?, estimated_price = ?, description = ? WHERE route_id = ? ",
         [route_name, duration, estimated_price, description, route_id],
         (error, _results) => {
           if (error) return reject(error);

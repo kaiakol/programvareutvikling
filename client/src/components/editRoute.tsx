@@ -6,6 +6,13 @@ import routeService, { Route_travel_point, Route } from "../route-service";
 
 const history = createHashHistory();
 
+export type addDestination = {
+  name: string;
+  orderNumber: number;
+  continent: string;
+};
+
+
 export class EditRoute extends Component<{
   match: { params: { route_id: number } };
 }> {
@@ -17,6 +24,14 @@ export class EditRoute extends Component<{
     description: "",
   };
   route_travel_points: Route_travel_point[] = [];
+
+  newDestinations: addDestination[] = []; // Temp value
+  destinationNumber: number = 1;
+  newDestination: addDestination = {
+    name: "",
+    orderNumber: this.destinationNumber,
+    continent: "",
+  };
 
   render() {
     return (
@@ -144,7 +159,7 @@ export class EditRoute extends Component<{
           <Col>
             <Button
               variant="danger"
-              onClick={() => this.save()}
+              onClick={() => this.delete()}
               style={{
                 marginTop: "1%",
                 marginLeft: "20%",
@@ -166,7 +181,7 @@ export class EditRoute extends Component<{
                 backgroundColor: "#53aca8",
               }}
             >
-              Go back
+              Cancel
             </Button>
 
             <Button
@@ -206,15 +221,73 @@ export class EditRoute extends Component<{
       .catch((error) => alert(error.response.data));
   }
   save() {
+    alert('Successfully updated "' + this.route.route_name + '"');
     history.push("/home/");
+    //this.saveEditRoute();
+    // window.location.reload(); // May log out user...
   }
 
   delete() {
+    alert('Successfully deleted "' + this.route.route_name + '"');
     history.push("/home/");
   }
 
   goBack() {
     history.push("/routes/" + this.route.route_id);
+  }
+
+  saveEditRoute() {
+    if (
+      this.route.duration == "" ||
+      this.route.estimated_price == ""
+      // this.route.newDestinations.length == 0
+      // MUST CHECK INPUT FIELDS FOR DESTINATIONS aka TravelPoints
+    ) {
+      alert("All fields must be filled");
+    } else {
+      const createRoutePromise = routeService.updateRoute(
+        this.route.route_name,
+        this.route.duration,
+        this.route.estimated_price,
+        this.route.description,
+        this.route.route_id
+      );
+
+      const createTravelPointsPromises = this.newDestinations.map(
+        (newDestination) => {
+          return routeService.createTravelPoint(
+            newDestination.name,
+            newDestination.continent
+          );
+        }
+      );
+
+      Promise.all([createRoutePromise, ...createTravelPointsPromises])
+        .then(([route_id, ...travelPointIds]) => {
+          console.log(route_id["route_id"]);
+          console.log(route_id.value);
+          const createRouteTravelPointPromises = this.newDestinations.map(
+            (newDestination, index) => {
+              const order_number = newDestination.orderNumber;
+              const travel_point_id = travelPointIds[index]["travel_point_id"];
+              return routeService.createRouteTravelPoint(
+                route_id["route_id"],
+                travel_point_id,
+                order_number
+              );
+            }
+          );
+          return Promise.all(createRouteTravelPointPromises);
+        })
+        .then((route_id) => {
+          // history.push("/routes/" + Number(route_id));
+          alert("The route was created");
+          history.push("/routes");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   }
 }
 
