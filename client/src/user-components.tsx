@@ -13,6 +13,7 @@ import {
   Container,
 } from "react-bootstrap";
 import userService, { User } from "./user-service";
+import ThemeProvider from "./theme";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
