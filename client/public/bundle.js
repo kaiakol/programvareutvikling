@@ -5353,13 +5353,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
-/* harmony import */ var react_icons_bs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-icons/bs */ "./node_modules/react-icons/bs/index.esm.js");
+/* harmony import */ var react_icons_bs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-icons/bs */ "./node_modules/react-icons/bs/index.esm.js");
 /* harmony import */ var _route_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../route-service */ "./src/route-service.tsx");
 
 
@@ -5372,19 +5373,49 @@ const history = (0,history__WEBPACK_IMPORTED_MODULE_3__.createHashHistory)();
 class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   routes = [];
   route_travel_points = [];
+  filtered_routes = [];
+  filtered_travel_points = [];
+  search_input = "";
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        border: "none",
+        padding: "15px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
+      style: {
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
+    }, "Search for a recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      style: {
+        textAlign: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
+      onChange: event => this.search(event.currentTarget.value),
+      value: this.search_input,
+      type: "Search",
+      placeholder: "Search",
+      style: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        textAlign: "center",
+        width: "24rem"
+      }
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       lg: true
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       xs: 1,
       md: 2,
       className: "g-2"
-    }, this.routes.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
+    }, this.filtered_routes.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink, {
       to: "/routes/" + route.route_id,
       style: {
         color: "#9FC1C0"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       style: {
         width: "100%",
         margin: "1%",
@@ -5395,31 +5426,42 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         borderRadius: "none",
         height: "100%"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Img, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Img, {
       variant: "top",
       src: "https://freepngimg.com/save/168111-travel-icon-free-png-hq/3206x3494",
       style: {
         width: "40%"
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Title, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, {
       style: {
         color: "rgb(82, 130, 101)"
       }
-    }, route.route_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, this.route_travel_points.filter(rtp => rtp.route_id === route.route_id).map(rtp => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, route.route_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, this.filtered_travel_points.filter(rtp => rtp.route_id === route.route_id).map(rtp => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       key: rtp.route_id
-    }, rtp.destination, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_9__.BsArrowRight, null)))))))))), ";")));
+    }, rtp.destination, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_10__.BsArrowRight, null)))))))))), ";")));
   }
   mounted() {
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getAllRoutes().then(routes => {
-      this.routes = routes;
+      (this.routes = routes) && (this.filtered_routes = routes);
       const routeTravelPointsPromise = routes.map(route => _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRouteTravelPoints(route.route_id));
       return Promise.all(routeTravelPointsPromise);
     }).then(routeTravelPoints => {
       //Denne slår sammen alle individuelle arrayer av routeTravelPoints inn til én
-      //stor, sammenslått array over alle travelpoints som vi etterfølgende er i stand til å filtere baser på
+      //stor, sammenslått array over alle travelpoints som vi etterfølgende er i stand til å filtere basert på
       //route_id og deretter mappe
-      this.route_travel_points = routeTravelPoints.flat();
+      (this.route_travel_points = routeTravelPoints.flat()) && (this.filtered_travel_points = routeTravelPoints.flat());
     }).catch(error => alert("Error getting route: " + error.message));
+  }
+  search(input) {
+    this.search_input = input;
+    this.filterRoutes();
+    this.filterTravelPoints();
+  }
+  filterRoutes() {
+    this.filtered_routes = this.routes.filter(route => route.route_name.toLowerCase().includes(this.search_input.toLowerCase()) || this.filtered_travel_points.some(rtp => rtp.route_id === route.route_id && rtp.destination.toLowerCase().includes(this.search_input.toLowerCase())));
+  }
+  filterTravelPoints() {
+    this.filtered_travel_points = this.route_travel_points.filter(rtp => rtp.destination.toLowerCase().includes(this.search_input.toLowerCase()) && this.filtered_routes.some(route => route.route_id === rtp.route_id));
   }
 }
 
