@@ -102,7 +102,6 @@ export class RouteList extends Component {
                 </NavLink>
               ))}
             </Row>
-            ;
           </Col>
         </Container>
       </>

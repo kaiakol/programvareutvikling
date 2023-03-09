@@ -5438,7 +5438,7 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
       }
     }, route.route_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, this.filtered_travel_points.filter(rtp => rtp.route_id === route.route_id).map(rtp => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       key: rtp.route_id
-    }, rtp.destination, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_10__.BsArrowRight, null)))))))))), ";")));
+    }, rtp.destination, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_10__.BsArrowRight, null)))))))))))));
   }
   mounted() {
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getAllRoutes().then(routes => {
@@ -6222,7 +6222,7 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
         .catch((error) => Alert.danger(error.message));
     }
   }
-    logOut() {
+   logOut() {
     loggedIn = false;
     history.push('/recipes');
     currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
