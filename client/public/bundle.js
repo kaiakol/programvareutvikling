@@ -5387,7 +5387,7 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         marginLeft: "auto",
         marginRight: "auto"
       }
-    }, "Search for a recipe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, "Search for a route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
         textAlign: "center",
         marginLeft: "auto",
@@ -6222,7 +6222,7 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
         .catch((error) => Alert.danger(error.message));
     }
   }
-   logOut() {
+    logOut() {
     loggedIn = false;
     history.push('/recipes');
     currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
