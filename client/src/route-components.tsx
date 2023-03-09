@@ -27,80 +27,80 @@
 // export class RouteList extends Component {
 //   routes: RouteWithAllInformation[] = [];
 
-//   render() {
-//     const sortedRoutes = this.routes.sort((a, b) => a.route_id - b.route_id);
-//     // Render each group on a separate row
-//     const groupedRoutes = this.routes.reduce(
-//       (
-//         acc: { [key: number]: RouteWithAllInformation[] },
-//         curr: RouteWithAllInformation
-//       ) => {
-//         if (acc[curr.route_id]) {
-//           acc[curr.route_id].push(curr);
-//         } else {
-//           acc[curr.route_id] = [curr];
-//         }
-//         return acc;
-//       },
-//       {}
-//     );
-//     return (
-//       <>
-//         {console.log(this.routes)}
-//         <Container
-//           style={{
-//             position: "absolute",
-//             marginLeft: "10%",
-//             marginRight: "10%",
-//             height: "100%",
-//             width: "80%",
-//             backgroundColor: "#53aca8",
-//           }}
-//         >
-//           <Container>
-//             <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-//               Explore
-//             </h1>
-//             {Object.keys(groupedRoutes).map((routeId, index) => {
-//               const routes = groupedRoutes[routeId];
-//               console.log(Object.keys(groupedRoutes));
-//               return (
-//                 <Card key={routeId} style={{ marginBottom: "20px" }}>
-//                   <NavLink
-//                     to={"/routes/" + routeId}
-//                     style={{ textDecoration: "none" }}
-//                   >
-//                     <Card.Title
-//                       style={{ textAlign: "center", color: "#53ACA8" }}
-//                     >
-//                       {routes.map((route, index) => (
-//                         <span key={index}>
-//                           {index === 0
-//                             ? route.route_name
-//                             : index === routes.length - 1
-//                             ? ""
-//                             : ", "}
-//                         </span>
-//                       ))}
-//                     </Card.Title>
-//                   </NavLink>
-//                   <Row style={{ backgroundColor: "" }}>
-//                     {/* <Col style={{ textAlign: "center" }}>Destinations:</Col> */}
-//                     <Col style={{ textAlign: "center" }}>
-//                       {routes.map((route, index) => (
-//                         <span key={index}>
-//                           {route.destination}
-//                           {index === routes.length - 1 ? "" : ", "}
-//                         </span>
-//                       ))}
-//                     </Col>
-//                   </Row>
-//                 </Card>
-//               );
-//             })}
-//           </Container>
-//         </Container>
-//       </>
+  render() {
+    const sortedRoutes = this.routes.sort((a, b) => a.route_id - b.route_id);
+    // Render each group on a separate row
+    const groupedRoutes = this.routes.reduce(
+      (
+        acc: { [key: number]: RouteWithAllInformation[] },
+        curr: RouteWithAllInformation
+      ) => {
+        if (acc[curr.route_id]) {
+          acc[curr.route_id].push(curr);
+        } else {
+          acc[curr.route_id] = [curr];
+        }
+        return acc;
+      },
+      {}
+    );
+    return (
+      <>
+        {console.log(this.routes)}
+        <Container
+          style={{
+            position: "absolute",
+            marginLeft: "10%",
+            marginRight: "10%",
+            height: "100%",
+            width: "80%",
+            backgroundColor: "#53aca8",
+          }}
+        >
+          <Container>
+            <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
+              Explore
+            </h1>
+            {Object.keys(groupedRoutes).map((routeId, index) => {
+              const routes = groupedRoutes[routeId];
+              console.log(Object.keys(groupedRoutes));
+              return (
+                <Card key={routeId} style={{ marginBottom: "20px" }}>
+                  <NavLink
+                    to={"/routes/" + routeId}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Card.Title
+                      style={{ textAlign: "center", color: "#53ACA8" }}
+                    >
+                      {routes.map((route, index) => (
+                        <span key={index}>
+                          {index === 0
+                            ? route.route_name
+                            : index === routes.length - 1
+                            ? ""
+                            : ", "}
+                        </span>
+                      ))}
+                    </Card.Title>
+                  </NavLink>
+                  <Row style={{ backgroundColor: "" }}>
+                    {/* <Col style={{ textAlign: "center" }}>Destinations:</Col> */}
+                    <Col style={{ textAlign: "center" }}>
+                      {routes.map((route, index) => (
+                        <span key={index}>
+                          {route.destination}
+                          {index === routes.length - 1 ? "" : ", "}
+                        </span>
+                      ))}
+                    </Col>
+                  </Row>
+                </Card>
+              );
+            })}
+          </Container>
+        </Container>
+      </>
 
 //       // <Container>
 //       //   <Card.Title>Routes</Card.Title>
@@ -123,17 +123,330 @@
 //     );
 //   }
 
-//   mounted() {
-//     routeService
-//       .getAll()
-//       //@ts-ignore
-//       .then((routes) => (this.routes = routes))
+  mounted() {
+    routeService
+      .getAll()
+      //@ts-ignore
+      .then((routes) => (this.routes = routes))
 
-//       .catch((error: { message: string }) =>
-//         alert("Error getting route: " + error.message)
-//       );
-//   }
-// }
+      .catch((error: { message: string }) =>
+        alert("Error getting route: " + error.message)
+      );
+  }
+}
+
+export class RouteDetails extends Component<{
+  match: { params: { route_id: number } };
+}> {
+  routes: RouteWithAllInformation[] = [];
+
+  render() {
+    const groupedRoutes = this.routes.reduce(
+      (
+        acc: { [key: number]: RouteWithAllInformation[] },
+        curr: RouteWithAllInformation
+      ) => {
+        if (acc[curr.route_id]) {
+          acc[curr.route_id].push(curr);
+        } else {
+          acc[curr.route_id] = [curr];
+        }
+        return acc;
+      },
+      {}
+    );
+    return (
+      <>
+        <Container
+          style={{
+            position: "absolute",
+            marginLeft: "10%",
+            marginRight: "10%",
+            height: "100%",
+            width: "80%",
+            backgroundColor: "#53aca8",
+          }}
+        >
+          <Container>
+            <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Route</h1>
+            <Card>
+              <Row style={{ marginBottom: "20px" }}>
+                <Col style={{ fontWeight: "bold" }}>Estimated Price</Col>
+                <Col style={{ fontWeight: "bold" }}>Duration</Col>
+                <Col style={{ fontWeight: "bold" }}>Description</Col>
+              </Row>
+              {this.routes.map((route, index) =>
+                index === 1 ? (
+                  <Row
+                    key={route.travel_point_id}
+                    style={{ marginBottom: "20px" }}
+                  >
+                    <Col>{route.estimated_price}</Col>
+                    <Col>{route.duration}</Col>
+                    <Col>{route.description}</Col>
+                  </Row>
+                ) : null
+              )}
+            </Card>
+            <Card>
+              <Row style={{ marginBottom: "20px" }}>
+                <Col style={{ fontWeight: "bold" }}>Stops</Col>
+                <Col style={{ fontWeight: "bold" }}>Continent</Col>
+                <Col style={{ fontWeight: "bold" }}>Order Number</Col>
+              </Row>
+              {this.routes.map((route) => (
+                <Row
+                  key={route.travel_point_id}
+                  style={{ marginBottom: "20px" }}
+                >
+                  <Col>{route.destination}</Col>
+                  <Col>{route.continent}</Col>
+                  <Col>{route.order_number}</Col>
+                </Row>
+              ))}
+            </Card>
+          </Container>
+        </Container>
+      </>
+    );
+  }
+  mounted() {
+    routeService
+      .getRoute(this.props.match.params.route_id)
+      //@ts-ignore
+      .then((routes) => (this.routes = routes))
+      .catch((error) => alert(error.response.data));
+  }
+}
+
+/**
+ * Renders a create new route form list.
+ */
+export class NewRoute extends Component {
+  newDestinations: addDestination[] = []; // Temp value
+  destinationNumber: number = 1;
+  newDestination: addDestination = {
+    name: "",
+    orderNumber: this.destinationNumber,
+    continent: "",
+  };
+  duration: string = "";
+  estimatedCost: string = "";
+  timepublished: Date = new Date();
+  render() {
+    return (
+      <>
+        <Card>
+          <Row>
+            <Col style={{ marginLeft: "auto", marginRight: "auto" }}>
+              {/* <Card */}
+              {/* style=
+          {{
+            display: "flex",
+            width: "40%",
+            float: "left",
+            marginLeft: "7%",
+            marginTop: "30px",
+          }} */}
+              {/* > */}
+              <Card.Title
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  textAlign: "center",
+                }}
+              >
+                Add steps
+              </Card.Title>
+              <Row>
+                <p
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    textAlign: "center",
+                  }}
+                >
+                  Input ONE destination and continent chronologically
+                </p>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.newDestination.name}
+                  type="text"
+                  placeholder="Destination"
+                  onChange={(event) =>
+                    (this.newDestination.name = event.currentTarget.value)
+                  }
+                  style={{
+                    textAlign: "center",
+                    width: "60%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    marginBottom: "10px",
+                  }}
+                ></Form.Control>
+                <Form.Select
+                  style={{ width: "30%", height: "47px" }}
+                  value={this.newDestination.continent}
+                  onChange={(event) =>
+                    (this.newDestination.continent = event.currentTarget.value)
+                  }
+                >
+                  <option>Continent:</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Antarctica">Antarctica</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="South America">South America</option>
+                </Form.Select>
+              </Row>
+              <Row>
+                <Button
+                  style={{
+                    width: "30%",
+                    marginLeft: "20%",
+                    marginBottom: "10px",
+                  }}
+                  variant="light"
+                  onClick={() => this.addDestination()}
+                >
+                  +
+                </Button>
+                <Button
+                  style={{ width: "30%", marginBottom: "10px" }}
+                  variant="light"
+                  onClick={() => this.undoDestination()}
+                >
+                  &#x1F519;
+                </Button>
+              </Row>
+              <Row style={{ margin: "5%" }}>
+                {this.newDestinations.map((newDestination) => (
+                  <Row key={newDestination.orderNumber}>
+                    <Col>
+                      {newDestination.orderNumber +
+                        ": " +
+                        newDestination.name +
+                        " - " +
+                        newDestination.continent}
+                    </Col>
+                  </Row>
+                ))}
+              </Row>
+            </Col>
+            {/* </Card> */}
+            {/* <Card */}
+            {/* style=
+            {{
+              width: "40%",
+              display: "flex",
+              float: "right",
+              marginRight: "7%",
+              marginTop: "30px",
+            }} */}
+            {/* > */}
+            <Col>
+              <Card.Title
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  textAlign: "center",
+                }}
+              >
+                Add info about route
+              </Card.Title>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.duration}
+                  type="text"
+                  onChange={(event) =>
+                    (this.duration = event.currentTarget.value)
+                  }
+                  style={{
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
+                  }}
+                  placeholder="Duration (in hours?)"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.estimatedCost}
+                  onChange={(event) =>
+                    (this.estimatedCost = event.currentTarget.value)
+                  }
+                  type="text"
+                  style={{
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
+                  }}
+                  placeholder="Estimated cost"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              ></Row>
+              {/* </Card> */}
+            </Col>
+          </Row>
+        </Card>
+        <Row>
+          <Button
+            onClick={() => this.createRoute()}
+            style={{
+              width: "30%",
+              marginBottom: "10px",
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "30px",
+              backgroundColor: "#53aca8",
+            }}
+            variant="light"
+          >
+            Create Route
+          </Button>
+        </Row>
+      </>
+    );
+  }
+
+  //   mounted() {
+  //     routeService
+  //       .getAll()
+  //       //@ts-ignore
+  //       .then((routes) => (this.routes = routes))
+  //       .catch((error: { message: string }) =>
+  //         alert("Error getting tasks: " + error.message)
+  //       );
+  //   }
 
 // export class RouteDetails extends Component<{
 //   match: { params: { route_id: number } };

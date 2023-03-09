@@ -152,7 +152,7 @@ class RouteService {
   ) {
     return new Promise<number>((resolve, reject) => {
       pool.query(
-        "INSERT INTO route SET route_name = ?, duration=?, estimated_price=?, description = ? ",
+        "INSERT INTO route SET route_name=?, duration=?, estimated_price=?, description=? ",
         [route_name, duration, estimated_price, description],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
@@ -202,87 +202,6 @@ class RouteService {
       );
     });
   }
-
-  // createRoute(
-  //   destination: string,
-  //   continent: string,
-  //   duration: number,
-  //   estimated_price: number
-  //   // order_number: number
-  // ): Promise<void> {
-  //   return new Promise<void>((resolve, reject) => {
-  //     pool.getConnection((err, connection) => {
-  //       if (err) {
-  //         reject(err);
-  //         return;
-  //       }
-  //       connection.beginTransaction((err) => {
-  //         if (err) {
-  //           connection.release();
-  //           reject(err);
-  //           return;
-  //         }
-  //         connection.query(
-  //           "INSERT INTO travel_point (destination, continent) VALUES (?, ?)",
-  //           [destination, continent],
-  //           (err, result) => {
-  //             if (err) {
-  //               connection.rollback(() => {
-  //                 connection.release();
-  //                 reject(err);
-  //               });
-  //               return;
-  //             }
-  //             const travel_point_id = result.insertId;
-  //             connection.query(
-  //               "INSERT INTO route (duration, estimated_price) VALUES (?, ?)",
-  //               [duration, estimated_price],
-  //               (err, result) => {
-  //                 if (err) {
-  //                   connection.rollback(() => {
-  //                     connection.release();
-  //                     reject(err);
-  //                   });
-  //                   return;
-  //                 }
-  //                 const route_id = result.insertId;
-  //                 connection.query(
-  //                   "INSERT INTO route_travel_point (route_id, travel_point_id) VALUES (?, ?)",
-  //                   [
-  //                     route_id,
-  //                     travel_point_id,
-
-  //                     // order_number
-  //                   ],
-  //                   (err, result) => {
-  //                     if (err) {
-  //                       connection.rollback(() => {
-  //                         connection.release();
-  //                         reject(err);
-  //                       });
-  //                       return;
-  //                     }
-  //                     connection.commit((err) => {
-  //                       if (err) {
-  //                         connection.rollback(() => {
-  //                           connection.release();
-  //                           reject(err);
-  //                         });
-  //                         return;
-  //                       }
-  //                       connection.release();
-  //                       resolve();
-  //                     });
-  //                   }
-  //                 );
-  //               }
-  //             );
-  //           }
-  //         );
-  //       });
-  //     });
-  //   });
-  // }
 }
 const routeService = new RouteService();
 export default routeService;

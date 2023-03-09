@@ -26,14 +26,18 @@ export class NewRoute extends Component {
     orderNumber: this.destinationNumber,
     continent: "",
   };
+
+  route_name: string = "";
+
   duration: string = "";
-  estimatedCost: string = "";
+  estimatedPrice: string = "";
+  description: string = "";
   timepublished: Date = new Date();
   render() {
     return (
       <>
         <Card>
-          <Row>
+          <Row style={{ marginTop: "5%", marginBottom: "2%" }}>
             <Col style={{ marginLeft: "auto", marginRight: "auto" }}>
               {/* <Card */}
               {/* style=
@@ -159,6 +163,29 @@ export class NewRoute extends Component {
               >
                 Add info about route
               </Card.Title>
+
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.route_name}
+                  type="text"
+                  onChange={(event) =>
+                    (this.route_name = event.currentTarget.value)
+                  }
+                  style={{
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
+                  }}
+                  placeholder="Route name"
+                ></Form.Control>
+              </Row>
               <Row
                 style={{
                   margin: "5%",
@@ -189,9 +216,9 @@ export class NewRoute extends Component {
                 }}
               >
                 <Form.Control
-                  value={this.estimatedCost}
+                  value={this.estimatedPrice}
                   onChange={(event) =>
-                    (this.estimatedCost = event.currentTarget.value)
+                    (this.estimatedPrice = event.currentTarget.value)
                   }
                   type="text"
                   style={{
@@ -201,6 +228,28 @@ export class NewRoute extends Component {
                     marginBottom: "10px",
                   }}
                   placeholder="Estimated cost"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.description}
+                  as="textarea" // Change this line to "textarea"
+                  onChange={(event) =>
+                    (this.description = event.currentTarget.value)
+                  }
+                  style={{
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
+                  }}
+                  placeholder="Description"
                 ></Form.Control>
               </Row>
               <Row
@@ -300,15 +349,19 @@ export class NewRoute extends Component {
 
   createRoute() {
     if (
+      this.route_name == " " ||
       this.duration == "" ||
-      this.estimatedCost == "" ||
+      this.estimatedPrice == "" ||
+      this.description == "" ||
       this.newDestinations.length == 0
     ) {
       alert("All fields must be filled");
     } else {
       const createRoutePromise = routeService.createRoute(
+        this.route_name,
         this.duration,
-        this.estimatedCost
+        this.estimatedPrice,
+        this.description
       );
 
       const createTravelPointsPromises = this.newDestinations.map(
@@ -320,10 +373,12 @@ export class NewRoute extends Component {
         }
       );
 
+      let returnedRouteId: number = 0;
       Promise.all([createRoutePromise, ...createTravelPointsPromises])
         .then(([route_id, ...travelPointIds]) => {
           console.log(route_id["route_id"]);
           console.log(route_id.value);
+          returnedRouteId = route_id["route_id"];
           const createRouteTravelPointPromises = this.newDestinations.map(
             (newDestination, index) => {
               const order_number = newDestination.orderNumber;
@@ -337,10 +392,9 @@ export class NewRoute extends Component {
           );
           return Promise.all(createRouteTravelPointPromises);
         })
-        .then((route_id) => {
-          // history.push("/routes/" + Number(route_id));
+        .then(() => {
+          history.push("/routes/" + returnedRouteId);
           alert("The route was created");
-          history.push("/routes");
         })
         .catch((err) => {
           console.error(err);

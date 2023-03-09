@@ -88,7 +88,7 @@ class RouteService {
   createRoute(
     route_name: string,
     duration: string,
-    estimated_price: string, //order_number: numbe)
+    estimated_price: string,
     description: string
   ) {
     return axios
