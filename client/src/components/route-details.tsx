@@ -2,57 +2,18 @@ import React from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
-import routeService, { Route_travel_point, Route } from "../route-service";
+
+import routeService, {
+  Route_travel_point,
+  Route,
+  Rating,
+} from "../route-service";
 
 const history = createHashHistory();
 
 export class RouteDetails extends Component<{
   match: { params: { route_id: number } };
 }> {
-  //   routes: RouteWithAllInformation[] = [];
-
-  //   render() {
-  //     return (
-  //       <>
-  //         <Container
-  //           style={{
-  //             position: "absolute",
-  //             marginLeft: "10%",
-  //             marginRight: "10%",
-  //             height: "100%",
-  //             width: "80%",
-  //             backgroundColor: "#53aca8",
-  //           }}
-  //         >
-  //           <Container>
-  //             <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Route</h1>
-  //             <Card>
-  //               <Row style={{ marginBottom: "20px" }}>
-  //                 <Col style={{ fontWeight: "bold" }}>Stops</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Continent</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Estimated Price</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Duration</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Order Number</Col>
-  //               </Row>
-  //               {this.routes.map((route) => (
-  //                 <Row
-  //                   key={route.travel_point_id}
-  //                   style={{ marginBottom: "20px" }}
-  //                 >
-  //                   <Col>{route.destination}</Col>
-  //                   <Col>{route.continent}</Col>
-  //                   <Col>{route.estimated_price}</Col>
-  //                   <Col>{route.duration}</Col>
-  //                   <Col>{route.order_number}</Col>
-  //                 </Row>
-  //               ))}
-  //             </Card>
-  //           </Container>
-  //         </Container>
-  //       </>
-  //     );
-  //   }
-
   route: Route = {
     route_id: 0,
     route_name: "",
@@ -60,7 +21,17 @@ export class RouteDetails extends Component<{
     estimated_price: "",
     description: "",
   };
+
   route_travel_points: Route_travel_point[] = [];
+
+  rating: Rating = {
+    rating_id: 0,
+    value: 0,
+    description: "",
+    user_profile_id: 0,
+    route_id: 0,
+    travel_point_id: 0,
+  };
 
   render() {
     return (
@@ -82,6 +53,10 @@ export class RouteDetails extends Component<{
               <Row>{this.route.description}</Row>
               <Row>{this.route.estimated_price}</Row>
               <Row>{this.route.duration}</Row>
+            </Col>
+            <Col>
+              <h2>hei</h2>
+              <Row>{this.rating.value}</Row>
             </Col>
           </Row>
         </Card>
@@ -106,6 +81,11 @@ export class RouteDetails extends Component<{
           (a, b) => a.order_number - b.order_number
         );
       })
+      .catch((error) => alert(error.response.data));
+
+    routeService
+      .getRating(this.props.match.params.route_id)
+      .then((rating) => ((this.rating = rating), console.log(rating)))
       .catch((error) => alert(error.response.data));
   }
 }

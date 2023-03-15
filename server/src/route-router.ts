@@ -49,6 +49,20 @@ router.get("/routes/:route_id", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
+router.get("/route/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  routeService
+    .getRatings(route_id)
+    .then((route) => {
+      if (route) {
+        response.send(route);
+      } else {
+        response.status(404).send("Rating not found");
+      }
+    })
+    .catch((error) => response.status(500).send(error));
+});
+
 //Get the travelpoints for a specific route:
 router.get("/route_travel_points/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);

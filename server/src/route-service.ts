@@ -32,6 +32,11 @@ export type RouteTravelPoint = {
   // user_profile_id: number;
 };
 
+export type routeRating = {
+  route_id: number;
+  value: number;
+};
+
 class RouteService {
   /**
    * Get task with given id.
@@ -198,6 +203,20 @@ class RouteService {
           if (error) return reject(error);
 
           resolve(results[0] as RouteTravelPoint);
+        }
+      );
+    });
+  }
+
+  getRatings(route_id: number) {
+    return new Promise<routeRating[]>((resolve, reject) => {
+      pool.query(
+        "SELECT AVG(rating.value) FROM rating INNER JOIN route ON rating.route_id = route.route_id WHERE route.route_id = ?",
+        [route_id],
+        (error, results: RowDataPacket[]) => {
+          if (error) return reject(error);
+
+          resolve(results as routeRating[]);
         }
       );
     });

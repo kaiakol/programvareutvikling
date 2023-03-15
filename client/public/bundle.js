@@ -5259,50 +5259,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const history = (0,history__WEBPACK_IMPORTED_MODULE_3__.createHashHistory)();
 class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
-  //   routes: RouteWithAllInformation[] = [];
-
-  //   render() {
-  //     return (
-  //       <>
-  //         <Container
-  //           style={{
-  //             position: "absolute",
-  //             marginLeft: "10%",
-  //             marginRight: "10%",
-  //             height: "100%",
-  //             width: "80%",
-  //             backgroundColor: "#53aca8",
-  //           }}
-  //         >
-  //           <Container>
-  //             <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Route</h1>
-  //             <Card>
-  //               <Row style={{ marginBottom: "20px" }}>
-  //                 <Col style={{ fontWeight: "bold" }}>Stops</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Continent</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Estimated Price</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Duration</Col>
-  //                 <Col style={{ fontWeight: "bold" }}>Order Number</Col>
-  //               </Row>
-  //               {this.routes.map((route) => (
-  //                 <Row
-  //                   key={route.travel_point_id}
-  //                   style={{ marginBottom: "20px" }}
-  //                 >
-  //                   <Col>{route.destination}</Col>
-  //                   <Col>{route.continent}</Col>
-  //                   <Col>{route.estimated_price}</Col>
-  //                   <Col>{route.duration}</Col>
-  //                   <Col>{route.order_number}</Col>
-  //                 </Row>
-  //               ))}
-  //             </Card>
-  //           </Container>
-  //         </Container>
-  //       </>
-  //     );
-  //   }
-
   route = {
     route_id: 0,
     route_name: "",
@@ -5311,6 +5267,14 @@ class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
     description: ""
   };
   route_travel_points = [];
+  rating = {
+    rating_id: 0,
+    value: 0,
+    description: "",
+    user_profile_id: 0,
+    route_id: 0,
+    travel_point_id: 0
+  };
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
       style: {
@@ -5323,7 +5287,7 @@ class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Destinations"), this.route_travel_points.map(route_travel_point => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: route_travel_point.route_id
-    }, route_travel_point.order_number, " ", route_travel_point.destination))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.duration)))));
+    }, route_travel_point.order_number, " ", route_travel_point.destination))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "hei"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.rating.value)))));
   }
   mounted() {
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRoute(this.props.match.params.route_id)
@@ -5335,6 +5299,7 @@ class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
       //order_number slik at dette printes riktig når disse mappes
       this.route_travel_points.sort((a, b) => a.order_number - b.order_number);
     }).catch(error => alert(error.response.data));
+    _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRating(this.props.match.params.route_id).then(rating => (this.rating = rating, console.log(rating))).catch(error => alert(error.response.data));
   }
 }
 
@@ -6287,6 +6252,9 @@ class RouteService {
       travel_point_id: travel_point_id,
       order_number: order_number
     }).then(response => response.data);
+  }
+  getRating(route_id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes/" + route_id).then(response => response.data);
   }
 }
 const routeService = new RouteService();

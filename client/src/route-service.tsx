@@ -39,6 +39,15 @@ export type Route_travel_point = {
   // user_profile_id: number;
 };
 
+export type Rating = {
+  rating_id: number;
+  value: number;
+  description: string;
+  user_profile_id: number;
+  route_id: number;
+  travel_point_id: number;
+};
+
 // export type RouteTravelPoint = {
 //   route_id: number;
 //   travel_point_id: number;
@@ -121,6 +130,12 @@ class RouteService {
         travel_point_id: travel_point_id,
         order_number: order_number,
       })
+      .then((response) => response.data);
+  }
+
+  getRating(route_id: number) {
+    return axios
+      .get<Rating>("/routes/" + route_id)
       .then((response) => response.data);
   }
 }
