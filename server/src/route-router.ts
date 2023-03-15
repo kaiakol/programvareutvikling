@@ -66,7 +66,7 @@ router.delete("/routes/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   if (route_id) {
     routeService
-      .remove(route_id)
+      .deleteRoute(route_id)
       .then((_result) => response.send())
       .catch((error) => response.status(500).send(error));
   } else {

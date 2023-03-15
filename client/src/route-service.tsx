@@ -140,6 +140,12 @@ class RouteService {
       })
       .then((response) => response.data);
   }
+
+  deleteRoute(route_id: number) {
+    return axios
+      .delete<Route>("/routes/" + route_id)
+      .then((response) => response.data);
+  }
 }
 
 const routeService = new RouteService();

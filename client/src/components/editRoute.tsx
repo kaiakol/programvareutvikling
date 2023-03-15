@@ -12,7 +12,6 @@ export type addDestination = {
   continent: string;
 };
 
-
 export class EditRoute extends Component<{
   match: { params: { route_id: number } };
 }> {
@@ -230,6 +229,7 @@ export class EditRoute extends Component<{
   delete() {
     alert('Successfully deleted "' + this.route.route_name + '"');
     history.push("/home/");
+    //this.deleteRoute();
   }
 
   goBack() {
@@ -287,6 +287,16 @@ export class EditRoute extends Component<{
         .catch((err) => {
           console.error(err);
         });
+    }
+  }
+
+  deleteRoute() {
+    const deleteRoutePromise = routeService.deleteRoute(
+      this.route.route_id
+    );
+    
+    Promise.all([deleteRoutePromise]).then(([ route_id])) => {
+      console.log(route_id["route_id"]);
     }
   }
 }

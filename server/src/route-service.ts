@@ -110,7 +110,7 @@ class RouteService {
   //   });
   // }
 
-  removeRoute(route_id: Number) {
+  deleteRoute(route_id: Number) {
     return new Promise<void>((resolve, reject) => {
       pool.query(
         "DELETE FROM route WHERE route_id = ?",
