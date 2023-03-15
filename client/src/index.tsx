@@ -7,8 +7,9 @@ import { Card, Nav, Navbar, Container } from "react-bootstrap";
 import { RouteDetails } from "./components/route-details";
 import { RouteList } from "./components/route-list";
 import { NewRoute } from "./components/route-new";
-import { UserLogIn, RegisterUser } from "./route-components";
-import { UserDetails } from "./user-components";
+import { UserLogIn } from "./components/user-login";
+import { RegisterUser } from "./components/user-register";
+import { UserDetails } from "./components/user-details";
 
 class Menu extends Component {
   render() {
