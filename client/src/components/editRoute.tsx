@@ -295,11 +295,11 @@ export class EditRoute extends Component<{
       this.route.route_id
     );
     
-    Promise.all([deleteRoutePromise]).then(([ route_id])) => {
-      console.log(route_id["route_id"]);
+    // Promise.all([deleteRoutePromise]).then(([ route_id])) => {
+      //console.log(route_id["route_id"]);
     }
   }
-}
+
 
 // import React from "react";
 // import { Container, Card, Row, Col, Button, Form } from "react-bootstrap";
