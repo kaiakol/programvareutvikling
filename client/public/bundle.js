@@ -5786,113 +5786,16 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
 
 /***/ }),
 
-/***/ "./src/route-service.tsx":
-/*!*******************************!*\
-  !*** ./src/route-service.tsx ***!
-  \*******************************/
+/***/ "./src/components/user-details.tsx":
+/*!*****************************************!*\
+  !*** ./src/components/user-details.tsx ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "http://localhost:3000/api/v2";
-
-// export type RouteWithAllInformation = {
-//   route_id: number;
-//   duration: string;
-//   destination: string;
-//   time_published: Date;
-//   continent: string;
-//   order_number: number;
-//   estimated_price: number;
-//   user_profile_id: number;
-//   travel_point_id: number;
-// };
-
-// export type RouteTravelPoint = {
-//   route_id: number;
-//   travel_point_id: number;
-//   order_number: number;
-//   duration: number;
-//   estimated_price: number;
-//   user_profile_id: number;
-// };
-
-class RouteService {
-  /**
-   * Get task with given id.
-   */
-  getRoute(route_id) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes/" + route_id).then(response => response.data);
-  }
-  getAllRoutes() {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes").then(response => response.data);
-  }
-  getRouteTravelPoints(route_id) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/route_travel_points/" + route_id).then(response => response.data);
-  }
-  // createRoute(
-  //   destination: string,
-  //   continent: string,
-  //   duration: string,
-  //   estimated_price: string
-  //   // order_number: number
-  // ) {
-  //   return axios
-  //     .post("/routes/add", {
-  //       destination: destination,
-  //       continent: continent,
-  //       duration: duration,
-  //       estimated_price: estimated_price,
-  //       // order_number: order_number,
-  //     })
-  //     .then((response) => response.data);
-  // }
-
-  createRoute(route_name, duration, estimated_price, description) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/add", {
-      route_name: route_name,
-      duration: duration,
-      estimated_price: estimated_price,
-      description: description
-    }).then(response => response.data);
-  }
-  createTravelPoint(destination, continent) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/travel_points/add", {
-      destination: destination,
-      continent: continent
-    }).then(response => response.data);
-  }
-  createRouteTravelPoint(route_id, travel_point_id, order_number) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/route_travel_points/add", {
-      route_id: route_id,
-      travel_point_id: travel_point_id,
-      order_number: order_number
-    }).then(response => response.data);
-  }
-}
-const routeService = new RouteService();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routeService);
-
-/***/ }),
-
-/***/ "./src/user-components.tsx":
-/*!*********************************!*\
-  !*** ./src/user-components.tsx ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RegisterUser": () => (/* binding */ RegisterUser),
 /* harmony export */   "UserDetails": () => (/* binding */ UserDetails),
-/* harmony export */   "UserLogIn": () => (/* binding */ UserLogIn),
 /* harmony export */   "currentUser": () => (/* binding */ currentUser),
 /* harmony export */   "loggedIn": () => (/* binding */ loggedIn)
 /* harmony export */ });
@@ -5900,11 +5803,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-service */ "./src/user-service.tsx");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-service */ "./src/user-service.tsx");
 
 
 
@@ -5922,12 +5823,440 @@ let currentUser = {
   profile_password: "",
   profile_name: ""
 };
+
+// export class UserLogIn extends Component {
+//   email: string = "";
+//   password: string = "";
+
+//   render() {
+//     if (!loggedIn) {
+//       return (
+//         <Card
+//           style={{
+//             border: "none",
+//             padding: "15px",
+//             textAlign: "center",
+//             marginLeft: "auto",
+//             marginRight: "auto",
+//           }}
+//         >
+//           {/*Card forms in for log in screen */}
+//           <Card.Title>Log in</Card.Title>
+//           <Container
+//             style={{ width: "20rem", marginLeft: "auto", marginRight: "auto" }}
+//           >
+//             <Row>
+//               <Form.Control
+//                 value={this.email}
+//                 type="text"
+//                 placeholder="Email"
+//                 onChange={(event) => (this.email = event.currentTarget.value)}
+//                 style={{
+//                   textAlign: "center",
+//                   marginBottom: "10px",
+//                 }}
+//               ></Form.Control>
+//             </Row>
+//             <Row>
+//               <Form.Control
+//                 value={this.password}
+//                 type="password"
+//                 placeholder="Password"
+//                 onChange={(event) =>
+//                   (this.password = event.currentTarget.value)
+//                 }
+//                 // Makes it possible to log in with enter as well as with button
+//                 onKeyUp={(event) => {
+//                   if (event.key == "Enter") {
+//                     this.logIn();
+//                   }
+//                 }}
+//                 style={{
+//                   textAlign: "center",
+//                   marginBottom: "10px",
+//                 }}
+//               ></Form.Control>
+//             </Row>
+//           </Container>
+//           {/*Card for buttons in login screen before user is identified or registered */}
+//           <Container
+//             style={{ width: "15rem", marginLeft: "auto", marginRight: "auto" }}
+//           >
+//             <Row>
+//               <Button
+//                 // variant="success"
+//                 onClick={() => this.logIn()}
+//                 style={{
+//                   marginBottom: "10px",
+//                   backgroundColor: "#53aca8",
+//                 }}
+//               >
+//                 Log in
+//               </Button>
+//             </Row>
+//             <Row>
+//               <Button
+//                 // variant="outline-success"
+//                 onClick={() => this.createUser()}
+//                 style={{
+//                   marginBottom: "10px",
+//                   backgroundColor: "#53aca8",
+//                 }}
+//               >
+//                 No user? Create one here
+//               </Button>
+//             </Row>
+//             <Row>
+//               <Button
+//                 onClick={() => this.clearInput()}
+//                 style={{
+//                   marginBottom: "10px",
+//                   backgroundColor: "#53aca8",
+//                 }}
+//               >
+//                 Clear input
+//               </Button>
+//             </Row>
+//           </Container>
+//         </Card>
+//       );
+//     } else {
+//       userService
+//         .logIn(currentUser.email, currentUser.profile_password)
+//         .then(
+//           (user) => (
+//             (currentUser = user),
+//             history.push("/profile/ " + currentUser.user_profile_id)
+//           )
+//         )
+//         .catch((error) => alert(error.message));
+//       return currentUser.user_profile_id;
+//     }
+//   }
+
+//   /*mounted() {
+//     if (!loggedIn) {
+//       history.push("/profile");
+//     } else {
+//       userService
+//         .logIn(currentUser.email, currentUser.profile_password)
+//         .then(
+//           (user) => (
+//             (currentUser = user),
+//             history.push("/profile/ " + currentUser.user_profile_id)
+//           )
+//         )
+//         .catch((error) => alert(error.message));
+//     }
+//   }
+//   */
+
+//   logIn() {
+//     if (this.email.length != 0 && this.password.length != 0) {
+//       userService
+//         .logIn(this.email, this.password)
+//         .then((user) => {
+//           currentUser = user;
+//           loggedIn = true;
+//           alert("Logged in as " + currentUser.email);
+//           history.push("/profile/" + currentUser.user_profile_id);
+//         })
+//         .catch((error) => alert(error.response.data));
+//     } else {
+//       alert("Please fill in all the fields");
+//     }
+//   }
+
+//   clearInput() {
+//     this.email = "";
+//     this.password = "";
+//   }
+
+//   createUser() {
+//     history.push("/profile/register");
+//   }
+// }
+
+// export class RegisterUser extends Component {
+//   user: User = {
+//     user_profile_id: 0,
+//     email: "",
+//     first_name: "",
+//     last_name: "",
+//     profile_password: "",
+//     profile_name: "",
+//   };
+
+//   render() {
+//     return (
+//       <Card
+//         style={{
+//           border: "none",
+//           padding: "15px",
+//           textAlign: "center",
+//           marginLeft: "auto",
+//           marginRight: "auto",
+//         }}
+//       >
+//         {/* Card creating forms related to creating new user */}
+//         <Card.Title>Create user</Card.Title>
+//         <Container
+//           style={{
+//             marginLeft: "auto",
+//             marginRight: "auto",
+//             width: "20rem",
+//           }}
+//         >
+//           <Row>
+//             <Form.Control
+//               value={this.user.profile_name}
+//               type="text"
+//               placeholder="Profile Name"
+//               onChange={(event) =>
+//                 (this.user.profile_name = event.currentTarget.value)
+//               }
+//               style={{
+//                 marginBottom: "10px",
+//                 textAlign: "center",
+//               }}
+//             ></Form.Control>
+//           </Row>
+//           <Row>
+//             <Form.Control
+//               value={this.user.email}
+//               type="text"
+//               placeholder="Email"
+//               onChange={(event) =>
+//                 (this.user.email = event.currentTarget.value)
+//               }
+//               style={{
+//                 marginBottom: "10px",
+//                 textAlign: "center",
+//               }}
+//             ></Form.Control>
+//           </Row>
+//           <Row>
+//             <Form.Control
+//               value={this.user.first_name}
+//               type="text"
+//               placeholder="First name"
+//               onChange={(event) =>
+//                 (this.user.first_name = event.currentTarget.value)
+//               }
+//               style={{
+//                 marginBottom: "10px",
+//                 textAlign: "center",
+//               }}
+//             ></Form.Control>
+//           </Row>
+//           <Row>
+//             <Form.Control
+//               value={this.user.last_name}
+//               type="text"
+//               placeholder="Last name"
+//               onChange={(event) =>
+//                 (this.user.last_name = event.currentTarget.value)
+//               }
+//               style={{
+//                 marginBottom: "10px",
+//                 textAlign: "center",
+//               }}
+//             ></Form.Control>
+//           </Row>
+//           <Row>
+//             <Form.Control
+//               value={this.user.profile_password}
+//               type="password"
+//               placeholder="Password"
+//               onChange={(event) =>
+//                 (this.user.profile_password = event.currentTarget.value)
+//               }
+//               // Makes it possible to log in with enter as well as with button
+//               onKeyUp={(event) => {
+//                 if (event.key == "Enter") {
+//                   this.createUser();
+//                 }
+//               }}
+//               style={{
+//                 marginBottom: "10px",
+//                 textAlign: "center",
+//               }}
+//             ></Form.Control>
+//           </Row>
+//         </Container>
+//         {/* Buttons for creating user and clearing input */}
+//         <Container
+//           style={{ width: "15rem", marginLeft: "auto", marginRight: "auto" }}
+//         >
+//           <Row>
+//             <Button
+//               // variant="success"
+//               onClick={() => this.createUser()}
+//               style={{
+//                 marginBottom: "10px",
+//                 backgroundColor: "#53aca8",
+//               }}
+//             >
+//               Create user
+//             </Button>
+//           </Row>
+//           <Row>
+//             <Button
+//               variant="outline-secondary"
+//               onClick={() => this.clearInput()}
+//               style={{
+//                 marginBottom: "10px",
+//               }}
+//             >
+//               Clear input
+//             </Button>
+//           </Row>
+//         </Container>
+//       </Card>
+//     );
+//   }
+
+//   createUser() {
+//     userService
+//       .createUser(
+//         this.user.profile_name,
+//         this.user.profile_password,
+//         this.user.first_name,
+//         this.user.last_name,
+//         this.user.email
+//       )
+//       .then((response) => {
+//         if (response.length > 0) {
+//           alert(response);
+//         } else {
+//           alert("User created, please log in");
+//           loggedIn = true;
+//           history.push("/profile");
+//         }
+//       })
+//       .catch((error) => alert(error.response.data));
+//   }
+
+//   clearInput() {
+//     this.user = {
+//       user_profile_id: 0,
+//       email: "",
+//       first_name: "",
+//       last_name: "",
+//       profile_password: "",
+//       profile_name: "",
+//     };
+//   }
+// }
+
+class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
+  // likedRecipes: Recipe[] = [];
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, console.log(currentUser.user_profile_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      style: {
+        // border: 'none',
+        padding: "15px",
+        textAlign: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, null, "User page for " + currentUser.first_name + " " + currentUser.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        fontSize: "17px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, "Profile name: ", currentUser.profile_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        fontSize: "17px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, "Your name: ", currentUser.first_name, " ", currentUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        fontSize: "17px"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, "Your email-adress: ", currentUser.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      variant: "outline-danger",
+      onClick: () => this.logOut(),
+      style: {
+        width: "15rem",
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginBottom: "10px"
+      }
+    }, "Log out"))));
+  }
+  mounted() {
+    if (!loggedIn) {
+      history.push("/register");
+    } else {
+      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(currentUser.email, currentUser.profile_password).then(user => (currentUser = user, history.push("/profile/ " + currentUser.user_profile_id))).catch(error => alert(error.message));
+    }
+  }
+  logOut() {
+    loggedIn = false;
+    history.push("/profile");
+    currentUser = {
+      user_profile_id: 0,
+      email: "",
+      first_name: "",
+      last_name: "",
+      profile_password: "",
+      profile_name: ""
+    };
+  }
+  /*
+  mounted() {
+    if (!loggedIn) {
+      history.push('/recipes/login');
+    } else {
+      recipeService
+        .getLikedRecipes(currentUser.user_id)
+        .then((recipes) => (this.likedRecipes = recipes))
+        .catch((error) => Alert.danger(error.message));
+    }
+  }
+    logOut() {
+    loggedIn = false;
+    history.push('/recipes');
+    currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
+  }
+  */
+}
+
+/***/ }),
+
+/***/ "./src/components/user-login.tsx":
+/*!***************************************!*\
+  !*** ./src/components/user-login.tsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UserLogIn": () => (/* binding */ UserLogIn)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
+/* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-service */ "./src/user-service.tsx");
+/* harmony import */ var _user_details__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-details */ "./src/components/user-details.tsx");
+
+
+
+
+
+
+const history = (0,history__WEBPACK_IMPORTED_MODULE_4__.createHashHistory)();
 class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   email = "";
   password = "";
   render() {
-    if (!loggedIn) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    if (!_user_details__WEBPACK_IMPORTED_MODULE_3__.loggedIn) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
         style: {
           border: "none",
           padding: "15px",
@@ -5935,13 +6264,13 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
           marginLeft: "auto",
           marginRight: "auto"
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, null, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, null, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
         style: {
           width: "20rem",
           marginLeft: "auto",
           marginRight: "auto"
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
         value: this.email,
         type: "text",
         placeholder: "Email",
@@ -5950,7 +6279,7 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
           textAlign: "center",
           marginBottom: "10px"
         }
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"].Control, {
         value: this.password,
         type: "password",
         placeholder: "Password",
@@ -5966,13 +6295,13 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
           textAlign: "center",
           marginBottom: "10px"
         }
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
         style: {
           width: "15rem",
           marginLeft: "auto",
           marginRight: "auto"
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"]
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"]
       // variant="success"
       , {
         onClick: () => this.logIn(),
@@ -5980,7 +6309,7 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
           marginBottom: "10px",
           backgroundColor: "#53aca8"
         }
-      }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"]
+      }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"]
       // variant="outline-success"
       , {
         onClick: () => this.createUser(),
@@ -5988,7 +6317,7 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
           marginBottom: "10px",
           backgroundColor: "#53aca8"
         }
-      }, "No user? Create one here")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, "No user? Create one here")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
         onClick: () => this.clearInput(),
         style: {
           marginBottom: "10px",
@@ -5996,35 +6325,17 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         }
       }, "Clear input"))));
     } else {
-      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(currentUser.email, currentUser.profile_password).then(user => (currentUser = user, history.push("/profile/ " + currentUser.user_profile_id))).catch(error => alert(error.message));
-      return currentUser.user_profile_id;
+      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser.email, _user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser.profile_password).then(user => (_user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser = user, history.push("/profile/ " + _user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser.user_profile_id))).catch(error => alert(error.message));
+      return _user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser.user_profile_id;
     }
   }
-
-  /*mounted() {
-    if (!loggedIn) {
-      history.push("/profile");
-    } else {
-      userService
-        .logIn(currentUser.email, currentUser.profile_password)
-        .then(
-          (user) => (
-            (currentUser = user),
-            history.push("/profile/ " + currentUser.user_profile_id)
-          )
-        )
-        .catch((error) => alert(error.message));
-    }
-  }
-  */
-
   logIn() {
     if (this.email.length != 0 && this.password.length != 0) {
       _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(this.email, this.password).then(user => {
-        currentUser = user;
-        loggedIn = true;
-        alert("Logged in as " + currentUser.email);
-        history.push("/profile/" + currentUser.user_profile_id);
+        _user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser = user;
+        _user_details__WEBPACK_IMPORTED_MODULE_3__.loggedIn = true;
+        alert("Logged in as " + _user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser.email);
+        history.push("/profile/" + _user_details__WEBPACK_IMPORTED_MODULE_3__.currentUser.user_profile_id);
       }).catch(error => alert(error.response.data));
     } else {
       alert("Please fill in all the fields");
@@ -6038,6 +6349,35 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
     history.push("/profile/register");
   }
 }
+
+/***/ }),
+
+/***/ "./src/components/user-register.tsx":
+/*!******************************************!*\
+  !*** ./src/components/user-register.tsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RegisterUser": () => (/* binding */ RegisterUser)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
+/* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-service */ "./src/user-service.tsx");
+
+
+
+
+
+const history = (0,history__WEBPACK_IMPORTED_MODULE_3__.createHashHistory)();
 class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   user = {
     user_profile_id: 0,
@@ -6158,77 +6498,101 @@ class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
     };
   }
 }
-class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
-  // likedRecipes: Recipe[] = [];
-  render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, console.log(currentUser.user_profile_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      style: {
-        // border: 'none',
-        padding: "15px",
-        textAlign: "center",
-        marginLeft: "auto",
-        marginRight: "auto"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Title, null, "User page for " + currentUser.first_name + " " + currentUser.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      style: {
-        fontSize: "17px"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, "Profile name: ", currentUser.profile_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      style: {
-        fontSize: "17px"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, "Your name: ", currentUser.first_name, " ", currentUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      style: {
-        fontSize: "17px"
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"].Text, null, "Your email-adress: ", currentUser.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      variant: "outline-danger",
-      onClick: () => this.logOut(),
-      style: {
-        width: "15rem",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginBottom: "10px"
-      }
-    }, "Log out"))));
+
+/***/ }),
+
+/***/ "./src/route-service.tsx":
+/*!*******************************!*\
+  !*** ./src/route-service.tsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = "http://localhost:3000/api/v2";
+
+// export type RouteWithAllInformation = {
+//   route_id: number;
+//   duration: string;
+//   destination: string;
+//   time_published: Date;
+//   continent: string;
+//   order_number: number;
+//   estimated_price: number;
+//   user_profile_id: number;
+//   travel_point_id: number;
+// };
+
+// export type RouteTravelPoint = {
+//   route_id: number;
+//   travel_point_id: number;
+//   order_number: number;
+//   duration: number;
+//   estimated_price: number;
+//   user_profile_id: number;
+// };
+
+class RouteService {
+  /**
+   * Get task with given id.
+   */
+  getRoute(route_id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes/" + route_id).then(response => response.data);
   }
-  mounted() {
-    if (!loggedIn) {
-      history.push("/register");
-    } else {
-      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(currentUser.email, currentUser.profile_password).then(user => (currentUser = user, history.push("/profile/ " + currentUser.user_profile_id))).catch(error => alert(error.message));
-    }
+  getAllRoutes() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/routes").then(response => response.data);
   }
-  logOut() {
-    loggedIn = false;
-    history.push("/profile");
-    currentUser = {
-      user_profile_id: 0,
-      email: "",
-      first_name: "",
-      last_name: "",
-      profile_password: "",
-      profile_name: ""
-    };
+  getRouteTravelPoints(route_id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/route_travel_points/" + route_id).then(response => response.data);
   }
-  /*
-  mounted() {
-    if (!loggedIn) {
-      history.push('/recipes/login');
-    } else {
-      recipeService
-        .getLikedRecipes(currentUser.user_id)
-        .then((recipes) => (this.likedRecipes = recipes))
-        .catch((error) => Alert.danger(error.message));
-    }
+  // createRoute(
+  //   destination: string,
+  //   continent: string,
+  //   duration: string,
+  //   estimated_price: string
+  //   // order_number: number
+  // ) {
+  //   return axios
+  //     .post("/routes/add", {
+  //       destination: destination,
+  //       continent: continent,
+  //       duration: duration,
+  //       estimated_price: estimated_price,
+  //       // order_number: order_number,
+  //     })
+  //     .then((response) => response.data);
+  // }
+
+  createRoute(route_name, duration, estimated_price, description) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/routes/add", {
+      route_name: route_name,
+      duration: duration,
+      estimated_price: estimated_price,
+      description: description
+    }).then(response => response.data);
   }
-    logOut() {
-    loggedIn = false;
-    history.push('/recipes');
-    currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
+  createTravelPoint(destination, continent) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/travel_points/add", {
+      destination: destination,
+      continent: continent
+    }).then(response => response.data);
   }
-  */
+  createRouteTravelPoint(route_id, travel_point_id, order_number) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/route_travel_points/add", {
+      route_id: route_id,
+      travel_point_id: travel_point_id,
+      order_number: order_number
+    }).then(response => response.data);
+  }
 }
+const routeService = new RouteService();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routeService);
 
 /***/ }),
 
@@ -58113,15 +58477,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _user_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-components */ "./src/user-components.tsx");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
-/* harmony import */ var _components_route_details__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/route-details */ "./src/components/route-details.tsx");
-/* harmony import */ var _components_route_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/route-list */ "./src/components/route-list.tsx");
-/* harmony import */ var _components_route_new__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/route-new */ "./src/components/route-new.tsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
+/* harmony import */ var _components_route_details__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/route-details */ "./src/components/route-details.tsx");
+/* harmony import */ var _components_route_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/route-list */ "./src/components/route-list.tsx");
+/* harmony import */ var _components_route_new__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/route-new */ "./src/components/route-new.tsx");
+/* harmony import */ var _components_user_login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/user-login */ "./src/components/user-login.tsx");
+/* harmony import */ var _components_user_register__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/user-register */ "./src/components/user-register.tsx");
+/* harmony import */ var _components_user_details__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/user-details */ "./src/components/user-details.tsx");
+
+
 
 
 
@@ -58133,10 +58501,10 @@ __webpack_require__.r(__webpack_exports__);
 
 class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       bg: "light",
       expand: "lg"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Brand, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Brand, {
       href: "#home"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
       src: "https://tihldestorage.blob.core.windows.net/imagepng/d1aea6d8-00cb-4045-976d-054c8b82214aimg.png",
@@ -58144,15 +58512,15 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       height: "60px",
       className: "d-inline-block align-bottom",
       alt: "React Bootstrap logo"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Toggle, {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Toggle, {
       "aria-controls": "basic-navbar-nav"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Collapse, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Collapse, {
       id: "basic-navbar-nav"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
       className: "me-auto"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
       href: "#newRoute"
-    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"].Link, {
+    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
       href: "#/profile"
     }, "My Profile")))));
   }
@@ -58163,30 +58531,30 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   }
 }*/
 
-react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/home",
-  component: _components_route_list__WEBPACK_IMPORTED_MODULE_5__.RouteList
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  component: _components_route_list__WEBPACK_IMPORTED_MODULE_4__.RouteList
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/routes/:route_id",
-  component: _components_route_details__WEBPACK_IMPORTED_MODULE_4__.RouteDetails
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  component: _components_route_details__WEBPACK_IMPORTED_MODULE_3__.RouteDetails
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/profile",
-  component: _user_components__WEBPACK_IMPORTED_MODULE_3__.UserLogIn
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  component: _components_user_login__WEBPACK_IMPORTED_MODULE_6__.UserLogIn
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/register",
-  component: _user_components__WEBPACK_IMPORTED_MODULE_3__.RegisterUser
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  component: _components_user_register__WEBPACK_IMPORTED_MODULE_7__.RegisterUser
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/newRoute",
-  component: _components_route_new__WEBPACK_IMPORTED_MODULE_6__.NewRoute
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  component: _components_route_new__WEBPACK_IMPORTED_MODULE_5__.NewRoute
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/profile/:user_profile_id",
-  component: _user_components__WEBPACK_IMPORTED_MODULE_3__.UserDetails
+  component: _components_user_details__WEBPACK_IMPORTED_MODULE_8__.UserDetails
 }))), document.getElementById("root"));
 })();
 

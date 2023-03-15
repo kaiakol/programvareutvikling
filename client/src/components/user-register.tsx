@@ -2,18 +2,20 @@ import React from "react";
 import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
+import { loggedIn } from "./user-details";
+import userService, { User } from "../user-service";
 
 const history = createHashHistory();
 
 export class RegisterUser extends Component {
   user: User = {
-    user_id: 0,
+    user_profile_id: 0,
     email: "",
     first_name: "",
     last_name: "",
-    password: "",
+    profile_password: "",
+    profile_name: "",
   };
-  confirm_password: string = "";
 
   render() {
     return (
@@ -35,6 +37,20 @@ export class RegisterUser extends Component {
             width: "20rem",
           }}
         >
+          <Row>
+            <Form.Control
+              value={this.user.profile_name}
+              type="text"
+              placeholder="Profile Name"
+              onChange={(event) =>
+                (this.user.profile_name = event.currentTarget.value)
+              }
+              style={{
+                marginBottom: "10px",
+                textAlign: "center",
+              }}
+            ></Form.Control>
+          </Row>
           <Row>
             <Form.Control
               value={this.user.email}
@@ -79,32 +95,13 @@ export class RegisterUser extends Component {
           </Row>
           <Row>
             <Form.Control
-              value={this.user.password}
+              value={this.user.profile_password}
               type="password"
               placeholder="Password"
               onChange={(event) =>
-                (this.user.password = event.currentTarget.value)
+                (this.user.profile_password = event.currentTarget.value)
               }
               // Makes it possible to log in with enter as well as with button
-              onKeyUp={(event) => {
-                if (event.key == "Enter") {
-                  this.createUser();
-                }
-              }}
-              style={{
-                marginBottom: "10px",
-                textAlign: "center",
-              }}
-            ></Form.Control>
-          </Row>
-          <Row>
-            <Form.Control
-              value={this.confirm_password}
-              type="password"
-              placeholder="Confirm password"
-              onChange={(event) =>
-                (this.confirm_password = event.currentTarget.value)
-              }
               onKeyUp={(event) => {
                 if (event.key == "Enter") {
                   this.createUser();
@@ -152,32 +149,32 @@ export class RegisterUser extends Component {
   createUser() {
     userService
       .createUser(
-        this.user.email,
+        this.user.profile_name,
+        this.user.profile_password,
         this.user.first_name,
         this.user.last_name,
-        this.user.password,
-        this.confirm_password
+        this.user.email
       )
       .then((response) => {
         if (response.length > 0) {
-          Alert.danger(response);
+          alert(response);
         } else {
-          Alert.success("User created, please log in");
+          alert("User created, please log in");
           loggedIn = true;
-          history.push("/recipes/login");
+          history.push("/profile");
         }
       })
-      .catch((error) => Alert.danger(error.response.data));
+      .catch((error) => alert(error.response.data));
   }
 
   clearInput() {
     this.user = {
-      user_id: 0,
+      user_profile_id: 0,
       email: "",
       first_name: "",
       last_name: "",
-      password: "",
+      profile_password: "",
+      profile_name: "",
     };
-    this.confirm_password = "";
   }
 }
