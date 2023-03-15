@@ -22,7 +22,6 @@ export type Route = {
   description: string;
   // destination: string;
   //time_published: Date;
-  description: string;
 };
 
 // export type TravelPoint = {
