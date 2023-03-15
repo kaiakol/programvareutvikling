@@ -2,10 +2,45 @@ import React from "react";
 import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
-import { loggedIn } from "./user-details";
 import userService, { User } from "../user-service";
 
 const history = createHashHistory();
+
+// user-register.js (or wherever loggedIn and currentUser are defined)
+
+class UserSession {
+  loggedIn: boolean = false;
+  currentUser: User = {
+    user_profile_id: 0,
+    email: "",
+    first_name: "",
+    last_name: "",
+    profile_password: "",
+    profile_name: "",
+  };
+  constructor() {
+    this.currentUser = {
+      user_profile_id: 0,
+      email: "",
+      first_name: "",
+      last_name: "",
+      profile_password: "",
+      profile_name: "",
+    };
+    this.loggedIn = false;
+  }
+
+  setCurrentUser(user: User) {
+    this.currentUser = user;
+  }
+
+  setLoggedIn(value: boolean) {
+    this.loggedIn = value;
+  }
+}
+
+const userSession = new UserSession();
+export default userSession;
 
 export class RegisterUser extends Component {
   user: User = {
@@ -160,8 +195,8 @@ export class RegisterUser extends Component {
           alert(response);
         } else {
           alert("User created, please log in");
-          loggedIn = true;
-          history.push("/profile");
+          userSession.setLoggedIn(false);
+          history.push("/profile/");
         }
       })
       .catch((error) => alert(error.response.data));

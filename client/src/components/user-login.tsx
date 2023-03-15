@@ -3,7 +3,7 @@ import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
 import userService from "../user-service";
-import { loggedIn, currentUser } from "./user-details";
+import userSession from "./user-register";
 
 const history = createHashHistory();
 
@@ -12,7 +12,7 @@ export class UserLogIn extends Component {
   password: string = "";
 
   render() {
-    if (!loggedIn) {
+    if (!userSession.loggedIn) {
       return (
         <Card
           style={{
@@ -105,15 +105,18 @@ export class UserLogIn extends Component {
       );
     } else {
       userService
-        .logIn(currentUser.email, currentUser.profile_password)
+        .logIn(
+          userSession.currentUser.email,
+          userSession.currentUser.profile_password
+        )
         .then(
           (user) => (
-            (currentUser = user),
-            history.push("/profile/ " + currentUser.user_profile_id)
+            (userSession.currentUser = user),
+            history.push("/profile/ " + userSession.currentUser.user_profile_id)
           )
         )
         .catch((error) => alert(error.message));
-      return currentUser.user_profile_id;
+      return userSession.currentUser.user_profile_id;
     }
   }
 
@@ -122,10 +125,10 @@ export class UserLogIn extends Component {
       userService
         .logIn(this.email, this.password)
         .then((user) => {
-          currentUser = user;
-          loggedIn = true;
-          alert("Logged in as " + currentUser.email);
-          history.push("/profile/" + currentUser.user_profile_id);
+          userSession.currentUser = user;
+          userSession.loggedIn = true;
+          alert("Logged in as " + userSession.currentUser.email);
+          history.push("/profile/" + userSession.currentUser.user_profile_id);
         })
         .catch((error) => alert(error.response.data));
     } else {
