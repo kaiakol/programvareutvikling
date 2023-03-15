@@ -216,7 +216,7 @@ class RouteService {
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results as routeRating[]);
+          resolve(results[0] as routeRating[]);
         }
       );
     });

@@ -56,7 +56,9 @@ export class RouteDetails extends Component<{
             </Col>
             <Col>
               <h2>hei</h2>
-              <Row>{this.rating.value}</Row>
+              <Row>
+                {parseFloat(this.rating["AVG(rating.value)"]).toFixed(2)}
+              </Row>
             </Col>
           </Row>
         </Card>
@@ -82,7 +84,6 @@ export class RouteDetails extends Component<{
         );
       })
       .catch((error) => alert(error.response.data));
-
     routeService
       .getRating(this.props.match.params.route_id)
       .then((rating) => ((this.rating = rating), console.log(rating)))
