@@ -125,6 +125,92 @@ class RouteService {
     });
   }
 
+  deleteTravelPoint(travel_point_id: Number) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "DELETE FROM travel_point WHERE travel_point_id = ?",
+        [travel_point_id],
+        (error, results: ResultSetHeader) => {
+          if (error) return reject(error);
+          if (results.affectedRows == 0) reject(new Error("No row deleted"));
+
+          resolve();
+        }
+      );
+    });
+  }
+
+  deleteRouteTravelPoint(route_id: Number, travel_point_id: Number) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "DELETE FROM route_travel_point WHERE route_id=? AND travel_point_id=?",
+        [route_id, travel_point_id],
+        (error, results: ResultSetHeader) => {
+          if (error) return reject(error);
+          if (results.affectedRows == 0) reject(new Error("No row deleted"));
+
+          resolve();
+        }
+      );
+    });
+  }
+
+  deleteRouteRating(route_id: number) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "SELECT EXISTS(SELECT 1 FROM rating WHERE route_id = ?) AS route_exists;",
+        [route_id],
+        (error, results: any) => {
+          if (error) return reject(error);
+          if (results[0].route_exists === 0) {
+            // No row exists with the given route_id, resolve the promise without doing anything
+            resolve();
+          } else {
+            // A row exists with the given route_id, delete it using a separate query
+            pool.query(
+              "DELETE FROM rating WHERE route_id = ?;",
+              [route_id],
+              (error, results: ResultSetHeader) => {
+                if (error) return reject(error);
+                if (results.affectedRows === 0)
+                  reject(new Error("No row deleted"));
+                resolve();
+              }
+            );
+          }
+        }
+      );
+    });
+  }
+
+  deleteRouteFavourite(route_id: number) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "SELECT EXISTS(SELECT 1 FROM favourite WHERE route_id = ?) AS route_exists;",
+        [route_id],
+        (error, results: any) => {
+          if (error) return reject(error);
+          if (results[0].route_exists === 0) {
+            // No row exists with the given route_id, resolve the promise without doing anything
+            resolve();
+          } else {
+            // A row exists with the given route_id, delete it using a separate query
+            pool.query(
+              "DELETE FROM favourite WHERE route_id = ?;",
+              [route_id],
+              (error, results: ResultSetHeader) => {
+                if (error) return reject(error);
+                if (results.affectedRows === 0)
+                  reject(new Error("No row deleted"));
+                resolve();
+              }
+            );
+          }
+        }
+      );
+    });
+  }
+
   updateRoute(
     route_name: string,
     duration: string,
@@ -136,6 +222,23 @@ class RouteService {
       pool.query(
         "UPDATE route SET route_name = ?, duration = ?, estimated_price = ?, description = ? WHERE route_id = ? ",
         [route_name, duration, estimated_price, description, route_id],
+        (error, _results) => {
+          if (error) return reject(error);
+          resolve();
+        }
+      );
+    });
+  }
+
+  updateTravelPoint(
+    destination: string,
+    continent: string,
+    travel_point_id: number
+  ) {
+    return new Promise<void>((resolve, reject) => {
+      pool.query(
+        "UPDATE travel_point SET destination = ?, continent = ? WHERE travel_point_id = ? ",
+        [destination, continent, travel_point_id],
         (error, _results) => {
           if (error) return reject(error);
           resolve();

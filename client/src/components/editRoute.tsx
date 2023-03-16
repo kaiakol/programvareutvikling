@@ -31,6 +31,7 @@ export class EditRoute extends Component<{
     orderNumber: this.destinationNumber,
     continent: "",
   };
+  //route_travel_point: any;
 
   render() {
     return (
@@ -52,8 +53,13 @@ export class EditRoute extends Component<{
                         <Form.Control
                           type=""
                           placeholder={route_travel_point.destination}
+                          onChange={(event) =>
+                            (route_travel_point.destination =
+                              event.currentTarget.value)
+                          }
                         />
                       </Form.Group>
+                      {console.log(route_travel_point.destination)}
                     </Form>
                   </Col>
                   <Col>
@@ -79,6 +85,8 @@ export class EditRoute extends Component<{
                   </Col>
                 </Row>
               ))}
+
+              {console.log(this.route_travel_points)}
             </Col>
             <Col>
               <h2>Route Information</h2>
@@ -101,6 +109,9 @@ export class EditRoute extends Component<{
                       <Form.Control
                         type=""
                         placeholder={this.route.description}
+                        onChange={(event) =>
+                          (this.route.description = event.currentTarget.value)
+                        }
                       />
                     </Form.Group>
                   </Form>
@@ -125,6 +136,10 @@ export class EditRoute extends Component<{
                       <Form.Control
                         type=""
                         placeholder={this.route.estimated_price}
+                        onChange={(event) =>
+                          (this.route.estimated_price =
+                            event.currentTarget.value)
+                        }
                       />
                     </Form.Group>
                   </Form>
@@ -146,7 +161,13 @@ export class EditRoute extends Component<{
                       controlId="route name"
                       style={{ marginTop: "-5%" }}
                     >
-                      <Form.Control type="" placeholder={this.route.duration} />
+                      <Form.Control
+                        type=""
+                        placeholder={this.route.duration}
+                        onChange={(event) =>
+                          (this.route.duration = event.currentTarget.value)
+                        }
+                      />
                     </Form.Group>
                   </Form>
                 </Col>
@@ -204,13 +225,14 @@ export class EditRoute extends Component<{
     routeService
       .getRoute(this.props.match.params.route_id)
       //@ts-ignore
-      .then((route) => ((this.route = route), console.log(route)))
+      .then((route) => (this.route = route))
       .catch((error) => alert(error.response.data));
 
     routeService
       .getRouteTravelPoints(this.props.match.params.route_id)
       .then((route_travel_points) => {
-        this.route_travel_points = route_travel_points;
+        (this.route_travel_points = route_travel_points),
+          console.log(route_travel_points);
         //Her sorteres travelpointsene i kronologisk rekkefølge basert på
         //order_number slik at dette printes riktig når disse mappes
         this.route_travel_points.sort(
@@ -220,258 +242,64 @@ export class EditRoute extends Component<{
       .catch((error) => alert(error.response.data));
   }
   save() {
-    alert('Successfully updated "' + this.route.route_name + '"');
-    history.push("/home/");
-    //this.saveEditRoute();
-    // window.location.reload(); // May log out user...
+    this.route_travel_points.map((route_travel_point) =>
+      routeService.updateTravelPoint(
+        route_travel_point.destination,
+        route_travel_point.continent,
+        route_travel_point.travel_point_id
+      )
+    );
+
+    routeService.updateRoute(
+      this.route.route_name,
+      this.route.duration,
+      this.route.estimated_price,
+      this.route.description,
+      this.route.route_id
+    );
+
+    window.location.reload();
+
+    //window.location.reload(); // May log out user...
   }
 
   delete() {
+    this.deleteRoute();
     alert('Successfully deleted "' + this.route.route_name + '"');
     history.push("/home/");
-    //this.deleteRoute();
   }
+  // deleteRoute() {
+  //   throw new Error("Method not implemented.");
+  // }
 
   goBack() {
     history.push("/routes/" + this.route.route_id);
   }
 
-  saveEditRoute() {
-    if (
-      this.route.duration == "" ||
-      this.route.estimated_price == ""
-      // this.route.newDestinations.length == 0
-      // MUST CHECK INPUT FIELDS FOR DESTINATIONS aka TravelPoints
-    ) {
-      alert("All fields must be filled");
-    } else {
-      const createRoutePromise = routeService.updateRoute(
-        this.route.route_name,
-        this.route.duration,
-        this.route.estimated_price,
-        this.route.description,
-        this.route.route_id
-      );
-
-      const createTravelPointsPromises = this.newDestinations.map(
-        (newDestination) => {
-          return routeService.createTravelPoint(
-            newDestination.name,
-            newDestination.continent
-          );
-        }
-      );
-
-      Promise.all([createRoutePromise, ...createTravelPointsPromises])
-        .then(([route_id, ...travelPointIds]) => {
-          console.log(route_id["route_id"]);
-          console.log(route_id.value);
-          const createRouteTravelPointPromises = this.newDestinations.map(
-            (newDestination, index) => {
-              const order_number = newDestination.orderNumber;
-              const travel_point_id = travelPointIds[index]["travel_point_id"];
-              return routeService.createRouteTravelPoint(
-                route_id["route_id"],
-                travel_point_id,
-                order_number
-              );
-            }
-          );
-          return Promise.all(createRouteTravelPointPromises);
-        })
-        .then((route_id) => {
-          // history.push("/routes/" + Number(route_id));
-          alert("The route was created");
-          history.push("/routes");
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }
-
   deleteRoute() {
-    const deleteRoutePromise = routeService.deleteRoute(
+    const deleteRouteRatingPromise = routeService.deleteRouteRating(
       this.route.route_id
     );
-    
-    // Promise.all([deleteRoutePromise]).then(([ route_id])) => {
-      //console.log(route_id["route_id"]);
-    }
+
+    const deleteRouteFavouritePromise = routeService.deleteRouteFavourite(
+      this.route.route_id
+    );
+
+    Promise.all([deleteRouteRatingPromise, deleteRouteFavouritePromise])
+      .then(() =>
+        this.route_travel_points.map((route_travel_point) =>
+          routeService.deleteRouteTravelPoint(
+            route_travel_point.route_id,
+            route_travel_point.travel_point_id
+          )
+        )
+      )
+      .then(() =>
+        this.route_travel_points.map((route_travel_point) => {
+          routeService.deleteTravelPoint(route_travel_point.travel_point_id);
+        })
+      )
+
+      .then(() => routeService.deleteRoute(this.route.route_id));
   }
-
-
-// import React from "react";
-// import { Container, Card, Row, Col, Button, Form } from "react-bootstrap";
-// import { Component } from "react-simplified";
-// import { createHashHistory } from "history";
-// import routeService, { Route } from "./route-service";
-
-// const history = createHashHistory();
-
-// export class EditRoute extends Component<{
-//   match: { params: { route_id: number } };
-// }> {
-//   routes: Route[] = [];
-
-//   render() {
-//     return (
-//       <>
-//         <Container
-//           style={{
-//             position: "absolute",
-//             marginLeft: "10%",
-//             marginRight: "10%",
-//             height: "100%",
-//             width: "80%",
-//             backgroundColor: "#53aca8",
-//           }}
-//         >
-//           <Container>
-//             <h1 style={{ textAlign: "center" }}>Edit route</h1>
-//             <h1
-//               style={{
-//                 width: "30%",
-//                 margin: "0 auto",
-//               }}
-//             >
-// <Form
-//   style={{
-//     marginTop: "5%",
-//     marginBottom: "5%",
-//   }}
-// >
-//   <Form.Group className="name" controlId="route name">
-//     <Form.Control type="" placeholder="Route name" />
-//   </Form.Group>
-// </Form>
-//             </h1>
-
-//             <Card>
-//               <Row style={{ marginBottom: "1%", marginLeft: "1%" }}>
-//                 <Col style={{ fontWeight: "bold" }}>
-//                   <h4>Stops</h4>
-//                 </Col>
-//                 <Col style={{ fontWeight: "bold" }}>
-//                   <h4>Continent</h4>
-//                 </Col>
-//                 <Col style={{ fontWeight: "bold" }}>
-//                   <h4>Estimated Price</h4>
-//                 </Col>
-//                 <Col style={{ fontWeight: "bold" }}>
-//                   <h4>Duration</h4>
-//                 </Col>
-//                 <Col style={{ fontWeight: "bold" }}>
-//                   <h4>Order Number</h4>
-//                 </Col>
-//               </Row>
-//               {this.routes.map((route) => (
-//                 <Row
-//                   key={route.travel_point_id}
-//                   style={{ marginBottom: "1%", marginLeft: "1%" }}
-//                 >
-//                   <Col>
-// <Form>
-//   <Form.Group
-//     className="destination"
-//     controlId="destination"
-//   >
-//     <Form.Control type="" placeholder={route.destination} />
-//   </Form.Group>
-// </Form>
-//                   </Col>
-//                   <Col>
-// <Form.Select
-//   style={{ width: "70%", height: "47px" }}
-//   value={route.continent}
-//   onChange={(event) =>
-//     (route.continent = event.currentTarget.value)
-//   }
-// >
-//   <option value="Africa">Africa</option>
-//   <option value="Antarctica">Antarctica</option>
-//   <option value="Asia">Asia</option>
-//   <option value="Australia">Australia</option>
-//   <option value="Europe">Europe</option>
-//   <option value="North America">North America</option>
-//   <option value="South America">South America</option>
-// </Form.Select>
-//                   </Col>
-//                   <Col>
-//                     <Form style={{ width: "50%" }}>
-//                       <Form.Group className="price" controlId="price">
-//                         <Form.Control
-//                           type=""
-//                           placeholder={route.estimated_price}
-//                         />
-//                       </Form.Group>
-//                     </Form>
-//                   </Col>
-//                   <Col>
-//                     {" "}
-//                     <Form style={{ width: "50%" }}>
-//                       <Form.Group className="duration" controlId="duration">
-//                         <Form.Control type="" placeholder={route.duration} />
-//                       </Form.Group>
-//                     </Form>
-//                   </Col>
-//                   <Col>{route.order_number}</Col>
-//                 </Row>
-//               ))}
-//             </Card>
-//             <Button
-//               variant="danger"
-//               onClick={() => this.save()}
-//               style={{
-//                 marginTop: "2%",
-//                 // backgroundColor: "#53aca8",
-//                 marginRight: "85%",
-//                 width: "15%",
-//               }}
-//             >
-//               Delete
-//             </Button>
-//             <Button
-//               onClick={() => this.goBack()}
-//               style={{
-//                 marginTop: "-5%",
-//                 backgroundColor: "#498eb9",
-//                 marginLeft: "67%",
-//                 width: "15%",
-//               }}
-//             >
-//               Go back
-//             </Button>
-//             <Button
-//               onClick={() => this.delete()}
-//               style={{
-//                 marginTop: "-9%",
-//                 backgroundColor: "#498eb9",
-//                 marginLeft: "85%",
-//                 width: "15%",
-//               }}
-//             >
-//               Save
-//             </Button>
-//           </Container>
-//         </Container>
-//       </>
-//     );
-//   }
-//   mounted() {
-//     routeService
-//       .getRoute(this.props.match.params.route_id)
-//       //@ts-ignore
-//       .then((routes) => (this.routes = routes))
-//       .catch((error) => alert(error.response.data));
-//   }
-//   save() {
-//     history.push("/routes");
-//   }
-//   goBack() {
-//     history.push("/routes");
-//   }
-//   delete() {
-//     history.push("/routes");
-//   }
-// }
+}
