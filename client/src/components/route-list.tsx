@@ -51,9 +51,39 @@ export class RouteList extends Component {
             {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
           </button>
           <Container>
+            {/* Search bar for easy access to gicen recipe */}
+            <StyledCard style={{ border: "none", padding: "15px" }}>
+              <Card.Title style={{ marginLeft: "auto", marginRight: "auto" }}>
+                Search for a route
+              </Card.Title>
+
+              <Row
+                style={{
+                  textAlign: "center",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
+                <Col>
+                  <Form.Control
+                    onChange={(event) => this.search(event.currentTarget.value)}
+                    value={this.search_input}
+                    type="Search"
+                    placeholder="Search"
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      textAlign: "center",
+                      width: "24rem",
+                    }}
+                  ></Form.Control>
+                </Col>
+              </Row>
+            </StyledCard>
+
             <Col lg>
               <Row xs={1} md={2} className="g-2">
-                {this.routes.map((route) => (
+                {this.filtered_routes.map((route) => (
                   <NavLink to={"/routes/" + route.route_id}>
                     <Col>
                       <StyledCard
@@ -78,7 +108,7 @@ export class RouteList extends Component {
                             {route.route_name}
                           </Card.Title>
                           <Row>
-                            {this.route_travel_points
+                            {this.filtered_travel_points
                               .filter((rtp) => rtp.route_id === route.route_id)
                               .map((rtp) => (
                                 <Col key={rtp.route_id}>
