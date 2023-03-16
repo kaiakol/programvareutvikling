@@ -4,11 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
 import { BsArrowRight } from "react-icons/bs";
-import routeService, {
-  Route,
-  RouteWithAllInformation,
-  Route_travel_point,
-} from "../route-service";
+import routeService, { Route, Route_travel_point } from "../route-service";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
@@ -17,7 +13,7 @@ const history = createHashHistory();
 
 export const StyledCard = styled(Card)`
   background-color: ${(props) =>
-    props.theme.mode === "dark" ? "#222" : "#fff"};
+    props.theme.mode === "dark" ? "#333" : "#fff"};
   color: ${(props) => (props.theme.mode === "dark" ? "#fff" : "#000")};
 `;
 
@@ -38,7 +34,15 @@ export class RouteList extends Component {
       <>
         <ThemeProvider theme={this.state.theme}>
           <GlobalStyle />
-          <button onClick={this.handleToggleTheme}>
+          <button
+            style={{
+              position: "fixed",
+              bottom: "30px",
+              right: "50px",
+              zIndex: "999",
+            }}
+            onClick={this.handleToggleTheme}
+          >
             {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
           </button>
           <Container>
@@ -83,7 +87,6 @@ export class RouteList extends Component {
                   </NavLink>
                 ))}
               </Row>
-              ;
             </Col>
           </Container>
         </ThemeProvider>

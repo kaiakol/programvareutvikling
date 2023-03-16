@@ -16,7 +16,7 @@ function NavbarTheme() {
   return (
     <nav
       style={{
-        backgroundColor: theme.palette.mode === "dark" ? "black" : "white",
+        backgroundColor: theme.palette.mode === "dark" ? "#333" : "#fff",
       }}
     >
       <ToggleColorMode />
@@ -28,7 +28,14 @@ function NavbarTheme() {
 class Menu extends Component {
   render() {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar
+        expand="lg"
+        style={{
+          borderBottom: "2px solid #808080",
+          width: "100%",
+          margin: "0px",
+        }}
+      >
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -40,16 +47,17 @@ class Menu extends Component {
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav" style={{ color: "#808080" }}>
             <Nav className="me-auto">
               {/* <Nav.Link href="#/routes">Explore</Nav.Link> */}
               {/* <Nav.Link href="#link">My Travels</Nav.Link> */}
 
-              <Nav.Link href="#newRoute">New route</Nav.Link>
-              <Nav.Link href="#/profile">My Profile</Nav.Link>
-            </Nav>
-            <Nav>
-              <ToggleColorMode />
+              <Nav.Link href="#newRoute" style={{ color: "#999999" }}>
+                New route
+              </Nav.Link>
+              <Nav.Link href="#/profile" style={{ color: "#999999" }}>
+                My Profile
+              </Nav.Link>
             </Nav>
             <Nav></Nav>
           </Navbar.Collapse>
