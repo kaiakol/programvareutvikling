@@ -135,8 +135,13 @@ class RouteService {
 
   getRating(route_id: number) {
     return axios
-      .get<Rating>("/route/" + route_id)
+      .get<Rating>("/rating/" + route_id)
       .then((response) => response.data);
+  }
+  createRating(value: number) {
+    return axios.post("rating/", {
+      value: value,
+    });
   }
 }
 

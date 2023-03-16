@@ -28,7 +28,7 @@ export class NewRoute extends Component {
   };
 
   route_name: string = "";
-
+  valueRating: number = 0;
   duration: string = "";
   estimatedPrice: string = "";
   description: string = "";
@@ -238,6 +238,30 @@ export class NewRoute extends Component {
                 }}
               >
                 <Form.Control
+                  value={this.valueRating}
+                  onChange={(event) =>
+                    (this.valueRating = Number(event.currentTarget.value))
+                  }
+                  type="number"
+                  min="1"
+                  max="5"
+                  style={{
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
+                  }}
+                  placeholder="Rate from 1-5"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
                   value={this.description}
                   as="textarea" // Change this line to "textarea"
                   onChange={(event) =>
@@ -389,6 +413,7 @@ export class NewRoute extends Component {
                 order_number
               );
             }
+            //routeService.createRating(value)
           );
           return Promise.all(createRouteTravelPointPromises);
         })

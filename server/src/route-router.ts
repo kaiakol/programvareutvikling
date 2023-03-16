@@ -49,7 +49,7 @@ router.get("/routes/:route_id", (request, response) => {
     .catch((error) => response.status(500).send(error));
 });
 
-router.get("/route/:route_id", (request, response) => {
+router.get("/rating/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   routeService
     .getRatings(route_id)
@@ -219,6 +219,21 @@ router.post("/profile/register", (request, response) => {
       data.email,
       data.special_user_type
     )
+    .then((user) => response.status(200).send(user))
+    .catch((error) => response.status(500).send(error));
+  return;
+});
+
+// Register new rating
+router.post("/rating/add", (request, response) => {
+  const data = request.body;
+  //Check required fields
+  if (data.value) {
+    response.status(400).send("Please fill in a valid rating value.");
+    return;
+  }
+  routeService
+    .createRating(data.value, data.route_id)
     .then((user) => response.status(200).send(user))
     .catch((error) => response.status(500).send(error));
   return;
