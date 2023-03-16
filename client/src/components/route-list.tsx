@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Card, Row, Col, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
 import { BsArrowRight } from "react-icons/bs";
-import routeService, {
-  Route,
-  RouteWithAllInformation,
-  Route_travel_point,
-} from "../route-service";
+import routeService, { Route, Route_travel_point } from "../route-service";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
+import styled from "styled-components";
 
 const history = createHashHistory();
+
+export const StyledCard = styled(Card)`
+  background-color: ${(props) =>
+    props.theme.mode === "dark" ? "#333" : "#fff"};
+  color: ${(props) => (props.theme.mode === "dark" ? "#fff" : "#000")};
+`;
 
 export class RouteList extends Component {
   routes: Route[] = [];
@@ -21,89 +26,75 @@ export class RouteList extends Component {
 
   search_input: string = "";
 
+  state = {
+    theme: lightTheme,
+  };
+
+  handleToggleTheme = () => {
+    this.setState({ theme: toggleTheme(this.state.theme) });
+  };
+
   render() {
     return (
       <>
-        {/* {console.log(this.route_travel_points)} */}
-        <Container>
-          {/* Search bar for easy access to gicen recipe */}
-          <Card style={{ border: "none", padding: "15px" }}>
-            <Card.Title style={{ marginLeft: "auto", marginRight: "auto" }}>
-              Search for a route
-            </Card.Title>
-
-            <Row
-              style={{
-                textAlign: "center",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            >
-              <Col>
-                <Form.Control
-                  onChange={(event) => this.search(event.currentTarget.value)}
-                  value={this.search_input}
-                  type="Search"
-                  placeholder="Search"
-                  style={{
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    textAlign: "center",
-                    width: "24rem",
-                  }}
-                ></Form.Control>
-              </Col>
-            </Row>
-          </Card>
-
-          <Col lg>
-            <Row xs={1} md={2} className="g-2">
-              {this.filtered_routes.map((route) => (
-                <NavLink
-                  to={"/routes/" + route.route_id}
-                  style={{
-                    color: "#9FC1C0",
-                  }}
-                >
-                  <Col>
-                    <Card
-                      style={{
-                        width: "100%",
-                        margin: "1%",
-                        textAlign: "center",
-                        borderLeft: "none",
-                        borderRight: "none",
-                        borderTop: "none",
-                        borderRadius: "none",
-                        height: "100%",
-                      }}
-                    >
-                      <Card.Body>
-                        <Card.Img
-                          variant="top"
-                          src="https://freepngimg.com/save/168111-travel-icon-free-png-hq/3206x3494"
-                          style={{ width: "40%" }}
-                        />
-                        <Card.Title style={{ color: "rgb(82, 130, 101)" }}>
-                          {route.route_name}
-                        </Card.Title>
-                        <Row>
-                          {this.filtered_travel_points
-                            .filter((rtp) => rtp.route_id === route.route_id)
-                            .map((rtp) => (
-                              <Col key={rtp.route_id}>
-                                {rtp.destination} <BsArrowRight />
-                              </Col>
-                            ))}
-                        </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </NavLink>
-              ))}
-            </Row>
-          </Col>
-        </Container>
+        <ThemeProvider theme={this.state.theme}>
+          <GlobalStyle />
+          <button
+            style={{
+              position: "fixed",
+              bottom: "30px",
+              right: "50px",
+              zIndex: "999",
+            }}
+            onClick={this.handleToggleTheme}
+          >
+            {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
+          </button>
+          <Container>
+            <Col lg>
+              <Row xs={1} md={2} className="g-2">
+                {this.routes.map((route) => (
+                  <NavLink to={"/routes/" + route.route_id}>
+                    <Col>
+                      <StyledCard
+                        style={{
+                          width: "100%",
+                          margin: "1%",
+                          textAlign: "center",
+                          borderLeft: "none",
+                          borderRight: "none",
+                          borderTop: "none",
+                          borderRadius: "none",
+                          height: "100%",
+                        }}
+                      >
+                        <Card.Body>
+                          <Card.Img
+                            variant="top"
+                            src="https://freepngimg.com/save/168111-travel-icon-free-png-hq/3206x3494"
+                            style={{ width: "40%" }}
+                          />
+                          <Card.Title style={{ color: "rgb(82, 130, 101)" }}>
+                            {route.route_name}
+                          </Card.Title>
+                          <Row>
+                            {this.route_travel_points
+                              .filter((rtp) => rtp.route_id === route.route_id)
+                              .map((rtp) => (
+                                <Col key={rtp.route_id}>
+                                  {rtp.destination} <BsArrowRight />
+                                </Col>
+                              ))}
+                          </Row>
+                        </Card.Body>
+                      </StyledCard>
+                    </Col>
+                  </NavLink>
+                ))}
+              </Row>
+            </Col>
+          </Container>
+        </ThemeProvider>
       </>
     );
   }
