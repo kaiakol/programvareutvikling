@@ -90,6 +90,35 @@ export class EditRoute extends Component<{
             </Col>
             <Col>
               <h2>Route Information</h2>
+
+              <Row>
+                <Col xs lg="3">
+                  <h6>Name:</h6>{" "}
+                </Col>
+                <Col>
+                  <Form
+                    style={{
+                      marginTop: "5%",
+                      marginBottom: "5%",
+                    }}
+                  >
+                    <Form.Group
+                      className="name"
+                      controlId="route name"
+                      style={{ marginTop: "-5%" }}
+                    >
+                      <Form.Control
+                        type=""
+                        placeholder={this.route.route_name}
+                        onChange={(event) =>
+                          (this.route.route_name = event.currentTarget.value)
+                        }
+                      />
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+
               <Row>
                 <Col xs lg="3">
                   <h6>Description:</h6>{" "}
@@ -102,8 +131,8 @@ export class EditRoute extends Component<{
                     }}
                   >
                     <Form.Group
-                      className="name"
-                      controlId="route name"
+                      className="description"
+                      controlId="description"
                       style={{ marginTop: "-5%" }}
                     >
                       <Form.Control
