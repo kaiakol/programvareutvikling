@@ -3,8 +3,17 @@ import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
 import routeService, { Route_travel_point, Route } from "../route-service";
+import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
+import { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 
 const history = createHashHistory();
+
+export const StyledCard = styled(Card)`
+  background-color: ${(props) =>
+    props.theme.mode === "dark" ? "#333" : "#fff"};
+  color: ${(props) => (props.theme.mode === "dark" ? "#fff" : "#000")};
+`;
 
 export class RouteDetails extends Component<{
   match: { params: { route_id: number } };
@@ -62,58 +71,51 @@ export class RouteDetails extends Component<{
   };
   route_travel_points: Route_travel_point[] = [];
 
+  state = {
+    theme: lightTheme,
+  };
+
+  handleToggleTheme = () => {
+    this.setState({ theme: toggleTheme(this.state.theme) });
+  };
+
   render() {
     return (
       <>
-        <Card style={{ width: "80%", marginLeft: "10%" }}>
-          <Row>
-            <Col style={{ marginLeft: "2%" }}>
-              <h2 style={{ marginLeft: "-2%" }}>Destinations</h2>
-
-              {this.route_travel_points.map((route_travel_point) => (
-                <Row key={route_travel_point.route_id}>
-                  {route_travel_point.order_number}.{" "}
-                  {route_travel_point.destination} (
-                  {route_travel_point.continent})
-                </Row>
-              ))}
-            </Col>
-            <Col>
-              <h2>Route Information</h2>
-              <Row>
-                <Col xs lg="3">
-                  <h6>Description:</h6>{" "}
-                </Col>
-                <Col>{this.route.description}</Col>
-              </Row>
-              <Row>
-                <Col xs lg="3">
-                  <h6>Price:</h6>
-                </Col>
-                <Col>{this.route.estimated_price}</Col>
-              </Row>
-              <Row>
-                <Col xs lg="3">
-                  <h6>Duration:</h6>
-                </Col>
-                <Col>{this.route.duration}</Col>
-              </Row>
-            </Col>
-          </Row>
-        </Card>
-        <Row>
-          <Button
-            onClick={() => this.editRoute()}
+        <ThemeProvider theme={this.state.theme}>
+          <GlobalStyle />
+          <button
             style={{
-              marginTop: "1%",
-              marginLeft: "10.5%",
-              width: "7%",
-              backgroundColor: "#53aca8",
+              position: "fixed",
+              bottom: "30px",
+              right: "50px",
+              zIndex: "999",
             }}
+            onClick={this.handleToggleTheme}
           >
-            Edit route
-          </Button>
-        </Row>
+            {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
+          </button>
+          <StyledCard style={{ width: "80%", marginLeft: "10%" }}>
+            <Row>
+              <Col style={{ marginLeft: "20px" }}>
+                <h2>Destinations</h2>
+
+                {this.route_travel_points.map((route_travel_point) => (
+                  <Row key={route_travel_point.route_id}>
+                    {route_travel_point.order_number}{" "}
+                    {route_travel_point.destination}
+                  </Row>
+                ))}
+              </Col>
+              <Col>
+                <h2>Route Information</h2>
+                <Row>{this.route.description}</Row>
+                <Row>{this.route.estimated_price}</Row>
+                <Row>{this.route.duration}</Row>
+              </Col>
+            </Row>
+          </StyledCard>
+        </ThemeProvider>
       </>
     );
   }
