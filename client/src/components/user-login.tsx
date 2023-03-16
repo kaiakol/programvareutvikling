@@ -2,6 +2,8 @@ import React from "react";
 import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
+import userService from "../user-service";
+import userSession from "./user-register";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
@@ -27,120 +29,138 @@ export class UserLogIn extends Component {
   };
 
   render() {
-    return (
-      <>
-        <ThemeProvider theme={this.state.theme}>
-          <GlobalStyle />
-          <button
-            style={{
-              position: "fixed",
-              bottom: "30px",
-              right: "50px",
-              zIndex: "999",
-            }}
-            onClick={this.handleToggleTheme}
-          >
-            {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
-          </button>
-          <StyledCard
-            style={{
-              border: "none",
-              padding: "15px",
-              textAlign: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            {/*Card forms in for log in screen */}
-            <Card.Title>Log in</Card.Title>
-            <Container
+    if (!userSession.loggedIn) {
+      return (
+        <>
+          <ThemeProvider theme={this.state.theme}>
+            <GlobalStyle />
+            <button
               style={{
-                width: "20rem",
+                position: "fixed",
+                bottom: "30px",
+                right: "50px",
+                zIndex: "999",
+              }}
+              onClick={this.handleToggleTheme}
+            >
+              {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
+            </button>
+            <StyledCard
+              style={{
+                border: "none",
+                padding: "15px",
+                textAlign: "center",
                 marginLeft: "auto",
                 marginRight: "auto",
               }}
             >
-              <Row>
-                <Form.Control
-                  value={this.email}
-                  type="text"
-                  placeholder="Email"
-                  onChange={(event) => (this.email = event.currentTarget.value)}
-                  style={{
-                    textAlign: "center",
-                    marginBottom: "10px",
-                  }}
-                ></Form.Control>
-              </Row>
-              <Row>
-                <Form.Control
-                  value={this.password}
-                  type="password"
-                  placeholder="Password"
-                  onChange={(event) =>
-                    (this.password = event.currentTarget.value)
-                  }
-                  // Makes it possible to log in with enter as well as with button
-                  onKeyUp={(event) => {
-                    if (event.key == "Enter") {
-                      this.logIn();
+              {/*Card forms in for log in screen */}
+              <Card.Title>Log in</Card.Title>
+              <Container
+                style={{
+                  width: "20rem",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
+                <Row>
+                  <Form.Control
+                    value={this.email}
+                    type="text"
+                    placeholder="Email"
+                    onChange={(event) =>
+                      (this.email = event.currentTarget.value)
                     }
-                  }}
-                  style={{
-                    textAlign: "center",
-                    marginBottom: "10px",
-                  }}
-                ></Form.Control>
-              </Row>
-            </Container>
-            {/*Card for buttons in login screen before user is identified or registered */}
-            <Container
-              style={{
-                width: "15rem",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            >
-              <Row>
-                <Button
-                  // variant="success"
-                  onClick={() => this.logIn()}
-                  style={{
-                    marginBottom: "10px",
-                    backgroundColor: "#53aca8",
-                  }}
-                >
-                  Log in
-                </Button>
-              </Row>
-              <Row>
-                <Button
-                  // variant="outline-success"
-                  onClick={() => this.createUser()}
-                  style={{
-                    marginBottom: "10px",
-                    backgroundColor: "#53aca8",
-                  }}
-                >
-                  No user? Create one here
-                </Button>
-              </Row>
-              <Row>
-                <Button
-                  onClick={() => this.clearInput()}
-                  style={{
-                    marginBottom: "10px",
-                    backgroundColor: "#53aca8",
-                  }}
-                >
-                  Clear input
-                </Button>
-              </Row>
-            </Container>
-          </StyledCard>
-        </ThemeProvider>
-      </>
-    );
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "10px",
+                    }}
+                  ></Form.Control>
+                </Row>
+                <Row>
+                  <Form.Control
+                    value={this.password}
+                    type="password"
+                    placeholder="Password"
+                    onChange={(event) =>
+                      (this.password = event.currentTarget.value)
+                    }
+                    // Makes it possible to log in with enter as well as with button
+                    onKeyUp={(event) => {
+                      if (event.key == "Enter") {
+                        this.logIn();
+                      }
+                    }}
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "10px",
+                    }}
+                  ></Form.Control>
+                </Row>
+              </Container>
+              {/*Card for buttons in login screen before user is identified or registered */}
+              <Container
+                style={{
+                  width: "15rem",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
+                <Row>
+                  <Button
+                    // variant="success"
+                    onClick={() => this.logIn()}
+                    style={{
+                      marginBottom: "10px",
+                      backgroundColor: "#53aca8",
+                    }}
+                  >
+                    Log in
+                  </Button>
+                </Row>
+                <Row>
+                  <Button
+                    // variant="outline-success"
+                    onClick={() => this.createUser()}
+                    style={{
+                      marginBottom: "10px",
+                      backgroundColor: "#53aca8",
+                    }}
+                  >
+                    No user? Create one here
+                  </Button>
+                </Row>
+                <Row>
+                  <Button
+                    onClick={() => this.clearInput()}
+                    style={{
+                      marginBottom: "10px",
+                      backgroundColor: "#53aca8",
+                    }}
+                  >
+                    Clear input
+                  </Button>
+                </Row>
+              </Container>
+            </StyledCard>
+          </ThemeProvider>
+        </>
+      );
+    } else {
+      userService
+        .logIn(
+          userSession.currentUser.email,
+          userSession.currentUser.profile_password
+        )
+        .then(
+          (user) => (
+            (userSession.currentUser = user),
+            history.push("/profile/ " + userSession.currentUser.user_profile_id)
+          )
+        )
+        .catch((error) => alert(error.message));
+      return userSession.currentUser.user_profile_id;
+    }
   }
 
   logIn() {
@@ -148,14 +168,14 @@ export class UserLogIn extends Component {
       userService
         .logIn(this.email, this.password)
         .then((user) => {
-          currentUser = user;
-          loggedIn = true;
-          Alert.success("Logged in as " + currentUser.email);
-          history.push("/recipes/user");
+          userSession.currentUser = user;
+          userSession.loggedIn = true;
+          alert("Logged in as " + userSession.currentUser.email);
+          history.push("/profile/" + userSession.currentUser.user_profile_id);
         })
-        .catch((error) => Alert.danger(error.response.data));
+        .catch((error) => alert(error.response.data));
     } else {
-      Alert.danger("Please fill in all the fields");
+      alert("Please fill in all the fields");
     }
   }
 

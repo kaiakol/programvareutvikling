@@ -2,11 +2,48 @@ import React from "react";
 import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
+import userService, { User } from "../user-service";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
 
 const history = createHashHistory();
+
+// user-register.js (or wherever loggedIn and currentUser are defined)
+
+class UserSession {
+  loggedIn: boolean = false;
+  currentUser: User = {
+    user_profile_id: 0,
+    email: "",
+    first_name: "",
+    last_name: "",
+    profile_password: "",
+    profile_name: "",
+  };
+  constructor() {
+    this.currentUser = {
+      user_profile_id: 0,
+      email: "",
+      first_name: "",
+      last_name: "",
+      profile_password: "",
+      profile_name: "",
+    };
+    this.loggedIn = false;
+  }
+
+  setCurrentUser(user: User) {
+    this.currentUser = user;
+  }
+
+  setLoggedIn(value: boolean) {
+    this.loggedIn = value;
+  }
+}
+
+const userSession = new UserSession();
+export default userSession;
 
 export const StyledCard = styled(Card)`
   background-color: ${(props) =>
@@ -16,11 +53,12 @@ export const StyledCard = styled(Card)`
 
 export class RegisterUser extends Component {
   user: User = {
-    user_id: 0,
+    user_profile_id: 0,
     email: "",
     first_name: "",
     last_name: "",
-    password: "",
+    profile_password: "",
+    profile_name: "",
   };
   confirm_password: string = "";
 
@@ -189,32 +227,32 @@ export class RegisterUser extends Component {
   createUser() {
     userService
       .createUser(
-        this.user.email,
+        this.user.profile_name,
+        this.user.profile_password,
         this.user.first_name,
         this.user.last_name,
-        this.user.password,
-        this.confirm_password
+        this.user.email
       )
       .then((response) => {
         if (response.length > 0) {
-          Alert.danger(response);
+          alert(response);
         } else {
-          Alert.success("User created, please log in");
-          loggedIn = true;
-          history.push("/recipes/login");
+          alert("User created, please log in");
+          userSession.setLoggedIn(false);
+          history.push("/profile/");
         }
       })
-      .catch((error) => Alert.danger(error.response.data));
+      .catch((error) => alert(error.response.data));
   }
 
   clearInput() {
     this.user = {
-      user_id: 0,
+      user_profile_id: 0,
       email: "",
       first_name: "",
       last_name: "",
-      password: "",
+      profile_password: "",
+      profile_name: "",
     };
-    this.confirm_password = "";
   }
 }

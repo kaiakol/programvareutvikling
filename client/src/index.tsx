@@ -2,28 +2,16 @@ import ReactDOM from "react-dom";
 import * as React from "react";
 import { Component } from "react-simplified";
 import { HashRouter, Route } from "react-router-dom";
-import { RegisterUser, UserLogIn, UserDetails } from "./user-components";
+
 import { Card, Nav, Navbar, Container, Button } from "react-bootstrap";
 import { RouteDetails } from "./components/route-details";
 import { RouteList } from "./components/route-list";
 import { NewRoute } from "./components/route-new";
 import ToggleColorMode from "./theme";
 import { useTheme } from "@mui/material/styles";
-
-function NavbarTheme() {
-  const theme = useTheme();
-
-  return (
-    <nav
-      style={{
-        backgroundColor: theme.palette.mode === "dark" ? "#333" : "#fff",
-      }}
-    >
-      <ToggleColorMode />
-      {/* other navbar content */}
-    </nav>
-  );
-}
+import { UserLogIn } from "./components/user-login";
+import { RegisterUser } from "./components/user-register";
+import { UserDetails } from "./components/user-details";
 
 class Menu extends Component {
   render() {

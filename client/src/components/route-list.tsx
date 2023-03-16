@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
@@ -20,6 +20,11 @@ export const StyledCard = styled(Card)`
 export class RouteList extends Component {
   routes: Route[] = [];
   route_travel_points: Route_travel_point[] = [];
+
+  filtered_routes: Route[] = [];
+  filtered_travel_points: Route_travel_point[] = [];
+
+  search_input: string = "";
 
   state = {
     theme: lightTheme,
@@ -98,17 +103,54 @@ export class RouteList extends Component {
     routeService
       .getAllRoutes()
       .then((routes) => {
-        this.routes = routes;
+        (this.routes = routes) && (this.filtered_routes = routes);
         const routeTravelPointsPromise = routes.map((route) =>
           routeService.getRouteTravelPoints(route.route_id)
         );
         return Promise.all(routeTravelPointsPromise);
       })
       .then((routeTravelPoints) => {
-        this.route_travel_points = routeTravelPoints.flat();
+        //Denne slår sammen alle individuelle arrayer av routeTravelPoints inn til én
+        //stor, sammenslått array over alle travelpoints som vi etterfølgende er i stand til å filtere basert på
+        //route_id og deretter mappe
+        (this.route_travel_points = routeTravelPoints.flat()) &&
+          (this.filtered_travel_points = routeTravelPoints.flat());
       })
       .catch((error: { message: string }) =>
         alert("Error getting route: " + error.message)
       );
+  }
+
+  search(input: string) {
+    this.search_input = input;
+
+    this.filterRoutes();
+    this.filterTravelPoints();
+  }
+
+  filterRoutes() {
+    this.filtered_routes = this.routes.filter(
+      (route) =>
+        route.route_name
+          .toLowerCase()
+          .includes(this.search_input.toLowerCase()) ||
+        this.filtered_travel_points.some(
+          (rtp) =>
+            rtp.route_id === route.route_id &&
+            rtp.destination
+              .toLowerCase()
+              .includes(this.search_input.toLowerCase())
+        )
+    );
+  }
+
+  filterTravelPoints() {
+    this.filtered_travel_points = this.route_travel_points.filter(
+      (rtp) =>
+        rtp.destination
+          .toLowerCase()
+          .includes(this.search_input.toLowerCase()) &&
+        this.filtered_routes.some((route) => route.route_id === rtp.route_id)
+    );
   }
 }

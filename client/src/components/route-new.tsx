@@ -35,8 +35,12 @@ export class NewRoute extends Component {
     orderNumber: this.destinationNumber,
     continent: "",
   };
+
+  route_name: string = "";
+
   duration: string = "";
-  estimatedCost: string = "";
+  estimatedPrice: string = "";
+  description: string = "";
   timepublished: Date = new Date();
 
   state = {
@@ -179,89 +183,133 @@ export class NewRoute extends Component {
                 marginRight: "7%",
                 marginTop: "30px",
               }} */}
-              {/* > */}
-              <Col>
-                <Card.Title
+            {/* > */}
+            <Col>
+              <Card.Title
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  textAlign: "center",
+                }}
+              >
+                Add info about route
+              </Card.Title>
+
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.route_name}
+                  type="text"
+                  onChange={(event) =>
+                    (this.route_name = event.currentTarget.value)
+                  }
                   style={{
                     marginLeft: "auto",
+                    width: "60%",
                     marginRight: "auto",
-                    textAlign: "center",
+                    marginBottom: "10px",
                   }}
-                >
-                  Add info about route
-                </Card.Title>
-                <Row
+                  placeholder="Route name"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.duration}
+                  type="text"
+                  onChange={(event) =>
+                    (this.duration = event.currentTarget.value)
+                  }
                   style={{
-                    margin: "5%",
-                    marginTop: "3%",
-                    marginBottom: "0%",
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
                   }}
-                >
-                  <Form.Control
-                    value={this.duration}
-                    type="text"
-                    onChange={(event) =>
-                      (this.duration = event.currentTarget.value)
-                    }
-                    style={{
-                      marginLeft: "auto",
-                      width: "60%",
-                      marginRight: "auto",
-                      marginBottom: "10px",
-                    }}
-                    placeholder="Duration (in hours?)"
-                  ></Form.Control>
-                </Row>
-                <Row
+                  placeholder="Duration (in hours?)"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.estimatedPrice}
+                  onChange={(event) =>
+                    (this.estimatedPrice = event.currentTarget.value)
+                  }
+                  type="text"
                   style={{
-                    margin: "5%",
-                    marginTop: "3%",
-                    marginBottom: "0%",
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
                   }}
-                >
-                  <Form.Control
-                    value={this.estimatedCost}
-                    onChange={(event) =>
-                      (this.estimatedCost = event.currentTarget.value)
-                    }
-                    type="text"
-                    style={{
-                      marginLeft: "auto",
-                      width: "60%",
-                      marginRight: "auto",
-                      marginBottom: "10px",
-                    }}
-                    placeholder="Estimated cost"
-                  ></Form.Control>
-                </Row>
-                <Row
+                  placeholder="Estimated cost"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              >
+                <Form.Control
+                  value={this.description}
+                  as="textarea" // Change this line to "textarea"
+                  onChange={(event) =>
+                    (this.description = event.currentTarget.value)
+                  }
                   style={{
-                    margin: "5%",
-                    marginTop: "3%",
-                    marginBottom: "0%",
+                    marginLeft: "auto",
+                    width: "60%",
+                    marginRight: "auto",
+                    marginBottom: "10px",
                   }}
-                ></Row>
-                {/* </Card> */}
-              </Col>
-            </Row>
-          </StyledCard>
-          <Row>
-            <Button
-              onClick={() => this.createRoute()}
-              style={{
-                width: "30%",
-                marginBottom: "10px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginTop: "30px",
-                backgroundColor: "#53aca8",
-              }}
-              variant="light"
-            >
-              Create Route
-            </Button>
+                  placeholder="Description"
+                ></Form.Control>
+              </Row>
+              <Row
+                style={{
+                  margin: "5%",
+                  marginTop: "3%",
+                  marginBottom: "0%",
+                }}
+              ></Row>
+              {/* </Card> */}
+            </Col>
           </Row>
-        </ThemeProvider>
+        </Card>
+        <Row>
+          <Button
+            onClick={() => this.createRoute()}
+            style={{
+              width: "30%",
+              marginBottom: "10px",
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "30px",
+              backgroundColor: "#53aca8",
+            }}
+            variant="light"
+          >
+            Create Route
+          </Button>
+        </Row>
       </>
     );
   }
@@ -332,15 +380,19 @@ export class NewRoute extends Component {
 
   createRoute() {
     if (
+      this.route_name == " " ||
       this.duration == "" ||
-      this.estimatedCost == "" ||
+      this.estimatedPrice == "" ||
+      this.description == "" ||
       this.newDestinations.length == 0
     ) {
       alert("All fields must be filled");
     } else {
       const createRoutePromise = routeService.createRoute(
+        this.route_name,
         this.duration,
-        this.estimatedCost
+        this.estimatedPrice,
+        this.description
       );
 
       const createTravelPointsPromises = this.newDestinations.map(
@@ -352,10 +404,12 @@ export class NewRoute extends Component {
         }
       );
 
+      let returnedRouteId: number = 0;
       Promise.all([createRoutePromise, ...createTravelPointsPromises])
         .then(([route_id, ...travelPointIds]) => {
           console.log(route_id["route_id"]);
           console.log(route_id.value);
+          returnedRouteId = route_id["route_id"];
           const createRouteTravelPointPromises = this.newDestinations.map(
             (newDestination, index) => {
               const order_number = newDestination.orderNumber;
@@ -369,10 +423,9 @@ export class NewRoute extends Component {
           );
           return Promise.all(createRouteTravelPointPromises);
         })
-        .then((route_id) => {
-          // history.push("/routes/" + Number(route_id));
+        .then(() => {
+          history.push("/routes/" + returnedRouteId);
           alert("The route was created");
-          history.push("/routes");
         })
         .catch((err) => {
           console.error(err);
