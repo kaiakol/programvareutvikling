@@ -183,133 +183,134 @@ export class NewRoute extends Component {
                 marginRight: "7%",
                 marginTop: "30px",
               }} */}
-            {/* > */}
-            <Col>
-              <Card.Title
-                style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  textAlign: "center",
-                }}
-              >
-                Add info about route
-              </Card.Title>
+              {/* > */}
+              <Col>
+                <Card.Title
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    textAlign: "center",
+                  }}
+                >
+                  Add info about route
+                </Card.Title>
 
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.route_name}
-                  type="text"
-                  onChange={(event) =>
-                    (this.route_name = event.currentTarget.value)
-                  }
+                <Row
                   style={{
-                    marginLeft: "auto",
-                    width: "60%",
-                    marginRight: "auto",
-                    marginBottom: "10px",
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
                   }}
-                  placeholder="Route name"
-                ></Form.Control>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.duration}
-                  type="text"
-                  onChange={(event) =>
-                    (this.duration = event.currentTarget.value)
-                  }
+                >
+                  <Form.Control
+                    value={this.route_name}
+                    type="text"
+                    onChange={(event) =>
+                      (this.route_name = event.currentTarget.value)
+                    }
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Route name"
+                  ></Form.Control>
+                </Row>
+                <Row
                   style={{
-                    marginLeft: "auto",
-                    width: "60%",
-                    marginRight: "auto",
-                    marginBottom: "10px",
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
                   }}
-                  placeholder="Duration (in hours?)"
-                ></Form.Control>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.estimatedPrice}
-                  onChange={(event) =>
-                    (this.estimatedPrice = event.currentTarget.value)
-                  }
-                  type="text"
+                >
+                  <Form.Control
+                    value={this.duration}
+                    type="text"
+                    onChange={(event) =>
+                      (this.duration = event.currentTarget.value)
+                    }
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Duration (in hours?)"
+                  ></Form.Control>
+                </Row>
+                <Row
                   style={{
-                    marginLeft: "auto",
-                    width: "60%",
-                    marginRight: "auto",
-                    marginBottom: "10px",
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
                   }}
-                  placeholder="Estimated cost"
-                ></Form.Control>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              >
-                <Form.Control
-                  value={this.description}
-                  as="textarea" // Change this line to "textarea"
-                  onChange={(event) =>
-                    (this.description = event.currentTarget.value)
-                  }
+                >
+                  <Form.Control
+                    value={this.estimatedPrice}
+                    onChange={(event) =>
+                      (this.estimatedPrice = event.currentTarget.value)
+                    }
+                    type="text"
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Estimated cost"
+                  ></Form.Control>
+                </Row>
+                <Row
                   style={{
-                    marginLeft: "auto",
-                    width: "60%",
-                    marginRight: "auto",
-                    marginBottom: "10px",
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
                   }}
-                  placeholder="Description"
-                ></Form.Control>
-              </Row>
-              <Row
-                style={{
-                  margin: "5%",
-                  marginTop: "3%",
-                  marginBottom: "0%",
-                }}
-              ></Row>
-              {/* </Card> */}
-            </Col>
+                >
+                  <Form.Control
+                    value={this.description}
+                    as="textarea" // Change this line to "textarea"
+                    onChange={(event) =>
+                      (this.description = event.currentTarget.value)
+                    }
+                    style={{
+                      marginLeft: "auto",
+                      width: "60%",
+                      marginRight: "auto",
+                      marginBottom: "10px",
+                    }}
+                    placeholder="Description"
+                  ></Form.Control>
+                </Row>
+                <Row
+                  style={{
+                    margin: "5%",
+                    marginTop: "3%",
+                    marginBottom: "0%",
+                  }}
+                ></Row>
+                {/* </Card> */}
+              </Col>
+            </Row>
+          </StyledCard>
+          <Row>
+            <Button
+              onClick={() => this.createRoute()}
+              style={{
+                width: "30%",
+                marginBottom: "10px",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "30px",
+                backgroundColor: "#53aca8",
+              }}
+              variant="light"
+            >
+              Create Route
+            </Button>
           </Row>
-        </Card>
-        <Row>
-          <Button
-            onClick={() => this.createRoute()}
-            style={{
-              width: "30%",
-              marginBottom: "10px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: "30px",
-              backgroundColor: "#53aca8",
-            }}
-            variant="light"
-          >
-            Create Route
-          </Button>
-        </Row>
+        </ThemeProvider>
       </>
     );
   }
