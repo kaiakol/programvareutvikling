@@ -5814,9 +5814,8 @@ __webpack_require__.r(__webpack_exports__);
 const history = (0,history__WEBPACK_IMPORTED_MODULE_4__.createHashHistory)(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
 class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
-  // likedRecipes: Recipe[] = [];
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, console.log(_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, console.log(_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.user_profile_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       style: {
         // border: 'none',
         padding: "15px",
@@ -5824,19 +5823,19 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
         marginLeft: "auto",
         marginRight: "auto"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, null, "User page for " + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.first_name + " " + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Title, null, "User page for " + _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.first_name + " " + _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
         fontSize: "17px"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "Profile name: ", _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.profile_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "Profile name: ", _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.profile_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
         fontSize: "17px"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "Your name: ", _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.first_name, " ", _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "Your name: ", _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.first_name, " ", _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
         fontSize: "17px"
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "Your email-adress: ", _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Text, null, "Your email-adress: ", _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
       variant: "outline-danger",
       onClick: () => this.logOut(),
       style: {
@@ -5848,16 +5847,16 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
     }, "Log out"))));
   }
   mounted() {
-    if (!_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].loggedIn) {
+    if (!_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.loggedIn) {
       history.push("/register");
     } else {
-      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.email, _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.profile_password).then(user => (_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].setCurrentUser(user), history.push("/profile/" + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id))).catch(error => alert(error.message));
+      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.email, _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.profile_password).then(user => (_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.setCurrentUser(user), history.push("/profile/" + _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.user_profile_id))).catch(error => alert(error.message));
     }
   }
   logOut() {
-    _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].setLoggedIn(false);
+    _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.setLoggedIn(false);
     history.push("/profile");
-    _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].setCurrentUser({
+    _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.setCurrentUser({
       user_profile_id: 0,
       email: "",
       first_name: "",
@@ -5877,7 +5876,7 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
         .catch((error) => Alert.danger(error.message));
     }
   }
-   logOut() {
+    logOut() {
     loggedIn = false;
     history.push('/recipes');
     currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
@@ -5913,13 +5912,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import userSession from "./user-register";
 
 const history = (0,history__WEBPACK_IMPORTED_MODULE_4__.createHashHistory)();
 class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   email = "";
   password = "";
   render() {
-    if (!_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].loggedIn) {
+    if (!_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.loggedIn) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
         style: {
           border: "none",
@@ -5989,17 +5989,18 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         }
       }, "Clear input"))));
     } else {
-      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.email, _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.profile_password).then(user => (_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser = user, history.push("/profile/ " + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id))).catch(error => alert(error.message));
-      return _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id;
+      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.email, _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.profile_password).then(user => (_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser = user, history.push("/profile/ " + _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.user_profile_id))).catch(error => alert(error.message));
+      return _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.user_profile_id;
     }
   }
   logIn() {
     if (this.email.length != 0 && this.password.length != 0) {
       _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(this.email, this.password).then(user => {
-        _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser = user;
-        _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].loggedIn = true;
-        alert("Logged in as " + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.email);
-        history.push("/profile/" + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id);
+        _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser = user;
+        _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.loggedIn = true;
+        console.log(_user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.loggedIn);
+        alert("Logged in as " + _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.email);
+        history.push("/profile/" + _user_register__WEBPACK_IMPORTED_MODULE_3__.userSession.currentUser.user_profile_id);
       }).catch(error => alert(error.response.data));
     } else {
       alert("Please fill in all the fields");
@@ -6010,7 +6011,7 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
     this.password = "";
   }
   createUser() {
-    history.push("/profile/register");
+    history.push("/register");
   }
 }
 
@@ -6026,7 +6027,9 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RegisterUser": () => (/* binding */ RegisterUser),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "UserSession": () => (/* binding */ UserSession),
+/* harmony export */   "loggedIn": () => (/* binding */ loggedIn),
+/* harmony export */   "userSession": () => (/* binding */ userSession)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
@@ -6075,7 +6078,9 @@ class UserSession {
   }
 }
 const userSession = new UserSession();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userSession);
+const loggedIn = userSession.loggedIn;
+// export default userSession;
+
 class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
   user = {
     user_profile_id: 0,
@@ -58197,6 +58202,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -58218,9 +58224,11 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       className: "me-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
       href: "#newRoute"
-    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
-      href: "#/profile"
-    }, "My Profile")))));
+    }, "New route"), _components_user_register__WEBPACK_IMPORTED_MODULE_7__.userSession.loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
+      href: `#/profile/${_components_user_register__WEBPACK_IMPORTED_MODULE_7__.userSession.currentUser.user_profile_id}`
+    }, "My profile") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
+      href: `#/log_in`
+    }, "Log in")))));
   }
 }
 /*class Home extends Component {
@@ -58229,7 +58237,9 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   }
 }*/
 
-react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, {
+  loggedIn: _components_user_register__WEBPACK_IMPORTED_MODULE_7__.userSession.loggedIn
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/home",
   component: _components_route_list__WEBPACK_IMPORTED_MODULE_4__.RouteList
@@ -58239,7 +58249,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPOR
   component: _components_route_details__WEBPACK_IMPORTED_MODULE_3__.RouteDetails
 }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
-  path: "/profile",
+  path: "/log_in",
   component: _components_user_login__WEBPACK_IMPORTED_MODULE_6__.UserLogIn
 }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,

@@ -3,7 +3,8 @@ import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
 import userService from "../user-service";
-import userSession from "./user-register";
+// import userSession from "./user-register";
+import { userSession } from "./user-register";
 
 const history = createHashHistory();
 
@@ -127,6 +128,7 @@ export class UserLogIn extends Component {
         .then((user) => {
           userSession.currentUser = user;
           userSession.loggedIn = true;
+          console.log(userSession.loggedIn);
           alert("Logged in as " + userSession.currentUser.email);
           history.push("/profile/" + userSession.currentUser.user_profile_id);
         })
@@ -142,6 +144,6 @@ export class UserLogIn extends Component {
   }
 
   createUser() {
-    history.push("/profile/register");
+    history.push("/register");
   }
 }
