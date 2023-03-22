@@ -43,7 +43,15 @@ export class EditRoute extends Component<{
 
               {this.route_travel_points.map((route_travel_point) => (
                 <Row key={route_travel_point.route_id}>
-                  {route_travel_point.order_number}.{" "}
+                  <Col
+                    style={{
+                      marginTop: "1%",
+                    }}
+                    xs
+                    lg="1"
+                  >
+                    <h6>{route_travel_point.order_number}. </h6>
+                  </Col>
                   <Col>
                     <Form>
                       <Form.Group

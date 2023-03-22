@@ -5,6 +5,7 @@ import { HashRouter, Route } from "react-router-dom";
 
 import { Card, Nav, Navbar, Container, Button } from "react-bootstrap";
 import { RouteDetails } from "./components/route-details";
+import { EditRoute } from "./components/editRoute";
 import { RouteList } from "./components/route-list";
 import { NewRoute } from "./components/route-new";
 import ToggleColorMode from "./theme";
