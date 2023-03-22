@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Card, Row, Col, Form } from "react-bootstrap";
+import { Container, Card, Row, Col, Form, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Component } from "react-simplified";
 import { createHashHistory } from "history";
@@ -40,7 +40,7 @@ export class RouteList extends Component {
       <>
         <ThemeProvider theme={this.state.theme}>
           <GlobalStyle />
-          <button
+          <Button
             style={{
               position: "fixed",
               bottom: "30px",
@@ -50,7 +50,7 @@ export class RouteList extends Component {
             onClick={this.handleToggleTheme}
           >
             {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
-          </button>
+          </Button>
           <Container>
             {/* Search bar for easy access to gicen recipe */}
             <StyledCard style={{ border: "none", padding: "15px" }}>

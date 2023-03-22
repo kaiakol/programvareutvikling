@@ -61,7 +61,7 @@ export class NewRoute extends Component {
             {" "}
             <ThemeProvider theme={this.state.theme}>
               <GlobalStyle />
-              <button
+              <Button
                 style={{
                   position: "fixed",
                   bottom: "30px",
@@ -71,7 +71,7 @@ export class NewRoute extends Component {
                 onClick={this.handleToggleTheme}
               >
                 {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
-              </button>
+              </Button>
               <StyledCard>
                 <Row>
                   <Col style={{ marginLeft: "auto", marginRight: "auto" }}>

@@ -54,7 +54,6 @@ class Menu extends Component {
                 </Nav.Link>
               )}
             </Nav>
-            <Nav></Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
