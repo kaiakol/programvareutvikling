@@ -108,11 +108,11 @@ export class RouteList extends Component {
                             {route.route_name}
                           </Card.Title>
                           <Row>
-                            {this.filtered_travel_points
+                            {this.route_travel_points
                               .filter((rtp) => rtp.route_id === route.route_id)
                               .map((rtp) => (
-                                <Col key={rtp.route_id}>
-                                  {rtp.destination} <BsArrowRight />
+                                <Col key={rtp.travel_point_id}>
+                                  {rtp.order_number}. {rtp.destination}
                                 </Col>
                               ))}
                           </Row>
@@ -139,12 +139,13 @@ export class RouteList extends Component {
         );
         return Promise.all(routeTravelPointsPromise);
       })
+
       .then((routeTravelPoints) => {
         //Denne slår sammen alle individuelle arrayer av routeTravelPoints inn til én
         //stor, sammenslått array over alle travelpoints som vi etterfølgende er i stand til å filtere basert på
         //route_id og deretter mappe
-        (this.route_travel_points = routeTravelPoints.flat()) &&
-          (this.filtered_travel_points = routeTravelPoints.flat());
+        console.log(routeTravelPoints); //Basert på at vi har x antall ruter liggende i databasen, vil de som logges her være x-antall arrays med travel_pointsene til hver rute
+        this.route_travel_points = routeTravelPoints.flat();
       })
       .catch((error: { message: string }) =>
         alert("Error getting route: " + error.message)
@@ -155,32 +156,28 @@ export class RouteList extends Component {
     this.search_input = input;
 
     this.filterRoutes();
-    this.filterTravelPoints();
   }
 
   filterRoutes() {
-    this.filtered_routes = this.routes.filter(
-      (route) =>
-        route.route_name
-          .toLowerCase()
-          .includes(this.search_input.toLowerCase()) ||
-        this.filtered_travel_points.some(
-          (rtp) =>
-            rtp.route_id === route.route_id &&
-            rtp.destination
-              .toLowerCase()
-              .includes(this.search_input.toLowerCase())
-        )
-    );
-  }
+    if (this.search_input === "") {
+      this.filtered_routes = this.routes;
+    } else {
+      const matching_routes = this.routes.filter((route) =>
+        route.route_name.toLowerCase().includes(this.search_input.toLowerCase())
+      );
 
-  filterTravelPoints() {
-    this.filtered_travel_points = this.route_travel_points.filter(
-      (rtp) =>
-        rtp.destination
-          .toLowerCase()
-          .includes(this.search_input.toLowerCase()) &&
-        this.filtered_routes.some((route) => route.route_id === rtp.route_id)
-    );
+      const matching_travel_points = this.route_travel_points.filter((rtp) =>
+        rtp.destination.toLowerCase().includes(this.search_input.toLowerCase())
+      );
+      const matching_route_ids = [
+        ...new Set([
+          ...matching_travel_points.map((rtp) => rtp.route_id),
+          ...matching_routes.map((route) => route.route_id),
+        ]),
+      ];
+      this.filtered_routes = this.routes.filter((route) =>
+        matching_route_ids.includes(route.route_id)
+      );
+    }
   }
 }
