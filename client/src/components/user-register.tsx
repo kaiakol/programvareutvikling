@@ -11,7 +11,7 @@ const history = createHashHistory();
 
 // user-register.js (or wherever loggedIn and currentUser are defined)
 
-class UserSession {
+export class UserSession {
   loggedIn: boolean = false;
   currentUser: User = {
     user_profile_id: 0,
@@ -42,8 +42,9 @@ class UserSession {
   }
 }
 
-const userSession = new UserSession();
-export default userSession;
+export const userSession = new UserSession();
+export const loggedIn = userSession.loggedIn;
+// export default userSession;
 
 export const StyledCard = styled(Card)`
   background-color: ${(props) =>

@@ -12,6 +12,7 @@ import { useTheme } from "@mui/material/styles";
 import { UserLogIn } from "./components/user-login";
 import { RegisterUser } from "./components/user-register";
 import { UserDetails } from "./components/user-details";
+import { userSession } from "./components/user-register";
 
 class Menu extends Component {
   render() {
@@ -40,12 +41,17 @@ class Menu extends Component {
               {/* <Nav.Link href="#/routes">Explore</Nav.Link> */}
               {/* <Nav.Link href="#link">My Travels</Nav.Link> */}
 
-              <Nav.Link href="#newRoute" style={{ color: "#999999" }}>
-                New route
-              </Nav.Link>
-              <Nav.Link href="#/profile" style={{ color: "#999999" }}>
-                My Profile
-              </Nav.Link>
+              <Nav.Link href="#newRoute">New route</Nav.Link>
+
+              {userSession.loggedIn ? (
+                <Nav.Link
+                  href={`#/profile/${userSession.currentUser.user_profile_id}`}
+                >
+                  My profile
+                </Nav.Link>
+              ) : (
+                <Nav.Link href={`#/log_in`}>Log in</Nav.Link>
+              )}
             </Nav>
             <Nav></Nav>
           </Navbar.Collapse>
@@ -63,11 +69,11 @@ class Menu extends Component {
 ReactDOM.render(
   <HashRouter>
     <div>
-      <Menu />
+      <Menu loggedIn={userSession.loggedIn} />
       {/* <Route exact path="/routes" component={RouteList} /> */}
       <Route exact path="/home" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
-      <Route exact path="/profile" component={UserLogIn} />
+      <Route exact path="/log_in" component={UserLogIn} />
       <Route exact path="/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />
       <Route exact path="/profile/:user_profile_id" component={UserDetails} />

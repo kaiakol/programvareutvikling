@@ -170,6 +170,7 @@ export class UserLogIn extends Component {
         .then((user) => {
           userSession.currentUser = user;
           userSession.loggedIn = true;
+          console.log(userSession.loggedIn);
           alert("Logged in as " + userSession.currentUser.email);
           history.push("/profile/" + userSession.currentUser.user_profile_id);
         })
@@ -185,6 +186,6 @@ export class UserLogIn extends Component {
   }
 
   createUser() {
-    history.push("/profile/register");
+    history.push("/register");
   }
 }

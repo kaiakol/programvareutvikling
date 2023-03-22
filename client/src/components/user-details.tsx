@@ -13,14 +13,13 @@ import {
   Container,
 } from "react-bootstrap";
 import userService, { User } from "../user-service";
-import userSession from "./user-register";
+import { userSession } from "./user-register";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
 export class UserDetails extends Component<{
   match: { params: { user_profile_id: number } };
 }> {
-  // likedRecipes: Recipe[] = [];
   render() {
     return (
       <>
