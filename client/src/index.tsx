@@ -7,8 +7,6 @@ import { Card, Nav, Navbar, Container, Button } from "react-bootstrap";
 import { RouteDetails } from "./components/route-details";
 import { RouteList } from "./components/route-list";
 import { NewRoute } from "./components/route-new";
-import ToggleColorMode from "./theme";
-import { useTheme } from "@mui/material/styles";
 import { UserLogIn } from "./components/user-login";
 import { RegisterUser } from "./components/user-register";
 import { UserDetails } from "./components/user-details";
@@ -50,7 +48,9 @@ class Menu extends Component {
                   My profile
                 </Nav.Link>
               ) : (
-                <Nav.Link href={`#/log_in`}>Log in</Nav.Link>
+                <Nav.Link href={`#/log_in`}>
+                  {!userSession.loggedIn ? "Log in" : "My Profiler"}
+                </Nav.Link>
               )}
             </Nav>
             <Nav></Nav>
@@ -60,16 +60,11 @@ class Menu extends Component {
     );
   }
 }
-/*class Home extends Component {
-  render() {
-    return <Card>Hei</Card>;
-  }
-}*/
 
 ReactDOM.render(
   <HashRouter>
     <div>
-      <Menu loggedIn={userSession.loggedIn} />
+      <Menu />
       {/* <Route exact path="/routes" component={RouteList} /> */}
       <Route exact path="/home" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />

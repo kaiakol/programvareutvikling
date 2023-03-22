@@ -2634,11 +2634,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ModalManager__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ModalManager */ "./node_modules/@restart/ui/esm/ModalManager.js");
 /* harmony import */ var _useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./useWaitForDOMRef */ "./node_modules/@restart/ui/esm/useWaitForDOMRef.js");
 /* harmony import */ var _useWindow__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./useWindow */ "./node_modules/@restart/ui/esm/useWindow.js");
-/* harmony import */ var _ImperativeTransition__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ImperativeTransition */ "./node_modules/@restart/ui/esm/ImperativeTransition.js");
+/* harmony import */ var _ImperativeTransition__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ImperativeTransition */ "./node_modules/@restart/ui/esm/ImperativeTransition.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./utils */ "./node_modules/@restart/ui/esm/utils.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const _excluded = ["show", "role", "className", "style", "children", "backdrop", "keyboard", "onBackdropClick", "onEscapeKeyDown", "transition", "runTransition", "backdropTransition", "runBackdropTransition", "autoFocus", "enforceFocus", "restoreFocus", "restoreFocusOptions", "renderDialog", "renderBackdrop", "manager", "container", "onShow", "onHide", "onExit", "onExited", "onExiting", "onEnter", "onEntering", "onEntered"];
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 /* eslint-disable @typescript-eslint/no-use-before-define, react/prop-types */
+
 
 
 
@@ -2806,7 +2808,7 @@ const Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)((_r
     }
   });
   const handleDocumentKeyDown = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_9__["default"])(e => {
-    if (keyboard && e.keyCode === 27 && modal.isTopModal()) {
+    if (keyboard && (0,_utils__WEBPACK_IMPORTED_MODULE_14__.isEscKey)(e) && modal.isTopModal()) {
       onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
       if (!e.defaultPrevented) {
         onHide();
@@ -2837,7 +2839,7 @@ const Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)((_r
       role: 'document'
     })
   }));
-  dialog = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_14__.renderTransition)(transition, runTransition, {
+  dialog = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_15__.renderTransition)(transition, runTransition, {
     unmountOnExit: true,
     mountOnEnter: true,
     appear: true,
@@ -2856,7 +2858,7 @@ const Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)((_r
       ref: modal.setBackdropRef,
       onClick: handleBackdropClick
     });
-    backdropElement = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_14__.renderTransition)(backdropTransition, runBackdropTransition, {
+    backdropElement = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_15__.renderTransition)(backdropTransition, runBackdropTransition, {
       in: !!show,
       appear: true,
       mountOnEnter: true,
@@ -3454,6 +3456,24 @@ const WindowProvider = Context.Provider;
  */
 function useWindow() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(Context);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@restart/ui/esm/utils.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@restart/ui/esm/utils.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isEscKey": () => (/* binding */ isEscKey)
+/* harmony export */ });
+/* eslint-disable import/prefer-default-export */
+function isEscKey(e) {
+  return e.code === 'Escape' || e.keyCode === 27;
 }
 
 /***/ }),
@@ -6671,7 +6691,7 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
         .catch((error) => Alert.danger(error.message));
     }
   }
-    logOut() {
+   logOut() {
     loggedIn = false;
     history.push('/recipes');
     currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
@@ -6702,9 +6722,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 /* harmony import */ var react_simplified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simplified */ "./node_modules/react-simplified/lib/index.js");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-service */ "./src/user-service.tsx");
-/* harmony import */ var _user_register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-register */ "./src/components/user-register.tsx");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme */ "./src/components/theme.tsx");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme */ "./src/components/theme.tsx");
+/* harmony import */ var _user_register__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user-register */ "./src/components/user-register.tsx");
 
 
 
@@ -6723,18 +6743,18 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
   email = "";
   password = "";
   state = {
-    theme: _theme__WEBPACK_IMPORTED_MODULE_4__.lightTheme
+    theme: _theme__WEBPACK_IMPORTED_MODULE_3__.lightTheme
   };
   handleToggleTheme = () => {
     this.setState({
-      theme: (0,_theme__WEBPACK_IMPORTED_MODULE_4__.toggleTheme)(this.state.theme)
+      theme: (0,_theme__WEBPACK_IMPORTED_MODULE_3__.toggleTheme)(this.state.theme)
     });
   };
   render() {
-    if (!_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].loggedIn) {
+    if (!_user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.loggedIn) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(styled_components__WEBPACK_IMPORTED_MODULE_6__.ThemeProvider, {
         theme: this.state.theme
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme__WEBPACK_IMPORTED_MODULE_4__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_theme__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         style: {
           position: "fixed",
           bottom: "30px",
@@ -6811,18 +6831,18 @@ class UserLogIn extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         }
       }, "Clear input"))))));
     } else {
-      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.email, _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.profile_password).then(user => (_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser = user, history.push("/profile/ " + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id))).catch(error => alert(error.message));
-      return _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id;
+      _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(_user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser.email, _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser.profile_password).then(user => (_user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser = user, history.push("/profile/ " + _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser.user_profile_id))).catch(error => alert(error.message));
+      return _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser.user_profile_id;
     }
   }
   logIn() {
     if (this.email.length != 0 && this.password.length != 0) {
       _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].logIn(this.email, this.password).then(user => {
-        _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser = user;
-        _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].loggedIn = true;
-        console.log(_user_register__WEBPACK_IMPORTED_MODULE_3__["default"].loggedIn);
-        alert("Logged in as " + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.email);
-        history.push("/profile/" + _user_register__WEBPACK_IMPORTED_MODULE_3__["default"].currentUser.user_profile_id);
+        _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser = user;
+        _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.loggedIn = true;
+        console.log(_user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.loggedIn);
+        alert("Logged in as " + _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser.email);
+        history.push("/profile/" + _user_register__WEBPACK_IMPORTED_MODULE_4__.userSession.currentUser.user_profile_id);
       }).catch(error => alert(error.response.data));
     } else {
       alert("Please fill in all the fields");
@@ -50749,7 +50769,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-/** @license React v17.0.2
+/**
+ * @license React
  * react-is.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -50767,56 +50788,39 @@ if (true) {
 // ATTENTION
 // When adding new symbols to this file,
 // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-// nor polyfill, then a plain number is used for performance.
-var REACT_ELEMENT_TYPE = 0xeac7;
-var REACT_PORTAL_TYPE = 0xeaca;
-var REACT_FRAGMENT_TYPE = 0xeacb;
-var REACT_STRICT_MODE_TYPE = 0xeacc;
-var REACT_PROFILER_TYPE = 0xead2;
-var REACT_PROVIDER_TYPE = 0xeacd;
-var REACT_CONTEXT_TYPE = 0xeace;
-var REACT_FORWARD_REF_TYPE = 0xead0;
-var REACT_SUSPENSE_TYPE = 0xead1;
-var REACT_SUSPENSE_LIST_TYPE = 0xead8;
-var REACT_MEMO_TYPE = 0xead3;
-var REACT_LAZY_TYPE = 0xead4;
-var REACT_BLOCK_TYPE = 0xead9;
-var REACT_SERVER_BLOCK_TYPE = 0xeada;
-var REACT_FUNDAMENTAL_TYPE = 0xead5;
-var REACT_SCOPE_TYPE = 0xead7;
-var REACT_OPAQUE_ID_TYPE = 0xeae0;
-var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
-var REACT_OFFSCREEN_TYPE = 0xeae2;
-var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
+// The Symbol used to tag the ReactElement-like types.
+var REACT_ELEMENT_TYPE = Symbol.for('react.element');
+var REACT_PORTAL_TYPE = Symbol.for('react.portal');
+var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment');
+var REACT_STRICT_MODE_TYPE = Symbol.for('react.strict_mode');
+var REACT_PROFILER_TYPE = Symbol.for('react.profiler');
+var REACT_PROVIDER_TYPE = Symbol.for('react.provider');
+var REACT_CONTEXT_TYPE = Symbol.for('react.context');
+var REACT_SERVER_CONTEXT_TYPE = Symbol.for('react.server_context');
+var REACT_FORWARD_REF_TYPE = Symbol.for('react.forward_ref');
+var REACT_SUSPENSE_TYPE = Symbol.for('react.suspense');
+var REACT_SUSPENSE_LIST_TYPE = Symbol.for('react.suspense_list');
+var REACT_MEMO_TYPE = Symbol.for('react.memo');
+var REACT_LAZY_TYPE = Symbol.for('react.lazy');
+var REACT_OFFSCREEN_TYPE = Symbol.for('react.offscreen');
 
-if (typeof Symbol === 'function' && Symbol.for) {
-  var symbolFor = Symbol.for;
-  REACT_ELEMENT_TYPE = symbolFor('react.element');
-  REACT_PORTAL_TYPE = symbolFor('react.portal');
-  REACT_FRAGMENT_TYPE = symbolFor('react.fragment');
-  REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
-  REACT_PROFILER_TYPE = symbolFor('react.profiler');
-  REACT_PROVIDER_TYPE = symbolFor('react.provider');
-  REACT_CONTEXT_TYPE = symbolFor('react.context');
-  REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
-  REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
-  REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
-  REACT_MEMO_TYPE = symbolFor('react.memo');
-  REACT_LAZY_TYPE = symbolFor('react.lazy');
-  REACT_BLOCK_TYPE = symbolFor('react.block');
-  REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
-  REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
-  REACT_SCOPE_TYPE = symbolFor('react.scope');
-  REACT_OPAQUE_ID_TYPE = symbolFor('react.opaque.id');
-  REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
-  REACT_OFFSCREEN_TYPE = symbolFor('react.offscreen');
-  REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
-}
-
-// Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+// -----------------------------------------------------------------------------
 
 var enableScopeAPI = false; // Experimental Create Event Handle API.
+var enableCacheElement = false;
+var enableTransitionTracing = false; // No known bugs, but needs performance testing
+
+var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
+// stuff. Intended to enable React core members to more easily debug scheduling
+// issues in DEV builds.
+
+var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
+
+var REACT_MODULE_REFERENCE;
+
+{
+  REACT_MODULE_REFERENCE = Symbol.for('react.module.reference');
+}
 
 function isValidElementType(type) {
   if (typeof type === 'string' || typeof type === 'function') {
@@ -50824,12 +50828,16 @@ function isValidElementType(type) {
   } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
-  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
+  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
     return true;
   }
 
   if (typeof type === 'object' && type !== null) {
-    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+    // types supported by any Flight configuration anywhere since
+    // we don't know which Flight build this will end up being used
+    // with.
+    type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
       return true;
     }
   }
@@ -50857,6 +50865,7 @@ function typeOf(object) {
             var $$typeofType = type && type.$$typeof;
 
             switch ($$typeofType) {
+              case REACT_SERVER_CONTEXT_TYPE:
               case REACT_CONTEXT_TYPE:
               case REACT_FORWARD_REF_TYPE:
               case REACT_LAZY_TYPE:
@@ -50888,6 +50897,7 @@ var Portal = REACT_PORTAL_TYPE;
 var Profiler = REACT_PROFILER_TYPE;
 var StrictMode = REACT_STRICT_MODE_TYPE;
 var Suspense = REACT_SUSPENSE_TYPE;
+var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
 var hasWarnedAboutDeprecatedIsAsyncMode = false;
 var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
 
@@ -50946,6 +50956,9 @@ function isStrictMode(object) {
 function isSuspense(object) {
   return typeOf(object) === REACT_SUSPENSE_TYPE;
 }
+function isSuspenseList(object) {
+  return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+}
 
 exports.ContextConsumer = ContextConsumer;
 exports.ContextProvider = ContextProvider;
@@ -50958,6 +50971,7 @@ exports.Portal = Portal;
 exports.Profiler = Profiler;
 exports.StrictMode = StrictMode;
 exports.Suspense = Suspense;
+exports.SuspenseList = SuspenseList;
 exports.isAsyncMode = isAsyncMode;
 exports.isConcurrentMode = isConcurrentMode;
 exports.isContextConsumer = isContextConsumer;
@@ -50971,6 +50985,7 @@ exports.isPortal = isPortal;
 exports.isProfiler = isProfiler;
 exports.isStrictMode = isStrictMode;
 exports.isSuspense = isSuspense;
+exports.isSuspenseList = isSuspenseList;
 exports.isValidElementType = isValidElementType;
 exports.typeOf = typeOf;
   })();
@@ -59511,18 +59526,10 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       href: `#/profile/${_components_user_register__WEBPACK_IMPORTED_MODULE_7__.userSession.currentUser.user_profile_id}`
     }, "My profile") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"].Link, {
       href: `#/log_in`
-    }, "Log in")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], null))));
+    }, !_components_user_register__WEBPACK_IMPORTED_MODULE_7__.userSession.loggedIn ? "Log in" : "My Profiler")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], null))));
   }
 }
-/*class Home extends Component {
-  render() {
-    return <Card>Hei</Card>;
-  }
-}*/
-
-react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, {
-  loggedIn: _components_user_register__WEBPACK_IMPORTED_MODULE_7__.userSession.loggedIn
-}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
   exact: true,
   path: "/home",
   component: _components_route_list__WEBPACK_IMPORTED_MODULE_4__.RouteList
