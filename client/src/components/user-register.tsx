@@ -11,7 +11,7 @@ const history = createHashHistory();
 
 // user-register.js (or wherever loggedIn and currentUser are defined)
 
-export class UserSession {
+export default class UserSession {
   loggedIn: boolean = false;
   currentUser: User = {
     user_profile_id: 0,
