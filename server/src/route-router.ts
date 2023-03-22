@@ -66,7 +66,7 @@ router.delete("/routes/:route_id", (request, response) => {
   const route_id = Number(request.params.route_id);
   if (route_id) {
     routeService
-      .remove(route_id)
+      .deleteRoute(route_id)
       .then((_result) => response.send())
       .catch((error) => response.status(500).send(error));
   } else {
@@ -74,28 +74,99 @@ router.delete("/routes/:route_id", (request, response) => {
   }
 });
 
-//Se på denne
-// router.put("/routes/:route_id", (request, response) => {
-//   const route_id = Number(request.params.route_id);
-//   const data = request.body;
-//   if (route_id && data.duration > 0) {
-//     routeService
-//       .update({
-//         route_id: data.route_id,
-//         duration: data.duration,
-//         estimated_price: data.estimated_price,
-//         time_published: data.time_published,
-//       })
-//       .then((rows) => response.send(rows))
-//       .catch((error) => response.status(500).send(error));
-//   } else {
-//     response
-//       .status(400)
-//       .send(
-//         "Missing task one or more of the following attributes: route_id, duration, time_published"
-//       );
-//   }
-// });
+router.delete("/travel_point/:travel_point_id", (request, response) => {
+  const travel_point_id = Number(request.params.travel_point_id);
+  if (travel_point_id) {
+    routeService
+      .deleteTravelPoint(travel_point_id)
+      .then((_result) => response.send())
+      .catch((error) => response.status(500).send(error));
+  } else {
+    response.status(400).send("Route does not exist.");
+  }
+});
+
+router.delete(
+  "/route_travel_points/:route_id/:travel_point_id",
+  (request, response) => {
+    const travel_point_id = Number(request.params.travel_point_id);
+    const route_id = Number(request.params.route_id);
+    if (travel_point_id && route_id) {
+      routeService
+        .deleteRouteTravelPoint(route_id, travel_point_id)
+        .then((_result) => response.send())
+        .catch((error) => response.status(500).send(error));
+    } else {
+      response.status(400).send("Route does not exist.");
+    }
+  }
+);
+
+router.delete("/rating/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+
+  if (route_id) {
+    routeService
+      .deleteRouteRating(route_id)
+      .then((_result) => response.send())
+      .catch((error) => response.status(500).send(error));
+  } else {
+    response.status(400).send("Route does not exist.");
+  }
+});
+
+router.delete("/favourite/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+
+  if (route_id) {
+    routeService
+      .deleteRouteFavourite(route_id)
+      .then((_result) => response.send())
+      .catch((error) => response.status(500).send(error));
+  } else {
+    response.status(400).send("Route does not exist.");
+  }
+});
+
+router.put("/routes/:route_id", (request, response) => {
+  const route_id = Number(request.params.route_id);
+  const data = request.body;
+  if (route_id) {
+    routeService
+      .updateRoute(
+        data.route_name,
+        data.duration,
+        data.estimated_price,
+        data.description,
+        route_id
+      )
+      .then((rows) => response.send(rows))
+      .catch((error) => response.status(500).send(error));
+  } else {
+    response
+      .status(400)
+      .send(
+        "Missing task one or more of the following attributes: route_name, duration, estimated_price, description"
+      );
+  }
+});
+
+router.put("/travel_point/:travel_point_id", (request, response) => {
+  const travel_point_id = Number(request.params.travel_point_id);
+  const data = request.body;
+  if (travel_point_id) {
+    routeService
+      .updateTravelPoint(data.destination, data.continent, travel_point_id)
+      .then((rows) => response.send(rows))
+      .catch((error) => response.status(500).send(error));
+  } else {
+    response
+      .status(400)
+      .send(
+        "Missing task one or more of the following attributes: route_name, duration, estimated_price, description"
+      );
+  }
+});
 
 //Hører til transkasjonen som vi testet og kommenterte ut i route-router:
 // router.post("/routes", (request, response) => {

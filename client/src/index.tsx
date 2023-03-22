@@ -5,6 +5,7 @@ import { HashRouter, Route } from "react-router-dom";
 
 import { Card, Nav, Navbar, Container, Button } from "react-bootstrap";
 import { RouteDetails } from "./components/route-details";
+import { EditRoute } from "./components/editRoute";
 import { RouteList } from "./components/route-list";
 import { NewRoute } from "./components/route-new";
 import { UserLogIn } from "./components/user-login";
@@ -68,6 +69,7 @@ ReactDOM.render(
       {/* <Route exact path="/routes" component={RouteList} /> */}
       <Route exact path="/home" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
+      <Route exact path="/editRoute/:route_id" component={EditRoute} />
       <Route exact path="/log_in" component={UserLogIn} />
       <Route exact path="/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />

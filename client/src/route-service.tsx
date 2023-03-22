@@ -123,6 +123,100 @@ class RouteService {
       })
       .then((response) => response.data);
   }
+
+  updateRoute(
+    route_name: string,
+    duration: string,
+    estimated_price: string, //order_number: numbe)
+    description: string,
+    route_id: number
+  ) {
+    return axios
+      .put("/routes/" + route_id, {
+        route_name: route_name,
+        duration: duration,
+        estimated_price: estimated_price,
+        description: description,
+      })
+      .then((response) => response.data);
+  }
+
+  updateTravelPoint(
+    destination: string,
+    continent: string,
+    travel_point_id: number
+  ) {
+    return axios
+      .put("/travel_point/" + travel_point_id, {
+        destination: destination,
+        continent: continent,
+      })
+      .then((response) => response.data);
+  }
+
+  deleteRoute(route_id: number) {
+    return axios
+      .delete<Route>("/routes/" + route_id)
+      .then((response) => response.data);
+  }
+
+  deleteTravelPoint(travel_point_id: number) {
+    {
+      // return axios
+      //   .delete("/route_travel_points/add", {
+      //     route_id: route_id,
+      //     travel_point_id: travel_point_id,
+      //   })
+      //   .then((response) => response.data);
+      return axios
+        .delete("/travel_point/" + travel_point_id)
+        .then((response) => response.data);
+    }
+  }
+
+  deleteRouteTravelPoint(route_id: number, travel_point_id: number) {
+    {
+      // return axios
+      //   .delete("/route_travel_points/add", {
+      //     route_id: route_id,
+      //     travel_point_id: travel_point_id,
+      //   })
+      //   .then((response) => response.data);
+      return axios
+        .delete("/route_travel_points/" + route_id + "/" + travel_point_id)
+        .then((response) => response.data);
+    }
+  }
+
+  deleteRouteRating(route_id: number) {
+    {
+      // return axios
+      //   .delete("/route_travel_points/add", {
+      //     route_id: route_id,
+      //     travel_point_id: travel_point_id,
+      //   })
+      //   .then((response) => response.data);
+      return axios
+        .delete("/rating/" + route_id)
+        .then((response) => response.data);
+    }
+  }
+
+  deleteRouteFavourite(route_id: number) {
+    {
+      // return axios
+      //   .delete("/route_travel_points/add", {
+      //     route_id: route_id,
+      //     travel_point_id: travel_point_id,
+      //   })
+      //   .then((response) => response.data);
+      return axios
+        .delete("/favourite/" + route_id)
+        .then((response) => response.data);
+    }
+  }
+
+  // deleteTravelPoint()
 }
 
 const routeService = new RouteService();
