@@ -216,7 +216,7 @@ export class EditRoute extends Component<{
           <Col>
             <Button
               variant="danger"
-              onClick={() => this.delete()}
+              onClick={() => this.deleteRoute()}
               style={{
                 marginTop: "1%",
                 marginLeft: "20%",
@@ -300,11 +300,12 @@ export class EditRoute extends Component<{
     //window.location.reload(); // May log out user...
   }
 
-  delete() {
-    this.deleteRoute();
-    alert('Successfully deleted "' + this.route.route_name + '"');
-    history.push("/home/");
-  }
+  // delete() {
+  //   this.deleteRoute();
+  //   alert('Successfully deleted "' + this.route.route_name + '"');
+  //   history.push("/home/");
+  //   window.location.reload();
+  // }
   // deleteRoute() {
   //   throw new Error("Method not implemented.");
   // }
@@ -337,6 +338,7 @@ export class EditRoute extends Component<{
         })
       )
 
-      .then(() => routeService.deleteRoute(this.route.route_id));
+      .then(() => routeService.deleteRoute(this.route.route_id))
+      .then(() => history.push("/home"));
   }
 }

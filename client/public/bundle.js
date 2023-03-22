@@ -6107,7 +6107,7 @@ class EditRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
       onChange: event => this.route.duration = event.currentTarget.value
     })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       variant: "danger",
-      onClick: () => this.delete(),
+      onClick: () => this.deleteRoute(),
       style: {
         marginTop: "1%",
         marginLeft: "20%",
@@ -6151,11 +6151,12 @@ class EditRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
     //window.location.reload(); // May log out user...
   }
 
-  delete() {
-    this.deleteRoute();
-    alert('Successfully deleted "' + this.route.route_name + '"');
-    history.push("/home/");
-  }
+  // delete() {
+  //   this.deleteRoute();
+  //   alert('Successfully deleted "' + this.route.route_name + '"');
+  //   history.push("/home/");
+  //   window.location.reload();
+  // }
   // deleteRoute() {
   //   throw new Error("Method not implemented.");
   // }
@@ -6168,7 +6169,7 @@ class EditRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
     const deleteRouteFavouritePromise = _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].deleteRouteFavourite(this.route.route_id);
     Promise.all([deleteRouteRatingPromise, deleteRouteFavouritePromise]).then(() => this.route_travel_points.map(route_travel_point => _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].deleteRouteTravelPoint(route_travel_point.route_id, route_travel_point.travel_point_id))).then(() => this.route_travel_points.map(route_travel_point => {
       _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].deleteTravelPoint(route_travel_point.travel_point_id);
-    })).then(() => _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].deleteRoute(this.route.route_id));
+    })).then(() => _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].deleteRoute(this.route.route_id)).then(() => history.push("/home"));
   }
 }
 
