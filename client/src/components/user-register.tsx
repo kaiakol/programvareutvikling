@@ -148,11 +148,11 @@ export class RegisterUser extends Component {
               </Row>
               <Row>
                 <Form.Control
-                  value={this.user.password}
+                  value={this.user.profile_password}
                   type="password"
                   placeholder="Password"
                   onChange={(event) =>
-                    (this.user.password = event.currentTarget.value)
+                    (this.user.profile_password = event.currentTarget.value)
                   }
                   // Makes it possible to log in with enter as well as with button
                   onKeyUp={(event) => {
