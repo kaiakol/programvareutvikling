@@ -1,6 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+<<<<<<< HEAD
 /***/ "./node_modules/@nx-js/observer-util/dist/es.es5.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@nx-js/observer-util/dist/es.es5.js ***!
@@ -58085,61 +58086,28 @@ function invariant(condition, message) {
 }
 
 
+=======
+/***/ "./src/index.tsx":
+/*!***********************!*\
+  !*** ./src/index.tsx ***!
+  \***********************/
+/***/ (() => {
+>>>>>>> 8f6fae55197df81e5c7818d6427b1a0061cb491c
 
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\src\\index.tsx: Unexpected token (5:1)\n\n  3 | import { Component } from \"react-simplified\";\n  4 | import { HashRouter, Route } from \"react-router-dom\";\n> 5 | <<<<<<< HEAD\n    |  ^\n  6 | import { RegisterUser, UserLogIn, UserDetails } from \"./user-components\";\n  7 | import { Card, Nav, Navbar, Container, Button } from \"react-bootstrap\";\n  8 | import { RouteDetails } from \"./components/route-details\";\n    at instantiate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:64:32)\n    at constructor (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:362:12)\n    at TypeScriptParserMixin.raise (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:3254:19)\n    at TypeScriptParserMixin.unexpected (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:3284:16)\n    at TypeScriptParserMixin.jsxParseIdentifier (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6789:12)\n    at TypeScriptParserMixin.jsxParseNamespacedName (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6796:23)\n    at TypeScriptParserMixin.jsxParseElementName (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6805:21)\n    at TypeScriptParserMixin.jsxParseOpeningElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6885:22)\n    at TypeScriptParserMixin.jsxParseElementAt (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6910:33)\n    at TypeScriptParserMixin.jsxParseElement (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6979:17)\n    at TypeScriptParserMixin.parseExprAtom (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:6991:19)\n    at TypeScriptParserMixin.parseExprSubscripts (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10847:23)\n    at TypeScriptParserMixin.parseUpdate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10830:21)\n    at TypeScriptParserMixin.parseMaybeUnary (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10806:23)\n    at TypeScriptParserMixin.parseMaybeUnary (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9294:20)\n    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10644:61)\n    at TypeScriptParserMixin.parseExprOps (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10649:23)\n    at TypeScriptParserMixin.parseMaybeConditional (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10626:23)\n    at TypeScriptParserMixin.parseMaybeAssign (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10587:21)\n    at C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9227:39\n    at TypeScriptParserMixin.tryParse (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:3637:20)\n    at TypeScriptParserMixin.parseMaybeAssign (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9227:18)\n    at TypeScriptParserMixin.parseExpressionBase (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10541:23)\n    at C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10537:39\n    at TypeScriptParserMixin.allowInAnd (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12232:16)\n    at TypeScriptParserMixin.parseExpression (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:10537:17)\n    at TypeScriptParserMixin.parseStatementContent (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12674:23)\n    at TypeScriptParserMixin.parseStatementContent (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:8934:18)\n    at TypeScriptParserMixin.parseStatementLike (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12534:17)\n    at TypeScriptParserMixin.parseModuleItem (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12518:17)\n    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:13104:36)\n    at TypeScriptParserMixin.parseBlockBody (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:13097:10)\n    at TypeScriptParserMixin.parseProgram (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12432:10)\n    at TypeScriptParserMixin.parseTopLevel (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:12422:25)\n    at TypeScriptParserMixin.parse (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:14234:10)\n    at TypeScriptParserMixin.parse (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:9586:18)\n    at parse (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\parser\\lib\\index.js:14276:38)\n    at parser (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\core\\lib\\parser\\index.js:41:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:65:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\core\\lib\\transformation\\index.js:21:50)\n    at run.next (<anonymous>)\n    at transform (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\@babel\\core\\lib\\transform.js:22:41)\n    at transform.next (<anonymous>)\n    at step (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\gensync\\index.js:261:32)\n    at C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\gensync\\index.js:273:13\n    at async.call.result.err.err (C:\\Users\\hansi\\Desktop\\PU\\tdt4140-gruppe-71\\client\\node_modules\\gensync\\index.js:223:11)");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/index.tsx"]();
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
+<<<<<<< HEAD
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -58266,6 +58234,8 @@ react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPOR
 }))), document.getElementById("root"));
 })();
 
+=======
+>>>>>>> 8f6fae55197df81e5c7818d6427b1a0061cb491c
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
