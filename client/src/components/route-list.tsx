@@ -8,6 +8,7 @@ import routeService, { Route, Route_travel_point } from "../route-service";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
+import { userSession } from "./user-register";
 
 const history = createHashHistory();
 
