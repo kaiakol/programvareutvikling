@@ -6,7 +6,7 @@ import userService from "../user-service";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
-import { userSession } from "./user-register";
+import { loggedIn, userSession } from "./user-register";
 
 const history = createHashHistory();
 
@@ -155,7 +155,10 @@ export class UserLogIn extends Component {
         .then(
           (user) => (
             (userSession.currentUser = user),
-            history.push("/profile/ " + userSession.currentUser.user_profile_id)
+            history.push(
+              "/profile/ " + userSession.currentUser.user_profile_id
+            ),
+            (userSession.loggedIn = true)
           )
         )
         .catch((error) => alert(error.message));

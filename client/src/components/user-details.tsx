@@ -96,7 +96,7 @@ export class UserDetails extends Component<{
 
   logOut() {
     userSession.setLoggedIn(false);
-    history.push("/profile");
+    history.push("/log_in");
     userSession.setCurrentUser({
       user_profile_id: 0,
       email: "",
