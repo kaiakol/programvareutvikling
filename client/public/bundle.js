@@ -6870,7 +6870,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RegisterUser": () => (/* binding */ RegisterUser),
 /* harmony export */   "StyledCard": () => (/* binding */ StyledCard),
-/* harmony export */   "UserSession": () => (/* binding */ UserSession),
+/* harmony export */   "default": () => (/* binding */ UserSession),
 /* harmony export */   "loggedIn": () => (/* binding */ loggedIn),
 /* harmony export */   "userSession": () => (/* binding */ userSession)
 /* harmony export */ });
