@@ -3,7 +3,7 @@ import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
 import userService from "../user-service";
-import userSession from "./user-register";
+import { userSession } from "./user-register";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
