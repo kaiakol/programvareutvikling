@@ -3,10 +3,10 @@ import { Card, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import { createHashHistory } from "history";
 import { Component } from "react-simplified";
 import userService from "../user-service";
-import userSession from "./user-register";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
 import styled from "styled-components";
+import { loggedIn, userSession } from "./user-register";
 
 const history = createHashHistory();
 
@@ -34,7 +34,7 @@ export class UserLogIn extends Component {
         <>
           <ThemeProvider theme={this.state.theme}>
             <GlobalStyle />
-            <button
+            <Button
               style={{
                 position: "fixed",
                 bottom: "30px",
@@ -44,7 +44,7 @@ export class UserLogIn extends Component {
               onClick={this.handleToggleTheme}
             >
               {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
-            </button>
+            </Button>
             <StyledCard
               style={{
                 border: "none",
@@ -155,7 +155,10 @@ export class UserLogIn extends Component {
         .then(
           (user) => (
             (userSession.currentUser = user),
-            history.push("/profile/ " + userSession.currentUser.user_profile_id)
+            history.push(
+              "/profile/ " + userSession.currentUser.user_profile_id
+            ),
+            (userSession.loggedIn = true)
           )
         )
         .catch((error) => alert(error.message));
@@ -170,6 +173,7 @@ export class UserLogIn extends Component {
         .then((user) => {
           userSession.currentUser = user;
           userSession.loggedIn = true;
+          console.log(userSession.loggedIn);
           alert("Logged in as " + userSession.currentUser.email);
           history.push("/profile/" + userSession.currentUser.user_profile_id);
         })
@@ -185,6 +189,6 @@ export class UserLogIn extends Component {
   }
 
   createUser() {
-    history.push("/profile/register");
+    history.push("/register");
   }
 }

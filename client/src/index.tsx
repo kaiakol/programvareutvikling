@@ -8,11 +8,10 @@ import { RouteDetails } from "./components/route-details";
 import { EditRoute } from "./components/editRoute";
 import { RouteList } from "./components/route-list";
 import { NewRoute } from "./components/route-new";
-import ToggleColorMode from "./theme";
-import { useTheme } from "@mui/material/styles";
 import { UserLogIn } from "./components/user-login";
 import { RegisterUser } from "./components/user-register";
 import { UserDetails } from "./components/user-details";
+import { userSession } from "./components/user-register";
 
 class Menu extends Component {
   render() {
@@ -41,25 +40,26 @@ class Menu extends Component {
               {/* <Nav.Link href="#/routes">Explore</Nav.Link> */}
               {/* <Nav.Link href="#link">My Travels</Nav.Link> */}
 
-              <Nav.Link href="#newRoute" style={{ color: "#999999" }}>
-                New route
-              </Nav.Link>
-              <Nav.Link href="#/profile" style={{ color: "#999999" }}>
-                My Profile
-              </Nav.Link>
+              <Nav.Link href="#newRoute">New route</Nav.Link>
+
+              {userSession.loggedIn ? (
+                <Nav.Link
+                  href={`#/profile/${userSession.currentUser.user_profile_id}`}
+                >
+                  My profile
+                </Nav.Link>
+              ) : (
+                <Nav.Link href={`#/log_in`}>
+                  {!userSession.loggedIn ? "Log in" : "My Profiler"}
+                </Nav.Link>
+              )}
             </Nav>
-            <Nav></Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     );
   }
 }
-/*class Home extends Component {
-  render() {
-    return <Card>Hei</Card>;
-  }
-}*/
 
 ReactDOM.render(
   <HashRouter>
@@ -69,7 +69,7 @@ ReactDOM.render(
       <Route exact path="/home" component={RouteList} />
       <Route exact path="/routes/:route_id" component={RouteDetails} />
       <Route exact path="/editRoute/:route_id" component={EditRoute} />
-      <Route exact path="/profile" component={UserLogIn} />
+      <Route exact path="/log_in" component={UserLogIn} />
       <Route exact path="/register" component={RegisterUser} />
       <Route exact path="/newRoute" component={NewRoute} />
       <Route exact path="/profile/:user_profile_id" component={UserDetails} />

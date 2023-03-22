@@ -11,7 +11,7 @@ const history = createHashHistory();
 
 // user-register.js (or wherever loggedIn and currentUser are defined)
 
-class UserSession {
+export class UserSession {
   loggedIn: boolean = false;
   currentUser: User = {
     user_profile_id: 0,
@@ -42,8 +42,9 @@ class UserSession {
   }
 }
 
-const userSession = new UserSession();
-export default userSession;
+export const userSession = new UserSession();
+export const loggedIn = userSession.loggedIn;
+// export default userSession;
 
 export const StyledCard = styled(Card)`
   background-color: ${(props) =>
@@ -75,7 +76,7 @@ export class RegisterUser extends Component {
       <>
         <ThemeProvider theme={this.state.theme}>
           <GlobalStyle />
-          <button
+          <Button
             style={{
               position: "fixed",
               bottom: "30px",
@@ -85,7 +86,7 @@ export class RegisterUser extends Component {
             onClick={this.handleToggleTheme}
           >
             {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
-          </button>
+          </Button>
           <StyledCard
             style={{
               border: "none",
@@ -148,11 +149,11 @@ export class RegisterUser extends Component {
               </Row>
               <Row>
                 <Form.Control
-                  value={this.user.password}
+                  value={this.user.profile_password}
                   type="password"
                   placeholder="Password"
                   onChange={(event) =>
-                    (this.user.password = event.currentTarget.value)
+                    (this.user.profile_password = event.currentTarget.value)
                   }
                   // Makes it possible to log in with enter as well as with button
                   onKeyUp={(event) => {
