@@ -42,7 +42,7 @@ class Menu extends Component {
 
               <Nav.Link href="#newRoute">New route</Nav.Link>
 
-              {userSession.loggedIn ? (
+              {/* {userSession.loggedIn ? (
                 <Nav.Link
                   href={`#/profile/${userSession.currentUser.user_profile_id}`}
                 >
@@ -52,7 +52,9 @@ class Menu extends Component {
                 <Nav.Link href={`#/log_in`}>
                   {!userSession.loggedIn ? "Log in" : "My Profiler"}
                 </Nav.Link>
-              )}
+              )} */}
+
+              <Nav.Link href={"#/log_in"}>Profile</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

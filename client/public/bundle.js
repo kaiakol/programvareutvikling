@@ -49074,7 +49074,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -49103,11 +49102,9 @@ class Menu extends react_simplified__WEBPACK_IMPORTED_MODULE_2__.Component {
       className: "me-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Link, {
       href: "#newRoute"
-    }, "New route"), _components_user_register__WEBPACK_IMPORTED_MODULE_8__.userSession.loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Link, {
-      href: `#/profile/${_components_user_register__WEBPACK_IMPORTED_MODULE_8__.userSession.currentUser.user_profile_id}`
-    }, "My profile") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Link, {
-      href: `#/log_in`
-    }, !_components_user_register__WEBPACK_IMPORTED_MODULE_8__.userSession.loggedIn ? "Log in" : "My Profiler")))));
+    }, "New route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"].Link, {
+      href: "#/log_in"
+    }, "Profile")))));
   }
 }
 react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
