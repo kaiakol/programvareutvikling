@@ -6435,10 +6435,8 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         width: "100%",
         margin: "1%",
         textAlign: "center",
-        borderLeft: "none",
-        borderRight: "none",
-        borderTop: "none",
-        borderRadius: "none",
+        borderRadius: "10px",
+        // Rounded corners for the border
         height: "100%"
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Img, {

@@ -92,10 +92,7 @@ export class RouteList extends Component {
                           width: "100%",
                           margin: "1%",
                           textAlign: "center",
-                          borderLeft: "none",
-                          borderRight: "none",
-                          borderTop: "none",
-                          borderRadius: "none",
+                          borderRadius: "10px", // Rounded corners for the border
                           height: "100%",
                         }}
                       >
