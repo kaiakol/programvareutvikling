@@ -6176,7 +6176,10 @@ class EditRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
   save() {
     this.route_travel_points.map(route_travel_point => _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].updateTravelPoint(route_travel_point.destination, route_travel_point.continent, route_travel_point.travel_point_id));
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].updateRoute(this.route.route_name, this.route.duration, this.route.estimated_price, this.route.description, this.route.route_id);
-    window.location.reload();
+    alert("Route was updated");
+    history.push("/routes/" + this.route.route_id);
+
+    // window.location.reload();
 
     //window.location.reload(); // May log out user...
   }
@@ -6402,7 +6405,7 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         marginLeft: "auto",
         marginRight: "auto"
       }
-    }, "Search for a route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, "Search for a route or destination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       style: {
         textAlign: "center",
         marginLeft: "auto",
@@ -6432,10 +6435,8 @@ class RouteList extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
         width: "100%",
         margin: "1%",
         textAlign: "center",
-        borderLeft: "none",
-        borderRight: "none",
-        borderTop: "none",
-        borderRadius: "none",
+        borderRadius: "10px",
+        // Rounded corners for the border
         height: "100%"
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Img, {
