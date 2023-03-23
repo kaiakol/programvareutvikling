@@ -2,6 +2,9 @@ import * as React from "react";
 import { Component } from "react-simplified";
 import { NavLink } from "react-router-dom";
 import { createHashHistory } from "history";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle, lightTheme, darkTheme, toggleTheme } from "./theme";
+import styled from "styled-components";
 import {
   Card,
   Row,
@@ -17,60 +20,87 @@ import { userSession } from "./user-register";
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
+export const StyledCard = styled(Card)`
+  background-color: ${(props) =>
+    props.theme.mode === "dark" ? "#333" : "#fff"};
+  color: ${(props) => (props.theme.mode === "dark" ? "#fff" : "#000")};
+`;
+
 export class UserDetails extends Component<{
   match: { params: { user_profile_id: number } };
 }> {
+  state = {
+    theme: lightTheme,
+  };
+
+  handleToggleTheme = () => {
+    this.setState({ theme: toggleTheme(this.state.theme) });
+  };
   render() {
     return (
       <>
-        {console.log(userSession.currentUser.user_profile_id)}
-        <Card
-          style={{
-            // border: 'none',
-            padding: "15px",
-            textAlign: "center",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          {/* Page for all relevant user info for logged in user */}
-          <Card.Title>
-            {"User page for " +
-              userSession.currentUser.first_name +
-              " " +
-              userSession.currentUser.last_name}
-          </Card.Title>
-          <Row style={{ fontSize: "17px" }}>
-            <Card.Text>
-              Profile name: {userSession.currentUser.profile_name}
-            </Card.Text>
-          </Row>
-          <Row style={{ fontSize: "17px" }}>
-            <Card.Text>
-              Your name: {userSession.currentUser.first_name}{" "}
-              {userSession.currentUser.last_name}
-            </Card.Text>
-          </Row>
-          <Row style={{ fontSize: "17px" }}>
-            <Card.Text>
-              Your email-adress: {userSession.currentUser.email}
-            </Card.Text>
-          </Row>
-          <Row>
-            <Button
-              variant="outline-danger"
-              onClick={() => this.logOut()}
-              style={{
-                width: "15rem",
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginBottom: "10px",
-              }}
-            >
-              Log out
-            </Button>
-          </Row>
-        </Card>
+        <ThemeProvider theme={this.state.theme}>
+          <GlobalStyle />
+          <Button
+            style={{
+              position: "fixed",
+              bottom: "30px",
+              right: "50px",
+              zIndex: "999",
+            }}
+            onClick={this.handleToggleTheme}
+          >
+            {this.state.theme.mode === "light" ? "Dark Mode" : "Light Mode"}
+          </Button>
+          {console.log(userSession.currentUser.user_profile_id)}
+          <StyledCard
+            style={{
+              // border: 'none',
+              padding: "15px",
+              textAlign: "center",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            {/* Page for all relevant user info for logged in user */}
+            <Card.Title>
+              {"User page for " +
+                userSession.currentUser.first_name +
+                " " +
+                userSession.currentUser.last_name}
+            </Card.Title>
+            <Row style={{ fontSize: "17px" }}>
+              <Card.Text>
+                Profile name: {userSession.currentUser.profile_name}
+              </Card.Text>
+            </Row>
+            <Row style={{ fontSize: "17px" }}>
+              <Card.Text>
+                Your name: {userSession.currentUser.first_name}{" "}
+                {userSession.currentUser.last_name}
+              </Card.Text>
+            </Row>
+            <Row style={{ fontSize: "17px" }}>
+              <Card.Text>
+                Your email-adress: {userSession.currentUser.email}
+              </Card.Text>
+            </Row>
+            <Row>
+              <Button
+                variant="outline-danger"
+                onClick={() => this.logOut()}
+                style={{
+                  width: "15rem",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: "10px",
+                }}
+              >
+                Log out
+              </Button>
+            </Row>
+          </StyledCard>
+        </ThemeProvider>
       </>
     );
   }
