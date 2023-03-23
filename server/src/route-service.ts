@@ -32,7 +32,7 @@ export type RouteTravelPoint = {
   // user_profile_id: number;
 };
 
-export type routeRating = {
+export type Rating = {
   route_id: number;
   value: number;
 };
@@ -209,14 +209,28 @@ class RouteService {
   }
 
   getRatings(route_id: number) {
-    return new Promise<routeRating[]>((resolve, reject) => {
+    return new Promise<Rating[]>((resolve, reject) => {
       pool.query(
         "SELECT AVG(rating.value) FROM rating INNER JOIN route ON rating.route_id = route.route_id WHERE route.route_id = ?",
         [route_id],
         (error, results: RowDataPacket[]) => {
           if (error) return reject(error);
 
-          resolve(results[0] as routeRating[]);
+          resolve(results[0] as Rating[]);
+        }
+      );
+    });
+  }
+  createRating(value: number, route_id: number) {
+    return new Promise<Rating>((resolve, reject) => {
+      pool.query(
+        "INSERT INTO rating SET value =?, user_profile_id=1, route_id=?",
+        [value, route_id],
+        (error, results: RowDataPacket[]) => {
+          if (error) return reject(error);
+
+          //@ts-ignore
+          resolve(results.insertId);
         }
       );
     });

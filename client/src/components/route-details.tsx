@@ -55,7 +55,7 @@ export class RouteDetails extends Component<{
               <Row>{this.route.duration}</Row>
             </Col>
             <Col>
-              <h2>hei</h2>
+              <h2>Rating</h2>
               <Row>
                 {parseFloat(this.rating["AVG(rating.value)"]).toFixed(2)}
               </Row>

@@ -5307,7 +5307,7 @@ class RouteDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Destinations"), this.route_travel_points.map(route_travel_point => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: route_travel_point.route_id
-    }, route_travel_point.order_number, " ", route_travel_point.destination))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "hei"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, parseFloat(this.rating["AVG(rating.value)"]).toFixed(2))))));
+    }, route_travel_point.order_number, " ", route_travel_point.destination))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Route Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.estimated_price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, this.route.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Rating"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], null, parseFloat(this.rating["AVG(rating.value)"]).toFixed(2))))));
   }
   mounted() {
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].getRoute(this.props.match.params.route_id)
@@ -5494,6 +5494,7 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
     continent: ""
   };
   route_name = "";
+  valueRating = 0;
   duration = "";
   estimatedPrice = "";
   description = "";
@@ -5645,6 +5646,25 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
         marginBottom: "0%"
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
+      value: this.valueRating,
+      onChange: event => this.valueRating = Number(event.currentTarget.value),
+      type: "number",
+      min: "1",
+      max: "5",
+      style: {
+        marginLeft: "auto",
+        width: "60%",
+        marginRight: "auto",
+        marginBottom: "10px"
+      },
+      placeholder: "Rate from 1-5"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      style: {
+        margin: "5%",
+        marginTop: "3%",
+        marginBottom: "0%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"].Control, {
       value: this.description,
       as: "textarea" // Change this line to "textarea"
       ,
@@ -5757,7 +5777,10 @@ class NewRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component {
           const order_number = newDestination.orderNumber;
           const travel_point_id = travelPointIds[index]["travel_point_id"];
           return _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].createRouteTravelPoint(route_id["route_id"], travel_point_id, order_number);
-        });
+        }
+        //routeService.createRating(value)
+        );
+
         return Promise.all(createRouteTravelPointPromises);
       }).then(() => {
         history.push("/routes/" + returnedRouteId);
@@ -6274,7 +6297,12 @@ class RouteService {
     }).then(response => response.data);
   }
   getRating(route_id) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/route/" + route_id).then(response => response.data);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/rating/" + route_id).then(response => response.data);
+  }
+  createRating(value) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default().post("rating/", {
+      value: value
+    });
   }
 }
 const routeService = new RouteService();
