@@ -55,7 +55,7 @@ export class RouteList extends Component {
             {/* Search bar for easy access to gicen recipe */}
             <StyledCard style={{ border: "none", padding: "15px" }}>
               <Card.Title style={{ marginLeft: "auto", marginRight: "auto" }}>
-                Search for a route
+                Search for a route or destination
               </Card.Title>
 
               <Row
