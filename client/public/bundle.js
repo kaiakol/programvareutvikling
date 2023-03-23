@@ -1949,11 +1949,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ModalManager__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ModalManager */ "./node_modules/@restart/ui/esm/ModalManager.js");
 /* harmony import */ var _useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./useWaitForDOMRef */ "./node_modules/@restart/ui/esm/useWaitForDOMRef.js");
 /* harmony import */ var _useWindow__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./useWindow */ "./node_modules/@restart/ui/esm/useWindow.js");
-/* harmony import */ var _ImperativeTransition__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ImperativeTransition */ "./node_modules/@restart/ui/esm/ImperativeTransition.js");
+/* harmony import */ var _ImperativeTransition__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ImperativeTransition */ "./node_modules/@restart/ui/esm/ImperativeTransition.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./utils */ "./node_modules/@restart/ui/esm/utils.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const _excluded = ["show", "role", "className", "style", "children", "backdrop", "keyboard", "onBackdropClick", "onEscapeKeyDown", "transition", "runTransition", "backdropTransition", "runBackdropTransition", "autoFocus", "enforceFocus", "restoreFocus", "restoreFocusOptions", "renderDialog", "renderBackdrop", "manager", "container", "onShow", "onHide", "onExit", "onExited", "onExiting", "onEnter", "onEntering", "onEntered"];
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 /* eslint-disable @typescript-eslint/no-use-before-define, react/prop-types */
+
 
 
 
@@ -2121,7 +2123,7 @@ const Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)((_r
     }
   });
   const handleDocumentKeyDown = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_9__["default"])(e => {
-    if (keyboard && e.keyCode === 27 && modal.isTopModal()) {
+    if (keyboard && (0,_utils__WEBPACK_IMPORTED_MODULE_14__.isEscKey)(e) && modal.isTopModal()) {
       onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
       if (!e.defaultPrevented) {
         onHide();
@@ -2152,7 +2154,7 @@ const Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)((_r
       role: 'document'
     })
   }));
-  dialog = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_14__.renderTransition)(transition, runTransition, {
+  dialog = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_15__.renderTransition)(transition, runTransition, {
     unmountOnExit: true,
     mountOnEnter: true,
     appear: true,
@@ -2171,7 +2173,7 @@ const Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_4__.forwardRef)((_r
       ref: modal.setBackdropRef,
       onClick: handleBackdropClick
     });
-    backdropElement = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_14__.renderTransition)(backdropTransition, runBackdropTransition, {
+    backdropElement = (0,_ImperativeTransition__WEBPACK_IMPORTED_MODULE_15__.renderTransition)(backdropTransition, runBackdropTransition, {
       in: !!show,
       appear: true,
       mountOnEnter: true,
@@ -2769,6 +2771,24 @@ const WindowProvider = Context.Provider;
  */
 function useWindow() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(Context);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@restart/ui/esm/utils.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@restart/ui/esm/utils.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isEscKey": () => (/* binding */ isEscKey)
+/* harmony export */ });
+/* eslint-disable import/prefer-default-export */
+function isEscKey(e) {
+  return e.code === 'Escape' || e.keyCode === 27;
 }
 
 /***/ }),
