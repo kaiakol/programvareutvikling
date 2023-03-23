@@ -107,6 +107,21 @@ export class RegisterUser extends Component {
             >
               <Row>
                 <Form.Control
+                  value={this.user.profile_name}
+                  type="text"
+                  placeholder="Profile Name"
+                  onChange={(event) =>
+                    (this.user.profile_name = event.currentTarget.value)
+                  }
+                  style={{
+                    marginBottom: "10px",
+                    textAlign: "center",
+                  }}
+                ></Form.Control>
+              </Row>
+
+              <Row>
+                <Form.Control
                   value={this.user.email}
                   type="text"
                   placeholder="Email"
@@ -235,12 +250,15 @@ export class RegisterUser extends Component {
         this.user.email
       )
       .then((response) => {
-        if (response.length > 0) {
+        if (
+          response.length > 0 ||
+          this.user.profile_password !== this.confirm_password
+        ) {
           alert(response);
         } else {
           alert("User created, please log in");
           userSession.setLoggedIn(false);
-          history.push("/profile/");
+          history.push("/log_in/");
         }
       })
       .catch((error) => alert(error.response.data));

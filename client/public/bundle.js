@@ -6980,7 +6980,7 @@ class UserDetails extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Componen
         .catch((error) => Alert.danger(error.message));
     }
   }
-    logOut() {
+   logOut() {
     loggedIn = false;
     history.push('/recipes');
     currentUser = { user_id: 0, email: '', first_name: '', last_name: '', password: '' };
@@ -7266,6 +7266,15 @@ class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
         width: "20rem"
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Control, {
+      value: this.user.profile_name,
+      type: "text",
+      placeholder: "Profile Name",
+      onChange: event => this.user.profile_name = event.currentTarget.value,
+      style: {
+        marginBottom: "10px",
+        textAlign: "center"
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"].Control, {
       value: this.user.email,
       type: "text",
       placeholder: "Email",
@@ -7346,12 +7355,12 @@ class RegisterUser extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Compone
   }
   createUser() {
     _user_service__WEBPACK_IMPORTED_MODULE_2__["default"].createUser(this.user.profile_name, this.user.profile_password, this.user.first_name, this.user.last_name, this.user.email).then(response => {
-      if (response.length > 0) {
+      if (response.length > 0 || this.user.profile_password !== this.confirm_password) {
         alert(response);
       } else {
         alert("User created, please log in");
         userSession.setLoggedIn(false);
-        history.push("/profile/");
+        history.push("/log_in/");
       }
     }).catch(error => alert(error.response.data));
   }
