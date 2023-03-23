@@ -304,7 +304,11 @@ export class EditRoute extends Component<{
       this.route.route_id
     );
 
-    window.location.reload();
+    alert("Route was updated");
+
+    history.push("/routes/" + this.route.route_id);
+
+    // window.location.reload();
 
     //window.location.reload(); // May log out user...
   }

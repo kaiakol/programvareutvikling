@@ -6148,7 +6148,10 @@ class EditRoute extends react_simplified__WEBPACK_IMPORTED_MODULE_1__.Component 
   save() {
     this.route_travel_points.map(route_travel_point => _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].updateTravelPoint(route_travel_point.destination, route_travel_point.continent, route_travel_point.travel_point_id));
     _route_service__WEBPACK_IMPORTED_MODULE_2__["default"].updateRoute(this.route.route_name, this.route.duration, this.route.estimated_price, this.route.description, this.route.route_id);
-    window.location.reload();
+    alert("Route was updated");
+    history.push("/routes/" + this.route.route_id);
+
+    // window.location.reload();
 
     //window.location.reload(); // May log out user...
   }
